@@ -7,7 +7,7 @@
 if [ $# -eq 0 ]
 then
    directory='.'
-elif [$# -ne 1 ] || [ ! -d "$1" ] #If the argument passed to bash script is more than one, break the program
+elif [ $# -ne 1 ] || [ ! -d "$1" ] #If the argument passed to bash script is more than one, break the program
 then
    echo "Useage: $0 [directory name]"
    exit 1
