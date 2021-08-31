@@ -7,18 +7,14 @@ Problem 1:
 Give a command that would let you easily identify the state file with the largest number of bytes.
 
 Answer:
-$ ps -xy *
 
-The reason for this is that the -x option causes ls to yada yada,
-while the the -y option makes it flim flam.  Taken together, they
-cause the output to appear as lorem ipsum, which is the result asked
-for.
 
 Problem 2:
 Give a command that would let you easily identify the state file with
 the largest number of lines.
 
 Answer:
+
 
 Problem 3:
 Explain in English what the following command does, and explain the full implications of the command for foo and for users of the system. Be sure to explain fully for the owner, a member of the file’s group who is not the owner, and for a user who is not in the file’s group.
