@@ -10,8 +10,7 @@ Answer:
 
 
 Problem 2:
-Give a command that would let you easily identify the state file with
-the largest number of lines.
+Give a command that would let you easily identify the state file with the largest number of lines.
 
 Answer:
 
