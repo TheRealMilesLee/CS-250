@@ -1,5 +1,5 @@
-                                CS250
-                           Assignment 0906
+                                                         CS250
+                                                  Assignment 0906
 
 Hengyi Li
 
@@ -15,6 +15,12 @@ Give a command that would let you easily identify the state file with
 the largest number of lines.
 
 Answer:
+
+
+
+
+
+
 
 
 Problem 3:
@@ -65,6 +71,12 @@ who is not in the file’s group. And the reason why after the command
 ls -ld states has been issued again and the states highlight in the shell is 
 because it has the execute permission now and the unix treated this as 
 a executable file.
+
+
+
+
+
+
 
 Problem 5:
 Give a grep command that will find every city containing an uppercase C.
