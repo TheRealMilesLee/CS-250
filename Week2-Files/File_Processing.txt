@@ -68,12 +68,20 @@ Problem 5:
 Give a grep command that will find every city containing an uppercase C.
 
 Answer:
-$ grep '^C' *
+$ grep -F C *
+The reason for this is that the -F option causes grep to do a fast matching,
+while the the C argument makes it matching the cities that containing uppercase C. Taken together, they cause the output to appear as cities containing an uppercase C, which is the result asked for.
+
 
 Problem 6:
 Give a grep command that will find every city beginning with uppercase C.
 
 Answer:
+$ grep '^C' *
+
+The reason for this is that the '^C' argument causes grep to display cities that begin with 'C', while the the ^ matacharacter set the shell as "line begin", and uppercase C is the argument that ^ metacharacter takes. 
+Taken together, they cause the output to appear as cities beginning with uppercase C, which is the result asked for.
+
 
 Problem 7:
 Give a grep command that will find every city in California that has an 
