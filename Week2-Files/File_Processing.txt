@@ -8,13 +8,16 @@ Give a command that would let you easily identify the state file with
 the largest number of bytes.
 
 Answer:
+$ wc -c *
 
+The command wc is refer to word count, and the option -c is to print the byte count of the state file.
 
 Problem 2:
 Give a command that would let you easily identify the state file with 
 the largest number of lines.
 
 Answer:
+$wc -l *
 
 
 
