@@ -9,8 +9,8 @@ the largest number of bytes.
 
 Answer:
 $ wc -c *
-
-The command wc is refer to word count, and the option -c is to print the byte count of the state file.
+The command wc is refer to word count, and the option -c  with 
+argument * is to print the byte count of the state file.
 
 Problem 2:
 Give a command that would let you easily identify the state file with 
@@ -18,13 +18,8 @@ the largest number of lines.
 
 Answer:
 $wc -l *
-
-
-
-
-
-
-
+The command wc is the word count, and the option -l with argument * 
+is to print the newline count in state file.
 
 Problem 3:
 Explain in English what the following command does, and explain the full
@@ -35,17 +30,12 @@ $ chmod 504 foo
 
 Answer:
 Suppose we have a plain file named foo and has the permission as follows:
-
 -rw-r--r-- 1 hl3265 student 0 Aug 31 13:01 foo
-
 This means the file foo is only the owner can read and execute,a member 
 of the file’s group who is not the owner and the user who is not in the 
 file’s group can only read this file.
-
 Now we run the command chmod 504 foo we get following result:
-
 -r-x---r-- 1 hl3265 student 0 Aug 31 13:01 foo
-
 Which means the chmod command changed the file foo into the owner
 of this file can read and execute, the member of the file's group 
 who is not the owner cannot do anything with the file 
@@ -68,18 +58,11 @@ The first command is to list the information about directories with long
 listing format and only list the file itself's information instead of the
 file information that inside the directory. The second command is to set 
 the file permission of the directory named states to read, write and execute 
-for all the users including the owner of the file,
-a member of the file’s group who is not the owner, and for a user 
-who is not in the file’s group. And the reason why after the command 
-ls -ld states has been issued again and the states highlight in the shell is 
-because it has the execute permission now and the unix treated this as 
-a executable file.
-
-
-
-
-
-
+for all the users including the owner of the file, a member of the file’s 
+group who is not the owner, and for a user who is not in the file’s group.
+And the reason why after the command ls -ld states has been issued again 
+and the states highlight in the shell is because it has the execute permission 
+now and the unix treated this as a executable file.
 
 Problem 5:
 Give a grep command that will find every city containing an uppercase C.
