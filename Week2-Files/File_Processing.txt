@@ -1,41 +1,52 @@
-                                CS250
-                           Assignment 0906
+                                                         CS250
+                                                  Assignment 0906
 
 Hengyi Li
 
 Problem 1:
-Give a command that would let you easily identify the state file with the largest number of bytes.
+Give a command that would let you easily identify the state file with 
+the largest number of bytes.
 
 Answer:
-$ ps -xy *
 
-The reason for this is that the -x option causes ls to yada yada,
-while the the -y option makes it flim flam.  Taken together, they
-cause the output to appear as lorem ipsum, which is the result asked
-for.
 
 Problem 2:
-Give a command that would let you easily identify the state file with
+Give a command that would let you easily identify the state file with 
 the largest number of lines.
 
 Answer:
 
+
+
+
+
+
+
+
 Problem 3:
-Explain in English what the following command does, and explain the full implications of the command for foo and for users of the system. Be sure to explain fully for the owner, a member of the file’s group who is not the owner, and for a user who is not in the file’s group.
+Explain in English what the following command does, and explain the full
+implications of the command for foo and for users of the system. 
+Be sure to explain fully for the owner, a member of the file’s group 
+who is not the owner, and for a user who is not in the file’s group.
 $ chmod 504 foo
 
 Answer:
 Suppose we have a plain file named foo and has the permission as follows:
 
--rw-r--r--  1  hl3265  student  0  Aug  31  13:01  foo
+-rw-r--r-- 1 hl3265 student 0 Aug 31 13:01 foo
 
-This means the file foo is only the owner can read and execute,a member of the file’s group who is not the owner and the user who is not in the file’s group can only read this file.
+This means the file foo is only the owner can read and execute,a member 
+of the file’s group who is not the owner and the user who is not in the 
+file’s group can only read this file.
 
 Now we run the command chmod 504 foo we get following result:
 
--r-x---r--  1  hl3265  student  0  Aug  31  13:01  foo
+-r-x---r-- 1 hl3265 student 0 Aug 31 13:01 foo
 
-Which means the chmod command changed the file foo into the owner of this file can read and execute, the member of the file's group who is not the owner cannot do anything with the file and the user who is not in the group can only read the file.  
+Which means the chmod command changed the file foo into the owner
+of this file can read and execute, the member of the file's group 
+who is not the owner cannot do anything with the file 
+and the user who is not in the group can only read the file.  
 
 Problem 4:
 Consider the following set of commands:
@@ -45,10 +56,27 @@ Consider the following set of commands:
      $ chmod 777 states
      $ ls -ld states 
      drwxrwxrwx 2 jbeck jbeck 4096 Aug 23 11:00 states
-Explain in English the implications of this command and why the shell is programmed to particularly highlight the directory name after the command has been issued.
+Explain in English the implications of this command and why the shell is
+programmed to particularly highlight the directory name after the command
+has been issued.
  
 Answer:
-The first command ls -ld states is to list the files with option lowercase l and argument d. The option l stands for show the user files with long option and the argument d stands for directory. So the command "ls -ld states" is to show the user the detail information of the folder named states.
+The first command is to list the information about directories with long
+listing format and only list the file itself's information instead of the
+file information that inside the directory. The second command is to set 
+the file permission of the directory named states to read, write and execute 
+for all the users including the owner of the file,
+a member of the file’s group who is not the owner, and for a user 
+who is not in the file’s group. And the reason why after the command 
+ls -ld states has been issued again and the states highlight in the shell is 
+because it has the execute permission now and the unix treated this as 
+a executable file.
+
+
+
+
+
+
 
 Problem 5:
 Give a grep command that will find every city containing an uppercase C.
@@ -62,12 +90,13 @@ Give a grep command that will find every city beginning with uppercase C.
 Answer:
 
 Problem 7:
-Give a grep command that will find every city in California that has an uppercase letter in a position that is not the beginning of the line.
+Give a grep command that will find every city in California that has an 
+uppercase letter in a position that is not the beginning of the line.
 
 Answer: 
 
 Problem 8:
-Give a grep command that will find every city in California that has a maximum of 6 contiguous lowercase letters.
+Give a grep command that will find every city in California that has a 
+maximum of 6 contiguous lowercase letters.
 
 Answer:
-
