@@ -54,6 +54,7 @@ Problem 5:
 Give a grep command that will find every city containing an uppercase C.
 
 Answer:
+$ grep '^C' *
 
 Problem 6:
 Give a grep command that will find every city beginning with uppercase C.
