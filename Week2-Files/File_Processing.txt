@@ -88,9 +88,11 @@ Give a grep command that will find every city in California that has an
 uppercase letter in a position that is not the beginning of the line.
 
 Answer: 
+$ grep -E '^.[A-Z]' California
 
 Problem 8:
 Give a grep command that will find every city in California that has a 
 maximum of 6 contiguous lowercase letters.
 
 Answer:
+$ grep -E '[a-z][6]' California
