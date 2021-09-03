@@ -94,4 +94,4 @@ Give a grep command that will find every city in California that has a
 maximum of 6 contiguous lowercase letters.
 
 Answer:
-$ grep -E '[a-z]{6}'' California
+$ grep -E '^..[a-z]{5}\>'' California
