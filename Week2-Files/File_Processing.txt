@@ -17,7 +17,7 @@ Give a command that would let you easily identify the state file with
 the largest number of lines.
 
 Answer:
-$wc -l *
+$ wc -l *
 The command wc is the word count, and the option -l with argument * 
 is to print the newline count in state file.
 
@@ -86,7 +86,7 @@ uppercase letter in a position that is not the beginning of the line.
 
 Answer: 
 $ grep -E '^.[A-Z]' California
-The reason for this is that the -E option causes grep to use a full regular expressions, while the the '^.' argument makes it to jump the beginning character and [A-Z] gives it pattern to match the uppercase letter and the last argument California gives the files that need to be looking for. Taken together, they cause the output to appear as cities in California that has an uppercase letter in a position that is not the beginning of the line, which is the result asked for.
+The reason for this is that the -E option causes grep to use a full regular expressions, while the '^.' argument makes it to jump the beginning character and [A-Z] gives it pattern to match the uppercase letter and the last argument California gives the files that need to be looking for. Taken together, they cause the output to appear as cities in California that has an uppercase letter in a position that is not the beginning of the line, which is the result asked for.
 
 
 Problem 8:
@@ -94,4 +94,6 @@ Give a grep command that will find every city in California that has a
 maximum of 6 contiguous lowercase letters.
 
 Answer:
-$ grep -E '^..[a-z]{5}\>'' California
+$ grep -E '^.[a-z]{6}\>' California
+
+The reason for this is that the -E option causes grep  to use a full regular expressions, while the argument '^.[a-z]{6}\>' is to find the contiguous lowercase letter after the first character, and [a-z] is represents to all the lowercase letter and the {6}\> is represents to find the upmost 6 contiguous lowercase letters. The argument California is just the file that we need to searching for. Taken together, they cause the output to appear as cities in California that has a maximum of 6 contiguous lowercase letter, which is the result asked for.
