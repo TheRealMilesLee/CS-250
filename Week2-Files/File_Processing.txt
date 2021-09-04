@@ -8,18 +8,18 @@ Give a command that would let you easily identify the state file with
 the largest number of bytes.
 
 Answer:
-$ wc -c *
+$ wc -c * | sort -n
 The command wc is refer to word count, and the option -c  with 
-argument * is to print the byte count of the state file.
+argument * is to print the byte count of the state file, | is the pipline, processing and the command sort is the sorting the output, option -n is sort as ascending order. Taken together, they cause the output to appear as the size of state file output as ascending order so that you can easily locate the file with the largest number of bytes is in the second last row (because last row is the size of the total file), which is the result asked for. 
 
 Problem 2:
 Give a command that would let you easily identify the state file with 
 the largest number of lines.
 
 Answer:
-$ wc -l *
+$ wc -l * | sort -n
 The command wc is the word count, and the option -l with argument * 
-is to print the newline count in state file.
+is to print the newline count in state file, | is the pipline processing and sort is sorting the output. The option -n is sort as ascending order. Taken together, they cause the output to appear as the lines count of state file output as ascending order so that you can easily locate the file with the largest number of lines is in the second last row (because last row is the size of the total file), which is the result asked for. 
 
 Problem 3:
 Explain in English what the following command does, and explain the full
