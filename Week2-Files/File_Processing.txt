@@ -60,9 +60,10 @@ $ chmod 504 foo
 Answer:
 Suppose we have a plain file named foo and has the permission as follows:
 -rw-r--r-- 1 hl3265 student 0 Aug 31 13:01 foo
-This means the file foo is only the owner can read and execute, a member 
-of the file’s group who is not the owner and the user who is not in the 
-file’s group can only read this file.
+This means the file foo is only the owner can read and write, cannot execute, 
+a member of the file’s group who is not the owner and the user who is not in 
+the file’s group can only read this file.
+
 Now we run the command chmod 504 foo we get following result:
 -r-x---r-- 1 hl3265 student 0 Aug 31 13:01 foo
 Which means the chmod command changed the file foo into the owner
