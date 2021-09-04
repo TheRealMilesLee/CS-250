@@ -83,16 +83,15 @@ programmed to particularly highlight the directory name after the command
 has been issued.
  
 Answer:
-The first command "ls -ld states" is to list the information about 
-directories with long listing format and only list the file itself's 
-information instead of the file information that inside the directory. 
+The first command "ls -ld states" is only list the information about 
+directories states with long listing format. 
 
 The second command "chmod 777 states" is to set the file permission of the 
 directory named states to read, write and execute for all the users including 
 the owner of the file, a member of the file’s group who is not the owner, and 
 for a user who is not in the file’s group.
 
-And the reason why after the command ls -ld states has been issued again 
+And the reason why after the command "ls -ld states" has been issued again 
 and the states highlight in the shell is because it has the execute 
 permission now and the unix treated this as a executable file, so it will 
 hightlight the directories
@@ -106,7 +105,6 @@ The reason for this is that the -F option causes grep to do a fast matching,
 while the the C argument makes it matching the cities that containing 
 uppercase C. Taken together, they cause the output to appear as cities 
 containing an uppercase C, which is the result asked for.
-
 
 Problem 6:
 Give a grep command that will find every city beginning with uppercase C.
