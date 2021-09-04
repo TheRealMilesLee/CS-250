@@ -10,7 +10,12 @@ the largest number of bytes.
 Answer:
 $ wc -c * | sort -n
 The command wc is refer to word count, and the option -c  with 
-argument * is to print the byte count of the state file, | is the pipline, processing and the command sort is the sorting the output, option -n is sort as ascending order. Taken together, they cause the output to appear as the size of state file output as ascending order so that you can easily locate the file with the largest number of bytes is in the second last row (because last row is the size of the total file), which is the result asked for. 
+argument * is to print the byte count of the state file, | is the pipeline, 
+processing and the command sort is the sorting the output, option -n is sort 
+as ascending order. Taken together, they cause the output to appear as the 
+size of state file output as ascending order so that you can easily locate 
+the file with the largest number of bytes is in the second last row (because
+last row is the size of the total file), which is the result asked for. 
 
 Problem 2:
 Give a command that would let you easily identify the state file with 
@@ -19,7 +24,12 @@ the largest number of lines.
 Answer:
 $ wc -l * | sort -n
 The command wc is the word count, and the option -l with argument * 
-is to print the newline count in state file, | is the pipline processing and sort is sorting the output. The option -n is sort as ascending order. Taken together, they cause the output to appear as the lines count of state file output as ascending order so that you can easily locate the file with the largest number of lines is in the second last row (because last row is the size of the total file), which is the result asked for. 
+is to print the newline count in state file, | is the pipeline processing 
+and sort is sorting the output. The option -n is sort as ascending order. 
+Taken together, they cause the output to appear as the lines count of state 
+file output as ascending order so that you can easily locate the file with 
+the largest number of lines is in the second last row (because last row is 
+the size of the total file), which is the result asked for. 
 
 Problem 3:
 Explain in English what the following command does, and explain the full
@@ -31,7 +41,7 @@ $ chmod 504 foo
 Answer:
 Suppose we have a plain file named foo and has the permission as follows:
 -rw-r--r-- 1 hl3265 student 0 Aug 31 13:01 foo
-This means the file foo is only the owner can read and execute,a member 
+This means the file foo is only the owner can read and execute, a member 
 of the file’s group who is not the owner and the user who is not in the 
 file’s group can only read this file.
 Now we run the command chmod 504 foo we get following result:
@@ -60,7 +70,8 @@ the file permission of the directory named states to read, write and execute
 for all the users including the owner of the file, a member of the file’s 
 group who is not the owner, and for a user who is not in the file’s group.
 And the reason why after the command ls -ld states has been issued again 
-and the states highlight in the shell is because it has the execute permission now and the unix treated this as a executable file.
+and the states highlight in the shell is because it has the execute 
+permission now and the unix treated this as a executable file.
 
 Problem 5:
 Give a grep command that will find every city containing an uppercase C.
@@ -68,7 +79,9 @@ Give a grep command that will find every city containing an uppercase C.
 Answer:
 $ grep -F C *
 The reason for this is that the -F option causes grep to do a fast matching,
-while the the C argument makes it matching the cities that containing uppercase C. Taken together, they cause the output to appear as cities containing an uppercase C, which is the result asked for.
+while the the C argument makes it matching the cities that containing 
+uppercase C. Taken together, they cause the output to appear as cities 
+containing an uppercase C, which is the result asked for.
 
 
 Problem 6:
@@ -76,8 +89,11 @@ Give a grep command that will find every city beginning with uppercase C.
 
 Answer:
 $ grep '^C' *
-The reason for this is that the '^C' argument causes grep to display cities that begin with 'C', while the the ^ matacharacter set the shell as "line begin", and uppercase C is the argument that ^ metacharacter takes. 
-Taken together, they cause the output to appear as cities beginning with uppercase C, which is the result asked for.
+The reason for this is that the '^C' argument causes grep to display cities 
+that begin with 'C', while the the ^ metacharacter set the shell as 
+"line begin", and uppercase C is the argument that ^ metacharacter takes. 
+Taken together, they cause the output to appear as cities beginning with 
+uppercase C, which is the result asked for.
 
 
 Problem 7:
@@ -86,7 +102,13 @@ uppercase letter in a position that is not the beginning of the line.
 
 Answer: 
 $ grep -E '^.[A-Z]' California
-The reason for this is that the -E option causes grep to use a full regular expressions, while the '^.' argument makes it to jump the beginning character and [A-Z] gives it pattern to match the uppercase letter and the last argument California gives the files that need to be looking for. Taken together, they cause the output to appear as cities in California that has an uppercase letter in a position that is not the beginning of the line, which is the result asked for.
+The reason for this is that the -E option causes grep to use a full regular 
+expressions, while the '^.' argument makes it to jump the beginning character 
+and [A-Z] gives it pattern to match the uppercase letter and the last
+argument California gives the files that need to be looking for. Taken 
+together, they cause the output to appear as cities in California that has 
+an uppercase letter in a position that is not the beginning of the line, 
+which is the result asked for.
 
 
 Problem 8:
@@ -96,4 +118,11 @@ maximum of 6 contiguous lowercase letters.
 Answer:
 $ grep -E '^.[a-z]{6}\>' California
 
-The reason for this is that the -E option causes grep  to use a full regular expressions, while the argument '^.[a-z]{6}\>' is to find the contiguous lowercase letter after the first character, and [a-z] is represents to all the lowercase letter and the {6}\> is represents to find the upmost 6 contiguous lowercase letters. The argument California is just the file that we need to searching for. Taken together, they cause the output to appear as cities in California that has a maximum of 6 contiguous lowercase letter, which is the result asked for.
+The reason for this is that the -E option causes grep to use a full regular 
+expressions, while the argument '^.[a-z]{6}\>' is to find the contiguous 
+lowercase letter after the first character, and [a-z] is represents to all 
+the lowercase letter and the {6}\> is represents to find the upmost 6 
+contiguous lowercase letters. The argument California is just the file that 
+we need to searching for. Taken together, they cause the output to appear as 
+cities in California that has a maximum of 6 contiguous lowercase letter, 
+which is the result asked for.
