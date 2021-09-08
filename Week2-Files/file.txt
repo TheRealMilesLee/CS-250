@@ -1,1 +1,166 @@
-				  CS250			      Assignment 0906Hengyi LiProblem 1:Give a command that would let you easily identify the state file with the largest number of bytes.Answer:$ wc -c * | sort -n | tail -n 2 | head -1The reason for this is that the -c option causes wc to count the bytes of file, while argument * is refers to all the file in current directories. The | metacharacter makes it as a pipeline and pass the result to sort command. The -n option causes sort to sorting the result as ascending order. And | metacharacter makes the sorting result as a pipeline passed to tail command with option -n and a argument 2. Which means output the last part of files, option -n with argument 2 stands for output the last 2 lines, the reason why print last 2 lines because that the last line is the total size of the file, and the file with largest number of bytes is in the second last lineThe | metacharacter makes pipeline pass it to head command, and it has a option -1 stands for only print the first lines. Taken together, they causethe output to appear as the file that has the largest number of bytes, whichis the result asked for.Just to be more clearer, as you run this command, you will expected to get this result of output: 1374 California, which is the largest number of bytes in the state file.Problem 2:Give a command that would let you easily identify the state file with the largest number of lines.Answer:$ wc -l * | sort -n | tail -n 2 | head -1The reason for this is that the -l option causes wc to count the lines of file, while argument * is refers to all the file in current directories. The | metacharacter makes it as a pipeline and pass to the result to the sort command. The -n option causes sort to sorting the result as ascending order.And | metacharacter makes the sorting result as a pipeline passed to tail command with option -n and a argument 2, tail means output the last part of files, option -n with argument 2 stands for output the last 2 lines, the reason why print last 2 lines because that the last line is the total size of the file, and the file which has largest number of lines is in second lastline. The | metacharacter makes pipeline pass it to head command, and it has a option -1 stands for only print the first lines. Taken together, they cause the output to appear as the file which has the largest number of lines,which is the result asked for.Just to be more clearer, as you run this command, you will expected to get this result of output: 138 California, which is the largest number of lines in the state file.Problem 3:Explain in English what the following command does, and explain the fullimplications of the command for foo and for users of the system. Be sure to explain fully for the owner, a member of the file group who is not the owner, and for a user who is not in the file group.$ chmod 504 fooAnswer:Suppose we have a plain file named foo and has the permission as follows:-rw-r--r-- 1 hl3265 student 0 Aug 31 13:01 fooThis means the file foo is only the owner can read and write, cannot execute, a member of the file group who is not the owner and the user who is not in the file group can only read this file.Now we run the command chmod 504 foo we get following result:-r-x---r-- 1 hl3265 student 0 Aug 31 13:01 fooWhich means the chmod command changed the file foo into the owner of this file can read and execute but cannot write, the member of the file group who is not the owner cannot do anything with the file and the user who is not in the group can only read the file.  Problem 4:Consider the following set of commands:     $ ls -ld states     drwxrwxr-x 2 jbeck jbeck 4096 Aug 23 11:00 states     $ chmod 777 states     $ ls -ld states      drwxrwxrwx 2 jbeck jbeck 4096 Aug 23 11:00 statesExplain in English the implications of this command and why the shell isprogrammed to particularly highlight the directory name after the commandhas been issued.Answer:The first command "ls -ld states" is only list the information about directories states with long listing format. The second command "chmod 777 states" is to set the file permission of the directory named states to read, write and execute for all the users including the owner of the file, a member of the file group who is not the owner, and for a user who is not in the file group.And the reason why after the command "ls -ld states" has been issued again and the states highlight in the shell is because it has the execute and writepermission for user who is not in the group, so bash highlight this as a warning to the user.Problem 5:Give a grep command that will find every city containing an uppercase C.Answer:$ grep -F C *The reason for this is that the -F option causes grep to do a fast matching,while the the C argument makes it matching the cities that containing uppercase C. Taken together, they cause the output to appear as cities containing an uppercase C, which is the result asked for.Problem 6:Give a grep command that will find every city beginning with uppercase C.Answer:$ grep ^C *The reason for this is that the ^C argument causes grep to display cities that begin with uppercase C, while the the ^ metacharacter set the shell as line begin mode, and uppercase C is the argument that ^ metacharacter takes. Taken together, they cause the output to appear as cities beginning with uppercase C, which is the result asked for.Problem 7:Give a grep command that will find every city in California that has an uppercase letter in a position that is not the beginning of the line.Answer: $ grep -E '.[A-Z]' CaliforniaThe reason for this is that the -E option causes grep to use a full regular expressions, while the '.[A-Z]' argument matches the uppercase letter that is not the beginning of the line.Taken together, they cause the output to appear as cities in California that has an uppercase letter in a position that is not the beginning of the line. which is the result asked for.Just to be clearer, the argument '.[A-Z]' represents jump the first characterand starting on the second character of the line. With argument [A-Z] represents match all the uppercase letters in the rest of the lines. So as the commands run, you will expect to get output with cities that has uppercase letters not only on the beginning of the line, but also the place after the beginning of the line.Problem 8:Give a grep command that will find every city in California that has a maximum of 6 contiguous lowercase letters.Answer:$ grep -E -v '.[a-z]{7}' CaliforniaThe reason for this is that the -E option causes grep to use the full regularexpressions, while the the -v option makes it do a invert match. The argument'.' is to jump the first character and starting at second character on the line, argument [a-z] is lowercase letters matching, and {7} is referring to match at least 7 times. Argument California is the file we need to match for.Taken together, they cause the output to appear as cities in California that has a maximum of 6 contiguous lowercase letters, which is the result asked for.Just to be more clear, the argument '.[a-z]{7}' is doing a filtering and matching  7 or more contiguous lowercase letters, and option -v is the core idea of this command, it represents doing a inverse match, so combine these we could get the maximum of 6 contiguous lowercase letters, which is the result asked for.
+				  CS250
+
+			      Assignment 0906
+
+Hengyi Li
+
+Problem 1:
+Give a command that would let you easily identify the state file with 
+the largest number of bytes.
+
+Answer:
+$ wc -c * | sort -n | tail -n 2 | head -1
+
+The reason for this is that the -c option causes wc to count the bytes of 
+file, while argument * is refers to all the file in current directories. The 
+| metacharacter makes it as a pipeline and pass the result to sort command. 
+The -n option causes sort to sorting the result as ascending order. 
+And | metacharacter makes the sorting result as a pipeline passed to tail 
+command with option -n and a argument 2. Which means output the last part of 
+files, option -n with argument 2 stands for output the last 2 lines, the 
+reason why print last 2 lines because that the last line is the total size of 
+the file, and the file with largest number of bytes is in the second last line
+The | metacharacter makes pipeline pass it to head command, and it has a 
+option -1 stands for only print the first lines. Taken together, they cause
+the output to appear as the file that has the largest number of bytes, which
+is the result asked for.
+
+Just to be more clearer, as you run this command, you will expected to get 
+this result of output: 1374 California, which is the largest number of bytes 
+in the state file.
+
+Problem 2:
+Give a command that would let you easily identify the state file with 
+the largest number of lines.
+
+Answer:
+$ wc -l * | sort -n | tail -n 2 | head -1
+
+The reason for this is that the -l option causes wc to count the lines of 
+file, while argument * is refers to all the file in current directories. The 
+| metacharacter makes it as a pipeline and pass to the result to the sort 
+command. The -n option causes sort to sorting the result as ascending order.
+And | metacharacter makes the sorting result as a pipeline passed to tail 
+command with option -n and a argument 2, tail means output the last part of 
+files, option -n with argument 2 stands for output the last 2 lines, the 
+reason why print last 2 lines because that the last line is the total size of 
+the file, and the file which has largest number of lines is in second last
+line. The | metacharacter makes pipeline pass it to head command, and it 
+has a option -1 stands for only print the first lines. Taken together, they 
+cause the output to appear as the file which has the largest number of lines,
+which is the result asked for.
+
+Just to be more clearer, as you run this command, you will expected to get 
+this result of output: 138 California, which is the largest number of lines 
+in the state file.
+
+Problem 3:
+Explain in English what the following command does, and explain the full
+implications of the command for foo and for users of the system. 
+Be sure to explain fully for the owner, a member of the file group 
+who is not the owner, and for a user who is not in the file group.
+$ chmod 504 foo
+
+Answer:
+Suppose we have a plain file named foo and has the permission as follows:
+-rw-r--r-- 1 hl3265 student 0 Aug 31 13:01 foo
+This means the file foo is only the owner can read and write, cannot execute, 
+a member of the file group who is not the owner and the user who is not in 
+the file group can only read this file.
+
+Now we run the command chmod 504 foo we get following result:
+-r-x---r-- 1 hl3265 student 0 Aug 31 13:01 foo
+Which means the chmod command changed the file foo into the owner of this 
+file can read and execute but cannot write, the member of the file group 
+who is not the owner cannot do anything with the file and the user who is not 
+in the group can only read the file.  
+
+Problem 4:
+Consider the following set of commands:
+     $ ls -ld states
+     drwxrwxr-x 2 jbeck jbeck 4096 Aug 23 11:00 states
+     $ chmod 777 states
+     $ ls -ld states 
+     drwxrwxrwx 2 jbeck jbeck 4096 Aug 23 11:00 states
+Explain in English the implications of this command and why the shell is
+programmed to particularly highlight the directory name after the command
+has been issued.
+
+Answer:
+The first command "ls -ld states" is only list the information about 
+directories states with long listing format. 
+
+The second command "chmod 777 states" is to set the file permission of the 
+directory named states to read, write and execute for all the users including 
+the owner of the file, a member of the file group who is not the owner, and 
+for a user who is not in the file group.
+
+And the reason why after the command "ls -ld states" has been issued again 
+and the states highlight in the shell is because it has the execute and write
+permission for user who is not in the group, so bash highlight this as a 
+warning to the user.
+
+Problem 5:
+Give a grep command that will find every city containing an uppercase C.
+
+Answer:
+$ grep -F C *
+
+The reason for this is that the -F option causes grep to do a fast matching,
+while the the C argument makes it matching the cities that containing 
+uppercase C. Taken together, they cause the output to appear as cities 
+containing an uppercase C, which is the result asked for.
+
+Problem 6:
+Give a grep command that will find every city beginning with uppercase C.
+
+Answer:
+$ grep ^C *
+
+The reason for this is that the ^C argument causes grep to display cities 
+that begin with uppercase C, while the the ^ metacharacter set the shell as 
+line begin mode, and uppercase C is the argument that ^ metacharacter takes. 
+Taken together, they cause the output to appear as cities beginning with 
+uppercase C, which is the result asked for.
+
+Problem 7:
+Give a grep command that will find every city in California that has an 
+uppercase letter in a position that is not the beginning of the line.
+
+Answer: 
+$ grep -E '.[A-Z]' California
+
+The reason for this is that the -E option causes grep to use a full regular 
+expressions, while the '.[A-Z]' argument matches the uppercase letter that 
+is not the beginning of the line.Taken together, they cause the output to 
+appear as cities in California that has an uppercase letter in a position 
+that is not the beginning of the line. which is the result asked for.
+
+Just to be clearer, the argument '.[A-Z]' represents jump the first character
+and starting on the second character of the line. With argument [A-Z] 
+represents match all the uppercase letters in the rest of the lines. 
+So as the commands run, you will expect to get output with cities that has 
+uppercase letters not only on the beginning of the line, but also the place 
+after the beginning of the line.
+
+Problem 8:
+Give a grep command that will find every city in California that has a 
+maximum of 6 contiguous lowercase letters.
+
+Answer:
+$ grep -E -v '.[a-z]{7}' California
+
+The reason for this is that the -E option causes grep to use the full regular
+expressions, while the the -v option makes it do a invert match. The argument
+'.' is to jump the first character and starting at second character on the line, 
+argument [a-z] is lowercase letters matching, and {7} is referring to 
+match at least 7 times. Argument California is the file we need to match for.
+Taken together, they cause the output to appear as cities in California that 
+has a maximum of 6 contiguous lowercase letters, 
+which is the result asked for.
+
+Just to be more clear, the argument '.[a-z]{7}' is doing a filtering and 
+matching  7 or more contiguous lowercase letters, and option -v is the core 
+idea of this command, it represents doing a inverse match, so combine these 
+we could get the maximum of 6 contiguous lowercase letters, which is the 
+result asked for.
