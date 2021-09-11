@@ -22,6 +22,5 @@ while read line;
 do
   echo $line
 #read each line and redirect it to the output
-done <$1>$1.test.txt
-
+done <$1>$1
 exit 0
