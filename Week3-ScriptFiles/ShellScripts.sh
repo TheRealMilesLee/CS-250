@@ -13,9 +13,6 @@ then
    exit 0
 fi
 
-file=$1  
-while read line; 
-do  
-#Readind each line in sequence  
-echo $line  
-done <$file
+
+getFileFromDisk="cat $1"
+$getFileFromDisk>$1.orig
