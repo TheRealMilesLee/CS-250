@@ -18,14 +18,6 @@ getFileFromDisk="cat $1"
 #Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
 
-for file in $getFileFromDisk
-do
-  if [[-a foo]]
-  then
-    echo "White spaces exists"
-  else
-    echo "White Spaces does not exists"
-  fi
-done
-
+removedTrailingSpaces="grep -r '[[:blank:]]$' $1"
+$removedTrailingSpaces>$1
 exit 0
