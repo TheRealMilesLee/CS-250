@@ -13,4 +13,9 @@ then
    exit 0
 fi
 
-cat<$directory
+file=$1  
+while read line; 
+do  
+#Readind each line in sequence  
+echo $line  
+done <$file
