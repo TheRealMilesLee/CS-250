@@ -4,7 +4,6 @@
 #each line removed.
 #Hengyi Li
 
-
 # If the file is an empty directory, then output quit the script
 file_count=$(ls $directory | wc -w)
 if [ $file_count -eq 0 ]
@@ -18,6 +17,11 @@ getFileFromDisk="cat $1"
 #Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
 
-removedTrailingSpaces="grep -r '[[:blank:]]$' $1"
-$removedTrailingSpaces>$1
+#Read the file line by line
+while read line;
+do
+  echo $line
+#read each line and redirect it to the output
+done <$1>$1.test.txt
+
 exit 0
