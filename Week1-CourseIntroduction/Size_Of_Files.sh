@@ -26,14 +26,14 @@ fi
 sum=0
 #ls -1 "$directory" |
 for file in $(ls -1 "$directory/") # note: -1 is a digit one
-do 
+do
 
    if [ -f "$directory/$file" ]
    then
       set -- $(ls -l "$directory/$file") # note: -l is lowercase letter L
       sum=$(($sum + $5)) # the file size is the fifth column
    fi
-   
+
    if [ "$file_count" -gt 1 ]
    then
       let file_count--
