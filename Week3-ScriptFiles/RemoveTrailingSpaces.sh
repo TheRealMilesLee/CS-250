@@ -1,6 +1,19 @@
 #! /bin/bash
-#This shell scripts is to replaced with one that has all trailing spaces on each line removed.
 #Hengyi Li
+#This shell scripts is to replaced with one that has all trailing spaces on each line removed.
+
+if [[ $# -ne 1 ]]
+then
+    echo "Useage: $0 filename"
+    exit 1;
+fi
+
+if [[ -d "$1" && -r "$1" ]]
+then
+    filecount=$(ls "$1" | wc -l)
+    echo "The number of files in $1 is $filecount"
+    exit 0
+fi
 
 # Read the file from disk.
 getFileFromDisk="cat $1"
@@ -17,4 +30,4 @@ done < "$1" > "$1.txt"
 rm $1
 mv $1.txt $1
 
-exit 0;
+exit 0
