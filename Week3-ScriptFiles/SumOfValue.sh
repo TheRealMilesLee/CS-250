@@ -18,7 +18,7 @@ then
     exit 1
 fi
 
-if [[$2]]
+sum=0
 # cut the column we needed and store it into temp files for now
 cut -c$2 $1 >temp.csv
 # loop through the temp file and do addition for the number inside
@@ -33,4 +33,3 @@ echo "Total is: $sum"
 rm 'temp.csv'
 # Exit the program
 exit 0
-
