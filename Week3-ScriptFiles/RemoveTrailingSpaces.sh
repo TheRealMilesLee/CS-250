@@ -1,6 +1,9 @@
 #! /bin/bash
-#Hengyi Li
-#This shell scripts is to replaced with one that has all trailing spaces on each line removed.
+# Hengyi Li
+# Program to remove the trailing spaces in the file.
+# This script is to be called with one filename argument.
+# If there is no argument, exit with error status.
+# If the argument does not exist, exit with error status.
 
 # Check if we have arguments
 if [[ $# -ne 1 ]]
