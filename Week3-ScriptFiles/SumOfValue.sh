@@ -31,5 +31,6 @@ done;
 echo "Total is: $sum"
 # Remove the temp file since we don't need it anymore
 rm 'temp.csv'
+
 # Exit the program
 exit 0
