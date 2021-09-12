@@ -14,12 +14,14 @@ codes.
 
 In all cases, consider the column count to start at 0.
 '
+# Check if file is empty
+if [[ ! -s $1 ]]
+then
+    echo "The files $1 is empty or does not exist at all!"
+    exit 1
+fi
 
-getFileFromDisk="cat $1"
-$getFileFromDisk
-
-
-columnNumber="$2"
-$columnNumber
-
+Addition="cut -c$2 $1"
+$Addition
+exit 0
 
