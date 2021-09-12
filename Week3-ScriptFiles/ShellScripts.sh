@@ -9,5 +9,5 @@ $getFileFromDisk>$1.orig
 # Find the trailing spaces in the file
 while read -r line;
 do
-    echo "$line" >> "$1"
+    echo "$line" > "$1"
 done < "$1"
