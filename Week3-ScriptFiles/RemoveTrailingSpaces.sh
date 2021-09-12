@@ -18,3 +18,5 @@ done < "$1" > "$1.txt"
 # cover the origional file with new file.
 rm $1
 mv $1.txt $1
+
+exit 0;
