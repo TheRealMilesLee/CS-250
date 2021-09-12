@@ -6,7 +6,6 @@
 getFileFromDisk="cat $1"
 # Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
-# Find the trailing spaces in the file
 # Read the file line by line and ignore the trailing spaces using read command
 while read lines;
 do
@@ -14,7 +13,6 @@ do
     echo $lines
 # Redirect the input from user arguments and Redirect the read result into new files
 done < "$1" > "$1.txt"
-
 # cover the origional file with new file.
 rm $1
 mv $1.txt $1
