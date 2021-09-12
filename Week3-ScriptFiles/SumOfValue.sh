@@ -18,19 +18,24 @@ then
     exit 1
 fi
 
-sum=0
-# cut the column we needed and store it into temp files for now
+# TODO: Stuck in the the detecting column is empty or not.
 
-# loop through the temp file and do addition for the number inside
-for number in `cut -c$2 $1`;
+cutLines=`cut -c $2 $1`
+if [[ -z $cutLines]]
+then
+    echo "Column is empty"
+    exit 1
+fi
+
+# Handling when column does not contain a value
+sum=0
+# cut the column we needed and add the cut numbers by using loop
+for number in $cutLines;
 do
-    # Add numbers in the temp.csv and store it in the sum variable
+    # Add numbers  and store it in the sum variable
     sum=$(($sum + $number));
 done;
 # output the sum of the values in that column and print it to standard output
 echo "Total is: $sum"
-# Remove the temp file since we don't need it anymore
-
-
 # Exit the program
 exit 0
