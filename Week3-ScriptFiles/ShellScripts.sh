@@ -7,3 +7,7 @@ getFileFromDisk="cat $1"
 # Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
 # Find the trailing spaces in the file
+while read -r line;
+do
+    echo "$line" >> "$1"
+done < "$1"
