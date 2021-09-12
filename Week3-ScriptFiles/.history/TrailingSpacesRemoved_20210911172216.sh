@@ -1,6 +1,7 @@
 #! /bin/bash
 
-#This shell scripts is to replaced with one that has all trailing spaces on each line removed.
+#This shell scripts is to replaced with one that has all trailing spaces on
+#each line removed.
 #Hengyi Li
 
 # If the file is an empty directory, then output quit the script
