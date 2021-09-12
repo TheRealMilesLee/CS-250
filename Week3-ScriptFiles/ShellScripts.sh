@@ -7,7 +7,11 @@ getFileFromDisk="cat $1"
 # Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
 # Find the trailing spaces in the file
-while read -r line;
+line=$(<$1)
+while read lines;
 do
-    echo "$line" > "$1"
-done < "$1"
+    echo $lines
+done < "$1" > "$1.txt"
+
+rm $1
+mv $1.txt $1
