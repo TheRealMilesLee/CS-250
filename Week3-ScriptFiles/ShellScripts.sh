@@ -10,5 +10,5 @@ $getFileFromDisk>$1.orig
 while read line
 do
     echo $line
-done < $1 > $1
+done <$1 >$1
 exit 0
