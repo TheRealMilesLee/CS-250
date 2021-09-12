@@ -20,9 +20,9 @@ fi
 
 sum=0
 # cut the column we needed and store it into temp files for now
-cut -c$2 $1 >temp.csv
+
 # loop through the temp file and do addition for the number inside
-for number in `cat temp.csv`;
+for number in `cut -c$2 $1`;
 do
     # Add numbers in the temp.csv and store it in the sum variable
     sum=$(($sum + $number));
@@ -30,7 +30,7 @@ done;
 # output the sum of the values in that column and print it to standard output
 echo "Total is: $sum"
 # Remove the temp file since we don't need it anymore
-rm 'temp.csv'
+
 
 # Exit the program
 exit 0
