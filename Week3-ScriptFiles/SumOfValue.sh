@@ -1,27 +1,36 @@
 : '
-The named file is assumed to be a csv file with fields delimited by tabs.
+# The purpose of the script is to calculate the sum of the values in that column and print it to
+# standard output.
 
-The purpose of the script is to calculate the sum of the values in that column and print it to
-standard output.
-
-You may assume that all the values, if each is a value, will be integers as opposed to floats.
-
-Do not use either sed or awk in your solution.
-
-Your script should do something intelligent if the named file does not exist, if the column does
-not exist, or if any line in the column does not contain a value, and should have reasonable exit
-codes.
-
-In all cases, consider the column count to start at 0.
+Your script should do something intelligent if the column does not exist, or if any line in the column does not contain a value, and should have reasonable exit codes.
 '
-# Check if file is empty
-if [[ ! -s $1 ]]
+# Check if file is exists
+if [[ ! -e $1 ]]
 then
-    echo "The files $1 is empty or does not exist at all!"
+    echo "The files $1 does not exist at all!"
     exit 1
 fi
 
-Addition="cut -c$2 $1"
-$Addition
+#Check if file is empty
+if [[ ! -s $1 ]]
+then
+    echo "The file $1 is empty!"
+    exit 1
+fi
+
+if [[$2]]
+# cut the column we needed and store it into temp files for now
+cut -c$2 $1 >temp.csv
+# loop through the temp file and do addition for the number inside
+for number in `cat temp.csv`;
+do
+    # Add numbers in the temp.csv and store it in the sum variable
+    sum=$(($sum + $number));
+done;
+# output the sum of the values in that column and print it to standard output
+echo "Total is: $sum"
+# Remove the temp file since we don't need it anymore
+rm 'temp.csv'
+# Exit the program
 exit 0
 
