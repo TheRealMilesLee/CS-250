@@ -2,17 +2,18 @@
 #Hengyi Li
 #This shell scripts is to replaced with one that has all trailing spaces on each line removed.
 
+# Check if we have arguments
 if [[ $# -ne 1 ]]
 then
     echo "Useage: $0 filename"
-    exit 1;
+    exit 1
 fi
 
-if [[ -d "$1" && -r "$1" ]]
+# Check if file is empty
+if [[ ! -s $1 ]]
 then
-    filecount=$(ls "$1" | wc -l)
-    echo "The number of files in $1 is $filecount"
-    exit 0
+    echo "The files $1 is empty or does not exist at all!"
+    exit 1
 fi
 
 # Read the file from disk.
