@@ -23,12 +23,14 @@ fi
 getFileFromDisk="cat $1"
 # Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
-# Read the file line by line and ignore the trailing spaces using read command
+# Read the file line by line and ignore the trailing spaces using read
+# command
 while read lines;
 do
 # Go through all the lines in the file.
     echo $lines
-# Redirect the input from user arguments and Redirect the read result into new files
+# Redirect the input from user arguments
+# And Redirect the read result into new files
 done < "$1" > "$1.txt"
 # cover the origional file with new file.
 rm $1
