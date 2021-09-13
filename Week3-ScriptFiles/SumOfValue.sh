@@ -17,25 +17,25 @@ then
     echo "The file $1 is empty!"
     exit 2
 fi
-: '
+
+for Check in $(cut -c $2 $1)
+do
+	  if [[ $( -z $Check) ]]
+  	then
+    	echo "The colum is empty"
+    	exit 2
+  	fi
+done
+
+sum=0
 #Check if column does not exit
 # Cut the line, if the line is empty, that means non-exist
-for ColumnCheck in $(cut -c $2 $1);
-do
-  if [[ isnumeric "$ColumnCheck" ]]
-  then
-    echo "The column you looking for is not exist"
-    exit 2
-  fi
-done
-'
-sum=0
 # cut the column we needed and add the cut numbers by using loop
 for number in $(cut -c $2 $1)
 do
 # Handling when column does not contain a value
     # Add numbers  and store it in the sum variable
-    sum=$(($sum+$number))
+    sum=$(( $sum+$number ))
 done
 # output the sum of the values in that column and print it to standard output
 echo "Total is: $sum"

@@ -25,13 +25,16 @@ then
 fi
 
 # TODO: Write a shell script that accepts a directory pathname as its argument that prints the names of all files that are duplicates within that directory.
-for fileIndex in $(ls *)
+
+for fileIndex in $(ls $1)
 do
-  for fileNextIndex in $(ls *)
+  for fileNextIndex in $(ls $1)
   do
-    if [[ $(md5sum $fileIndex) -eq $(md5sum $fileNextIndex) ]]
-    then
-      echo "duplicate files, the name of the file is $fileIndex"
-    fi
+    md5CheckFileIndx=$(md5sum $fileIndex)
+		md5CheckFileNextIndx=$(md5sum $fileNextIndex)
+		if [[ $md5CheckFileIndx = $md5CheckFileNextIndx ]]
+		then
+			echo "Found Duplicate at $fileIndex"
+		fi
   done
 done
