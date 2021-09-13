@@ -18,20 +18,25 @@ then
     exit 1
 fi
 
-# TODO: Stuck in the the detecting column is empty or not.
-
-cutLines=`cut -c $2 $1`
-if [[ -z $cutLines]]
-then
-    echo "Column is empty"
-    exit 1
-fi
-
-# Handling when column does not contain a value
-sum=0
-# cut the column we needed and add the cut numbers by using loop
-for number in $cutLines;
+#Check if column does not exit
+for ColumnCheck in $(cut -c $2 $1);
 do
+  if [[ -n "$ColumnCheck" ]]
+  then
+    echo "The column you looking for is not exist"
+    exit 1
+  fi
+done
+
+# cut the column we needed and add the cut numbers by using loop
+for number in $(cut -c $2 $1);
+do
+# Handling when column does not contain a value
+  if [[ !"$number" ]]
+  then
+    echo "The colum is empty"
+    exit 1
+  fi
     # Add numbers  and store it in the sum variable
     sum=$(($sum + $number));
 done;
