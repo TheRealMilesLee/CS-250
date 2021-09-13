@@ -17,7 +17,7 @@ then
     echo "The file $1 is empty!"
     exit 2
 fi
-
+: '
 #Check if column does not exit
 # Cut the line, if the line is empty, that means non-exist
 for ColumnCheck in $(cut -c $2 $1);
@@ -28,19 +28,15 @@ do
     exit 2
   fi
 done
-
+'
+sum=0
 # cut the column we needed and add the cut numbers by using loop
-for number in $(cut -c $2 $1);
+for number in $(cut -c $2 $1)
 do
 # Handling when column does not contain a value
-  if [[ !"$number" ]]
-  then
-    echo "The colum is empty"
-    exit 1
-  fi
     # Add numbers  and store it in the sum variable
-    sum=$(($sum + $number));
-done;
+    sum=$(($sum+$number))
+done
 # output the sum of the values in that column and print it to standard output
 echo "Total is: $sum"
 # Exit the program

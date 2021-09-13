@@ -25,7 +25,7 @@ getFileFromDisk="cat $1"
 $getFileFromDisk>$1.orig
 # Read the file line by line and ignore the trailing spaces using read
 # command
-while [ read lines ]
+while read lines
 do
   echo $lines
 done < "$1" > "$1.txt"
