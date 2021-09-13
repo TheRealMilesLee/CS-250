@@ -15,16 +15,17 @@ fi
 if [[ ! -s $1 ]]
 then
     echo "The file $1 is empty!"
-    exit 1
+    exit 2
 fi
 
 #Check if column does not exit
+# Cut the line, if the line is empty, that means non-exist
 for ColumnCheck in $(cut -c $2 $1);
 do
-  if [[ -n "$ColumnCheck" ]]
+  if [[ isnumeric "$ColumnCheck" ]]
   then
     echo "The column you looking for is not exist"
-    exit 1
+    exit 2
   fi
 done
 

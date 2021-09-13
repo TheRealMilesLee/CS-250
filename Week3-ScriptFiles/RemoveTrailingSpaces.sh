@@ -25,14 +25,10 @@ getFileFromDisk="cat $1"
 $getFileFromDisk>$1.orig
 # Read the file line by line and ignore the trailing spaces using read
 # command
-
-readFromFile="read $1 > $1.txt"
-$readFromFile
-
-while [lines=$(read $1)]
+while [ read lines ]
 do
-  $lines>$1.txt
-done
+  echo $lines
+done < "$1" > "$1.txt"
 # cover the origional file with new file.
 rm $1
 mv $1.txt $1
