@@ -1,9 +1,9 @@
-: '
-# The purpose of the script is to calculate the sum of the values in that column and print it to
-# standard output.
-
-Your script should do something intelligent if the column does not exist, or if any line in the column does not contain a value, and should have reasonable exit codes.
-'
+#! /bin/bash
+#Hengyi Li
+# Program to calculate the sum of values cutted in the csv file
+# This script is to be called with two filename argument.
+# If there is no argument, exit with error status.
+# If the argument does not exist, exit with error status.
 # Check if file is exists
 if [[ ! -e $1 ]]
 then

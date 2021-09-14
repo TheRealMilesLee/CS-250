@@ -15,7 +15,14 @@ fi
 # Check if file is empty
 if [[ ! -s $1 ]]
 then
-    echo "The files $1 is empty or does not exist at all!"
+    echo "The files $1 is empty"
+    exit 2
+fi
+
+# Check file is exist or not
+if [[ -d $1 ]]
+then
+    echo "File does not exist at all"
     exit 2
 fi
 
@@ -32,5 +39,4 @@ done < "$1" > "$1.txt"
 # cover the origional file with new file.
 rm $1
 mv $1.txt $1
-
 exit 0
