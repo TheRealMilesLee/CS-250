@@ -32,7 +32,7 @@ do
   do
     md5CheckFileIndx=$(md5sum $fileIndex)
 		md5CheckFileNextIndx=$(md5sum $fileNextIndex)
-		if [[ $md5CheckFileIndx = $md5CheckFileNextIndx ]]
+		if [[ $md5CheckFileIndx == $md5CheckFileNextIndx ]]
 		then
 			echo "Found Duplicate at $fileIndex"
 		fi
