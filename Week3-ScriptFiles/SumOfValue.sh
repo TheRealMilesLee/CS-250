@@ -18,15 +18,13 @@ then
     exit 2
 fi
 # Handling when column does not contain a value
-	if [[ -z $(cut -f $2 $1) ]]
+	if [[ -z $(cut -f $(($2+1)) $1) ]]
 	then
 		echo "The colum is empty"
 		exit 2
 	fi
-#Check if column does not exit
-# Cut the line, if the line is empty, that means non-exist
-# cut the column we needed and add the cut numbers by using loop
-for number in $(cut -f $2 $1)
+# Cut the line, pipe it to number, Ad
+for number in $(cut -f $(($2+1)) $1)
 do
 	# Add numbers  and store it in the sum variable
 		sum=$(( $sum+$number ))

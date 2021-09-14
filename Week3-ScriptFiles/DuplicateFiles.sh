@@ -30,11 +30,11 @@ for fileIndex in $(ls $1)
 do
   for fileNextIndex in $(ls $1)
   do
-    md5CheckFileIndx=$(md5sum $fileIndex)
-		md5CheckFileNextIndx=$(md5sum $fileNextIndex)
-		if [[ $md5CheckFileIndx == $md5CheckFileNextIndx ]]
-		then
-			echo "Found Duplicate at $fileIndex"
-		fi
+    fileIndexMD5=$(md5sum $fileIndex | cut -f 1)
+    fileNextIndexMD5=$(md5sum $fileNextIndex | cut -f 1)
+    if [[ $fileNextIndexMD5 = $fileIndexMD5 ]]
+    then
+      echo "Find the duplicate file, the name of file is $fileIndex"
+    fi
   done
 done
