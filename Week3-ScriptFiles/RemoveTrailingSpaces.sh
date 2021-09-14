@@ -35,6 +35,7 @@ $getFileFromDisk>$1.orig
 while read lines
 do
   echo $lines
+# Use redirection as input and redirect the output to the temp
 done < "$1" > "$1.txt"
 # cover the origional file with new file.
 rm $1
