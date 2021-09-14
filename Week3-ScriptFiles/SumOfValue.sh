@@ -17,13 +17,15 @@ then
     echo "The file $1 is empty!"
     exit 2
 fi
+
 # Handling when column does not contain a value
 	if [[ -z $(cut -f $(($2+1)) $1) ]]
 	then
 		echo "The colum is empty"
 		exit 2
 	fi
-# Cut the line, pipe it to number, Ad
+
+# Cut the line, pipe it to number, and loop it to sum
 for number in $(cut -f $(($2+1)) $1)
 do
 	# Add numbers  and store it in the sum variable
