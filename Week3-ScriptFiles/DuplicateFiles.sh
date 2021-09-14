@@ -29,13 +29,13 @@ do
   for fileNextIndex in $(ls $directory)
   do
       # MD5 value calculate
-      fileIndexMD5=$(md5sum "$directory/$fileIndex")
-      fileNextIndexMD5=$(md5sum "$directory/$fileNextIndex")
+      fileIndexMD5=$(md5sum "$directory/$fileIndex" | cut -f1 -d" ")
+      fileNextIndexMD5=$(md5sum "$directory/$fileNextIndex" | cut -f1 -d" ")
       # Check if the filename is the same
-      if [[ "$directory/$fileIndex" = "$directory/$fileNextIndex" ]]
+      if [[ "$directory/$fileIndex" != "$directory/$fileNextIndex" ]]
       then
       # If they're equal, that means the file is the same
-        if [[ $fileNextIndexMD5 = $fileIndexMD5 ]]
+          if [[ "$fileNextIndexMD5" = "$fileIndexMD5" ]]
         then
           echo "Find the duplicate file, the name of file is $fileNextIndex"
         fi
