@@ -20,7 +20,7 @@ then
 fi
 
 # Check file is exist or not
-if [[ -d $1 ]]
+if [[ ! -e $1 ]]
 then
     echo "File does not exist at all"
     exit 2
