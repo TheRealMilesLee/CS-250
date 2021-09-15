@@ -29,17 +29,18 @@ fi
 
 # Read the file from disk.
 getFileFromDisk="cat $1"
-# Save the original content to a file with the original name with “.orig”
+# Save the original content to a file with the original name with .orig
 $getFileFromDisk>$1.orig
 # Read the file line by line and ignore the trailing spaces using read
 # command
-IFS=" "
-while read lines
+
+
+cat "$1.orig" | while read line # read each line, preserving spaces
 do
-  echo $lines
-# Use redirection as input and redirect the output to the temp
-done < "$1" > "$1.txt"
+  while echo "$line" | grep -q " $"  # loop if there is trailing space
+  do
+    $line >> $1.txt
+  done
+done
 # cover the origional file with new file.
-rm $1
-mv $1.txt $1
 exit 0
