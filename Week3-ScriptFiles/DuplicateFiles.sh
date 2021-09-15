@@ -24,12 +24,11 @@ then
    exit 0
 fi
 
-index_outer=0
+#Looping through the files, find the duplicate and output the name of file.
 for fileIndex in $(ls $directory)
 do
-  ((index_outer++))
-  index_inner=$((index_outer + 1))
-  for fileNextIndex in $(ls $directory | cut -d" " -f"index_inner-")
+booleanFlag="0"
+  for fileNextIndex in $(ls $directory)
   do
       # MD5 value calculate
       fileIndexMD5=$(md5sum "$directory/$fileIndex" | cut -f1 -d" ")
@@ -38,9 +37,11 @@ do
       if [[ "$directory/$fileIndex" != "$directory/$fileNextIndex" ]]
       then
       # If they're equal, that means the file is the same
-          if [[ "$fileNextIndexMD5" = "$fileIndexMD5" ]]
+          if [[ "$fileNextIndexMD5" = "$fileIndexMD5" \
+          && $booleanFlag = "0" ]]
         then
-          echo "Find the duplicate file, the name of file is $fileNextIndex"
+          echo "Find the duplicate file, the name of file is $fileIndex"
+          booleanFlag="1"
         fi
       fi
   done
