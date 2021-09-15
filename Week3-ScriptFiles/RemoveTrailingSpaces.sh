@@ -26,12 +26,14 @@ then
     exit 2
 fi
 
+
 # Read the file from disk.
 getFileFromDisk="cat $1"
 # Save the original content to a file with the original name with “.orig”
 $getFileFromDisk>$1.orig
 # Read the file line by line and ignore the trailing spaces using read
 # command
+IFS=" "
 while read lines
 do
   echo $lines

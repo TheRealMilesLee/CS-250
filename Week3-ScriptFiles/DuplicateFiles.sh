@@ -24,9 +24,12 @@ then
    exit 0
 fi
 
+index_outer=0
 for fileIndex in $(ls $directory)
 do
-  for fileNextIndex in $(ls $directory)
+  ((index_outer++))
+  index_inner=$((index_outer + 1))
+  for fileNextIndex in $(ls $directory | cut -d" " -f"index_inner-")
   do
       # MD5 value calculate
       fileIndexMD5=$(md5sum "$directory/$fileIndex" | cut -f1 -d" ")
