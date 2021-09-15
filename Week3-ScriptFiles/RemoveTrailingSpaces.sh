@@ -34,13 +34,14 @@ $getFileFromDisk>$1.orig
 # Read the file line by line and ignore the trailing spaces using read
 # command
 
-
-cat "$1.orig" | while read line # read each line, preserving spaces
+IFS=''
+while read lines
 do
-  while echo "$line" | grep -q " $"  # loop if there is trailing space
-  do
-    $line >> $1.txt
-  done
-done
+   lines=$(${lines%"${lines##*[![:space:]]}"})
+  echo $lines > Testahhhh.txt
+# Use redirection as input and redirect the output to the temp
+done < "$1"
+
+
 # cover the origional file with new file.
 exit 0
