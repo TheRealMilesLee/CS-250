@@ -19,6 +19,7 @@ else
    directory="$1"
 fi
 
+
 # If the file is an empty directory, then output quit the script
 file_count=$(ls $directory | wc -w)
 if [ $file_count -eq 0 ]
