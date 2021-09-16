@@ -1,4 +1,5 @@
 #! /bin/bash
+
 # Hengyi Li
 # Program to remove the trailing spaces in the file.
 # This script is to be called with one filename argument.
@@ -26,7 +27,6 @@ then
     exit 2
 fi
 
-
 # Read the file from disk.
 getFileFromDisk="cat $1"
 # Save the original content to a file with the original name with .orig
@@ -37,11 +37,17 @@ $getFileFromDisk>$1.orig
 IFS=''
 while read lines
 do
-   lines=$(${lines%"${lines##*[![:space:]]}"})
-  echo $lines > Testahhhh.txt
+  : '
+  ${} is group a variable
+  %  is the pattern matches a trailing portion of the
+  expanded value of parameter
+  [![:space:]] Matches any character that is not whitespace
+  ##* is strip leading pattern that matches zero or more characters
+  '
+   echo ${lines%"${lines##*[![:space:]]}"}
 # Use redirection as input and redirect the output to the temp
-done < "$1"
-
-
+done < "$1" > "$1.txt"
 # cover the origional file with new file.
+rm $1
+mv $1.txt $1
 exit 0
