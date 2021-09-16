@@ -42,7 +42,7 @@ do
   %  is the pattern matches a trailing portion of the
   expanded value of parameter
   [![:space:]] Matches any character that is not whitespace
-  ##* is strip leading pattern that matches zero or more characters
+  ##* is delete the last string and the string on its left
   '
    echo ${lines%"${lines##*[![:space:]]}"}
 # Use redirection as input and redirect the output to the temp
