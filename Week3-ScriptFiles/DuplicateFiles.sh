@@ -6,6 +6,9 @@
 # If there is no argument, exit with error status.
 # If the argument does not exist, the working directory is
 # the current working directory
+# File creates at Sep.10. Last modified at Sep.15 3:40 PM
+# Copyright @Hengyi Li. All rights reserved.
+
 
 # Check the working directory, if it's none, the working directory is the
 # current directory

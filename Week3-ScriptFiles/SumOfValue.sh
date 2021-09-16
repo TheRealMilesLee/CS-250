@@ -4,6 +4,10 @@
 # This script is to be called with two filename argument.
 # If there is no argument, exit with error status.
 # If the argument does not exist, exit with error status.
+# File creates at Sep.9. Last modified at Sep.14 11:49 PM
+# Copyright @Hengyi Li. All rights reserved.
+
+
 # Check if file is exists
 if [[ ! -e $1 ]]
 then

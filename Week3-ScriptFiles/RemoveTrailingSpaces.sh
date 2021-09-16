@@ -5,6 +5,9 @@
 # This script is to be called with one filename argument.
 # If there is no argument, exit with error status.
 # If the argument does not exist, exit with error status.
+# File creates at Sep.10. Last modified at Sep.15 8:01 PM
+# Copyright @Hengyi Li. All rights reserved.
+
 
 # Check if we have arguments
 if [[ $# -ne 1 ]]
