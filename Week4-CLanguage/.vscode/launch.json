@@ -11,7 +11,7 @@
       "environment": [],
       "program": "d:\\CS-Related\\CS-250\\Week4-CLanguage\\build\\Debug\\outDebug",
       "internalConsoleOptions": "openOnSessionStart",
-      "MIMode": "lldb",
+      "MIMode": "gdb",
       "miDebuggerPath": "C:\\Program Files\\mingw64\\bin\\gdb.exe",
       "externalConsole": false,
       "setupCommands": [
