@@ -7,12 +7,12 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "/Users/arkia/ComputerScienceRelated/CS 250/Week4-CLanguage",
+      "cwd": "d:\\CS-Related\\CS-250\\Week4-CLanguage",
       "environment": [],
-      "program": "/Users/arkia/ComputerScienceRelated/CS 250/Week4-CLanguage/build/Debug/outDebug",
+      "program": "d:\\CS-Related\\CS-250\\Week4-CLanguage\\build\\Debug\\outDebug",
       "internalConsoleOptions": "openOnSessionStart",
-      "MIMode": "lldb",
-      "miDebuggerPath": "/usr/bin/lldb",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\Program Files\\mingw64\\bin\\gdb.exe",
       "externalConsole": false,
       "setupCommands": [
         {

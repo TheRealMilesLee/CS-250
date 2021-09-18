@@ -52,3 +52,9 @@ Mkfile.old
 dkms.conf
 Week3-ScriptFiles/Test
 .DS_Store
+Week4-CLanguage/.vscode/launch.json
+Week4-CLanguage/.vscode/settings.json
+Week4-CLanguage/.vscode/c_cpp_properties.json
+Week4-CLanguage/.vscode/c_cpp_properties.json
+.gitignore
+Week4-CLanguage/.vscode/settings.json
