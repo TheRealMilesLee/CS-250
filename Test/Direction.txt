@@ -131,7 +131,7 @@ compiled successfully:
 $ ./scriptname
 4
 
-for file in $directory
+for file in $(ls* -c)
 do
   $(clang -c "$directory/$file") 1> succeed.txt 2>fail.ext
 done
