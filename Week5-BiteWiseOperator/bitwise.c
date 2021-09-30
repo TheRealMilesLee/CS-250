@@ -5,6 +5,18 @@
  * 2. convert ascii 0xnn hex representation into an 8-bit value
  */
 
+/*
+*
+* The assignment is to implement the two functions so that the main program works correctly. 
+* Do not modify the main function in any way. Locate your function implementations after 
+* main, and use doxygen format to document your functions.
+* The purpose of revbits() is to accept an unsigned 8-bit value as a parameter and return the 
+* value that results when the bits of the parameter are mirror-image reversed left-to right. So, if 
+* the parameter’s bits are 1010 1100 then the return value should be 0011 0101. In hexadecimal, 
+* 0xac would be converted into 0x35.
+* 
+*/
+
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
