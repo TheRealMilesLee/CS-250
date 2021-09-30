@@ -21,17 +21,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * you document this function
- * @param value blah blah blah
- * @return yada yada
+/**
+ * @brief This function is to reverse the bits of a value
+ * @param value is the value that needs to be reversed
+ * @return the value that results when the bits of the parameter are mirror-image reversed left-
+ * to right.
  */
 uint8_t revbits(uint8_t value);
 
-/*
- * you document this function
- * @param
- * @return
+/**
+ * @brief This function is to convert the ascii character to hexadecimal number
+ * @param string Accepts a ascii character that used to be converted
+ * @return a hexadecimal number that the ascii character being converted.
  */
 uint8_t atoh(const char* string);
 
