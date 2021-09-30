@@ -12,7 +12,7 @@
   "C_Cpp_Runner.excludeSearch": [],
   "C_Cpp_Runner.enableWarnings": true,
   "C_Cpp_Runner.warningsAsError": false,
-  "C_Cpp_Runner.cCompilerPath": "gcc",
+  "C_Cpp_Runner.cCompilerPath": "/usr/bin/clang",
   "C_Cpp_Runner.cppCompilerPath": "/usr/bin/clang++",
   "C_Cpp_Runner.debuggerPath": "/usr/bin/lldb",
   "C_Cpp_Runner.makePath": "/usr/bin/make"
