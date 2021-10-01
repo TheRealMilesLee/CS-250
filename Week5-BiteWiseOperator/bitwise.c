@@ -36,9 +36,8 @@ uint8_t revbits(uint8_t value);
  */
 uint8_t atoh(const char* string);
 
-int main(void)
+int main(int argc, char** argv)
 {
-  /**
   uint8_t value;
   uint8_t value_reversed;
 
@@ -54,12 +53,6 @@ int main(void)
 
   printf("0x%x reversed is 0x%x\n", value, value_reversed);
   return 0;
-  */
- printf("Please input a value: ");
- uint8_t value;
- scanf("%s", &value );
-
-revbits(value);
 }
 
 uint8_t revbits(uint8_t value)
@@ -68,9 +61,8 @@ uint8_t revbits(uint8_t value)
   printf( "This is reversed value: %d" , reversedValue);
   return reversedValue;
 }
-/**
+
 uint8_t atoh(const char* string)
 {
 
 }
-*/
