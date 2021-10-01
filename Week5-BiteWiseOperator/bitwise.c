@@ -62,6 +62,7 @@ uint8_t revbits(uint8_t value)
   return reversedValue;
 }
 
+// TODO: This just a copy of atod function, needs to be changed into ASCII to hexdecimal.  
 uint8_t atoh(const char* string)
 {
   double value = 0.0;
