@@ -67,11 +67,25 @@ uint8_t atoh(const char* string)
 {
   size_t index = 0;
   int intNumberConverted = 0;
+  int sign = 1;
+  
+  /* Skip leading whitespace */
+  while (isspace(string[index]))
+  {
+    index++;
+  }
 
+  /* Is leading character a negative? */
+  if (string[index] == '-')
+  {
+    sign = -1;
+    index++;
+  }
   while(isdigit (string[index]))
   {
     intNumberConverted = 10 * intNumberConverted + (string[index] - '0');
     index++;
   }
 
+  return sign * intNumberConverted;
 }
