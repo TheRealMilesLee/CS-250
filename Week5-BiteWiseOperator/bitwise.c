@@ -62,43 +62,16 @@ uint8_t revbits(uint8_t value)
   return reversedValue;
 }
 
-// TODO: This just a copy of atod function, needs to be changed into ASCII to hexdecimal.  
+// TODO: This just have ASCII to integer, needs to be changed into ASCII to hexdecimal.  
 uint8_t atoh(const char* string)
 {
-  double value = 0.0;
-  double fractional_power = 1.0;
   size_t index = 0;
-  int sign = 1;
+  int intNumberConverted = 0;
 
-  /* Skip leading whitespace */
-  while (isspace(string[index]))
+  while(isdigit (string[index]))
   {
+    intNumberConverted = 10 * intNumberConverted + (string[index] - '0');
     index++;
   }
 
-  /* Is leading character a negative? */
-  if (string[index] == '-')
-  {
-    sign = -1;
-    index++;
-  }
-  while (isdigit (string[index]))
-  {
-    value = 10.0 * value + (string[index] - '0');
-    index++;
-  }
-
-  if(string[index] == '.')
-  {
-    index++;
-  }
-
-  /* Digits after the decimal point */
-  while(isdigit(string[index]))
-  {
-    value = 10.0 * value + (string[index] - '0');
-    index++;
-    fractional_power *= 10.0;
-  } 
-  return sign * value / fractional_power;
 }
