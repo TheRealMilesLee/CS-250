@@ -20,6 +20,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /**
  * @brief This function is to reverse the bits of a value
@@ -57,34 +58,21 @@ int main(int argc, char** argv)
 
 uint8_t revbits(uint8_t value)
 {
-  int reversedValue = ~value;
+  uint8_t reversedValue = ~value;
   printf( "This is reversed value: %d" , reversedValue);
   return reversedValue;
 }
 
-// TODO: This just have ASCII to integer, needs to be changed into ASCII to hexdecimal.  
+/* TODO: This just ASCII characters, needs to be changed into hexdecimal.  */
 uint8_t atoh(const char* string)
 {
-  size_t index = 0;
-  uint8_t intNumberConverted = 0;
-  int sign = 1;
+  size_t index = 2;
+  uint8_t charCharacterConverted = 0;
   
-  /* Skip leading whitespace */
-  while (isspace(string[index]))
+  while(isascii (string[index]))
   {
+    charCharacterConverted = (uint8_t) string[index];
     index++;
   }
-
-  /* Is leading character a negative? */
-  if (string[index] == '-')
-  {
-    sign = -1;
-    index++;
-  }
-  while(isdigit (string[index]))
-  {
-    intNumberConverted = 10 * intNumberConverted + (string[index] - '0');
-    index++;
-  }
-  return sign * intNumberConverted;
+  return charCharacterConverted;
 }
