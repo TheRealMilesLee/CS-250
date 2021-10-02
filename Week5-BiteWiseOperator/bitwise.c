@@ -37,8 +37,7 @@ uint8_t atoh(const char* string);
 
 int main(int argc, char** argv)
 {
-  
-/*  uint8_t value;*/
+  uint8_t value;
   uint8_t value_reversed;
 
   if (argc != 2)
@@ -48,29 +47,19 @@ int main(int argc, char** argv)
     return 1;
   }
   
-
-  /*value = (uint8_t)(atoh(argv[1]));
-  printf("0x%x reversed\n", value);*/
-  value_reversed = revbits(5);
-  printf("reversed is 0x%x\n", value_reversed);
+  value = (uint8_t)(atoh(argv[1]));
+  printf("0x%x reversed\n", value);
+  value_reversed = revbits(value);
+  printf("0x%x reversed is 0x%x\n",value, value_reversed);
   return 0;
 }
 
 uint8_t revbits(uint8_t value)
 { 
-  unsigned char totalBits = sizeof(value) * 8;
-  unsigned int reverseNumber = 0;
-  unsigned int index = 0;
-  unsigned int temp = 0;
+  uint8_t reverseNumber = ~value;
+  
 
-  while(index < totalBits)
-  {
-    if(value & (1 << index))
-    {
-      reverseNumber = 1 << ((totalBits -1) - index);
-    }
-  }
-  return reverseNumber;
+  return reverseNumber << 1 &  value;
 }
 
 /* TODO: This just ASCII characters, needs to be changed into hexdecimal.  */
@@ -85,13 +74,9 @@ uint8_t atoh(const char* string)
   }
   while(string[index] != '\0')
   {
-      if((string[index]>= 'a') && (string[index] <= 'z'))
-      {
-        value = string[index] - 'a' +0x61;
-        typecastingValue = typecastingValue + (uint8_t) value;
-      }
-      index++;
+    value = string[index] - 'A' + 0x41;
+    typecastingValue = typecastingValue + (uint8_t) value;
+    index++;
   }
-  
   return typecastingValue;
 }
