@@ -66,7 +66,7 @@ uint8_t revbits(uint8_t value)
 uint8_t atoh(const char* string)
 {
   size_t index = 0;
-  int intNumberConverted = 0;
+  uint8_t intNumberConverted = 0;
   int sign = 1;
   
   /* Skip leading whitespace */
