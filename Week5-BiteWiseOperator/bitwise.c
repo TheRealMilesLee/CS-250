@@ -86,6 +86,5 @@ uint8_t atoh(const char* string)
     intNumberConverted = 10 * intNumberConverted + (string[index] - '0');
     index++;
   }
-
   return sign * intNumberConverted;
 }
