@@ -1,18 +1,20 @@
 /*
- * Your name here
+ * Hengyi Li
  * A program that implements functions to:
  * 1. reverse the bits of a value
  * 2. convert ascii 0xnn hex representation into an 8-bit value
  */
 
-/*
-*
-* The purpose of revbits() is to accept an unsigned 8-bit value as a parameter and return the 
-* value that results when the bits of the parameter are mirror-image reversed left-to right. So, if 
-* the parameter’s bits are 1010 1100 then the return value should be 0011 0101. In hexadecimal, 
-* 0xac would be converted into 0x35.
-* 
-*/
+/**
+ * @file bitwise.c
+ * @author Hengyi Li
+ * @brief A program to reverse the bits of value and convert ascii to hex
+ * @version 0.1
+ * @date 2021-10-03 12:43AM
+ * 
+ * @copyright Copyright (c) 2021  Hengyi Li All rights reserved
+ * 
+ */
 
 #include <stdint.h>
 #include <stdio.h>
@@ -55,14 +57,20 @@ int main(int argc, char** argv)
 
 uint8_t revbits(uint8_t value)
 { 
+  // Filp the bits first
   uint8_t flippedValue = ~value;
   char MoveForSpace = '\0';
   uint8_t result;
   char splitArray[2];
+  // Get the first 4 digits
   splitArray[0] = flippedValue/ 16;
+  // Get the last 4 digits
   splitArray[1] = flippedValue % 16;
+  // MoveForSpace to fill
   MoveForSpace = splitArray[1] <<= 4;
+  // Last 4 in the front, first 4 in the back, mirror done! 
   MoveForSpace += splitArray[0];
+  // Type casting and output. How genius I am :)
   result = (uint8_t)MoveForSpace;
   return result;
 }
