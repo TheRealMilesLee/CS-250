@@ -11,7 +11,6 @@
  * @brief A program to reverse the bits of value and convert ascii to hex
  * @version 0.1
  * @date 2021-10-03 12:43AM
- * 
  * @copyright Copyright (c) 2021  Hengyi Li All rights reserved
  * 
  */
@@ -21,17 +20,23 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#define ARRAY_SIZE 2
+#define HEX_CHARACTER_PLACE 2
+#define NEXT_HEX_CHARACTER_PLACE 3
+#define MOVE_FOUR_BIT_FOR_PLACE 4
+#define SIZE_HEX 16
 
 /**
  * @brief This function is to reverse the bits of a value
  * @param value is the value that needs to be reversed
- * @return the value that results when the bits of the parameter are mirror-image reversed left-
- * to right.
+ * @return the value that results when the bits of the parameter are 
+ * mirror-image reversed left-to right.
  */
 uint8_t revbits(uint8_t value);
 
 /**
- * @brief This function is to convert the ascii character to hexadecimal number
+ * @brief This function is to convert the ascii character to hexadecimal 
+ * number
  * @param string Accepts a ascii character that used to be converted
  * @return a hexadecimal number that the ascii character being converted.
  */
@@ -48,26 +53,27 @@ int main(int argc, char** argv)
     fprintf(stderr, "  where 0xnn is an 8-bit hex value\n");
     return 1;
   }
-  
+
   value = (uint8_t)(atoh(argv[1]));
   value_reversed = revbits(value);
-  printf("0x%x reversed is 0x%x\n",value, value_reversed);
+
+  printf("0x%x reversed is 0x%x\n", value, value_reversed);
   return 0;
 }
 
 uint8_t revbits(uint8_t value)
 { 
-  // Filp the bits first
-  uint8_t flippedValue = ~value;
+  // Flip the bits first
+  uint8_t flippedValue = ~ value;
   char MoveForSpace = '\0';
   uint8_t result;
-  char splitArray[2];
+  char splitArray[ARRAY_SIZE];
   // Get the first 4 digits
-  splitArray[0] = flippedValue/ 16;
+  splitArray[0] = flippedValue / SIZE_HEX;
   // Get the last 4 digits
-  splitArray[1] = flippedValue % 16;
+  splitArray[1] = flippedValue % SIZE_HEX;
   // MoveForSpace to fill
-  MoveForSpace = splitArray[1] <<= 4;
+  MoveForSpace = splitArray[1] <<= MOVE_FOUR_BIT_FOR_PLACE;
   // Last 4 in the front, first 4 in the back, mirror done! 
   MoveForSpace += splitArray[0];
   // Type casting and output. How genius I am :)
@@ -79,29 +85,32 @@ uint8_t atoh(const char* string)
 {
   char value = '\0';
   uint8_t result = '\0';
-  if(isdigit(string[2]) && isdigit(string[3]))
+  if(isdigit(string[HEX_CHARACTER_PLACE]) && 
+  isdigit(string[NEXT_HEX_CHARACTER_PLACE]))
   {
-    value = string[2] - '0';
-    value <<= 4;
-    value += string[3] - '0';
+    value = string[HEX_CHARACTER_PLACE] - '0';
+    value <<= MOVE_FOUR_BIT_FOR_PLACE;
+    value += string[NEXT_HEX_CHARACTER_PLACE] - '0';
   }
-  else if(isdigit(string[2]) && !isdigit(string[3]))
+  else if(isdigit(string[HEX_CHARACTER_PLACE]) && 
+  !isdigit(string[NEXT_HEX_CHARACTER_PLACE]))
   {
-    value = string[2];
-    value <<= 4;
-    value += (string[3] -'a' + 0xA);
+    value = string[HEX_CHARACTER_PLACE];
+    value <<= MOVE_FOUR_BIT_FOR_PLACE;
+    value += (string[NEXT_HEX_CHARACTER_PLACE] - 'a' + 0xA);
   }
-  else if(!isdigit(string[2]) && isdigit(string[3]))
+  else if(!isdigit(string[HEX_CHARACTER_PLACE]) && 
+  isdigit(string[NEXT_HEX_CHARACTER_PLACE]))
   {
-    value = (string[2] - 'a' + 0xA);
-    value <<= 4;
-    value += string[3] - '0';
+    value = (string[HEX_CHARACTER_PLACE] - 'a' + 0xA);
+    value <<= MOVE_FOUR_BIT_FOR_PLACE;
+    value += string[NEXT_HEX_CHARACTER_PLACE] - '0';
   }
   else
   {
-    value = (string[2] - 'a' + 0xA);
-    value <<= 4;
-    value += (string[3] - 'a' + 0xA);
+    value = (string[HEX_CHARACTER_PLACE] - 'a' + 0xA);
+    value <<= MOVE_FOUR_BIT_FOR_PLACE;
+    value += (string[NEXT_HEX_CHARACTER_PLACE] - 'a' + 0xA);
   }
   result = (uint8_t)value;
   return result;
