@@ -48,7 +48,6 @@ int main(int argc, char** argv)
   }
   
   value = (uint8_t)(atoh(argv[1]));
-  printf("0x%x reversed\n", value);
   value_reversed = revbits(value);
   printf("0x%x reversed is 0x%x\n",value, value_reversed);
   return 0;
@@ -56,27 +55,37 @@ int main(int argc, char** argv)
 
 uint8_t revbits(uint8_t value)
 { 
-  uint8_t reverseNumber = ~value;
   
-
-  return reverseNumber << 1 &  value;
 }
 
-/* TODO: This just ASCII characters, needs to be changed into hexdecimal.  */
 uint8_t atoh(const char* string)
 {
   char value = '\0';
-  uint8_t typecastingValue = '\0';
-  size_t index = 0;
-  while (string[index] == '0' || string[index] =='x' )
+  uint8_t result = '\0';
+  if(isdigit(string[2]) && isdigit(string[3]))
   {
-    index++;
+    value = string[2] - '0';
+    value <<= 4;
+    value += string[3] - '0';
   }
-  while(string[index] != '\0')
+  else if(isdigit(string[2]) && !isdigit(string[3]))
   {
-    value = string[index] - 'A' + 0x41;
-    typecastingValue = typecastingValue + (uint8_t) value;
-    index++;
+    value = string[2];
+    value <<= 4;
+    value += (string[3] -'a' + 0xA);
   }
-  return typecastingValue;
+  else if(!isdigit(string[2]) && isdigit(string[3]))
+  {
+    value = (string[2] - 'a' + 0xA);
+    value <<= 4;
+    value += string[3] - '0';
+  }
+  else
+  {
+    value = (string[2] - 'a' + 0xA);
+    value <<= 4;
+    value += (string[3] - 'a' + 0xA);
+  }
+  result = (uint8_t)value;
+  return result;
 }
