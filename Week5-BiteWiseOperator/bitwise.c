@@ -55,7 +55,16 @@ int main(int argc, char** argv)
 
 uint8_t revbits(uint8_t value)
 { 
-  
+  uint8_t flippedValue = ~value;
+  char MoveForSpace = '\0';
+  uint8_t result;
+  char splitArray[2];
+  splitArray[0] = flippedValue/ 16;
+  splitArray[1] = flippedValue % 16;
+  MoveForSpace = splitArray[1] <<= 4;
+  MoveForSpace += splitArray[0];
+  result = (uint8_t)MoveForSpace;
+  return result;
 }
 
 uint8_t atoh(const char* string)
