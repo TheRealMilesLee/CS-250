@@ -24,7 +24,6 @@
 #define HEX_CHARACTER_PLACE 2
 #define NEXT_HEX_CHARACTER_PLACE 3
 #define MOVE_FOUR_BIT_FOR_PLACE 4
-#define SIZE_HEX 16
 
 /**
  * @brief This function is to reverse the bits of a value
