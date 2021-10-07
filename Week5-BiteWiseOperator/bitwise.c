@@ -20,7 +20,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#define ARRAY_SIZE 2
 #define HEX_CHARACTER_PLACE 2
 #define NEXT_HEX_CHARACTER_PLACE 3
 #define MOVE_FOUR_BIT_FOR_PLACE 4
