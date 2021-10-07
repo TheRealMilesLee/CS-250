@@ -63,21 +63,19 @@ int main(int argc, char** argv)
 
 uint8_t revbits(uint8_t value)
 { 
-  // Flip the bits first
-  uint8_t flippedValue = ~ value;
-  char MoveForSpace = '\0';
-  uint8_t result;
-  char splitArray[ARRAY_SIZE];
-  // Get the first 4 digits
-  splitArray[0] = flippedValue / SIZE_HEX;
-  // Get the last 4 digits
-  splitArray[1] = flippedValue % SIZE_HEX;
-  // MoveForSpace to fill
-  MoveForSpace = splitArray[1] <<= MOVE_FOUR_BIT_FOR_PLACE;
-  // Last 4 in the front, first 4 in the back, mirror done! 
-  MoveForSpace += splitArray[0];
-  // Type casting and output. How genius I am :)
-  result = (uint8_t)MoveForSpace;
+  uint8_t result = 0;
+  uint8_t mask = 0x80;
+
+  while (value > 0)
+  {
+    if (value % 2 == 1)
+    {
+      result |= mask;
+    }
+    value >>= 1;
+    mask >>= 1;
+  }
+
   return result;
 }
 
