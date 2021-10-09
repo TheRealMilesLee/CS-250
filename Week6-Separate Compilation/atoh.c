@@ -46,28 +46,41 @@ uint16_t atoh16(const char* string)
       value = string[2] - '0';
       value <<= 8;
       value += string[3] - '0';
+      value <<= 4;
+      value += string[4] -'0';
+      value <<= 4;
+      value += string[5] - '0';
     }
-    else if (isdigit(string[HEX_CHARACTER_PLACE]) && 
-    !isdigit(string[NEXT_HEX_CHARACTER_PLACE]))
-    {
-      value = string[2];
-      value <<= MOVE_FOUR_BIT_FOR_PLACE;
-      value += (string[3] - 'a' + 0xA);
-    }
-    else if (!isdigit(string[HEX_CHARACTER_PLACE]) && 
-    isdigit(string[NEXT_HEX_CHARACTER_PLACE]))
+    else if (!isdigit(string[2]) && isdigit(string[3]) && isdigit(string[4]) && isdigit(string[5]))
     {
       value = (string[2] - 'a' + 0xA);
-      value <<= MOVE_FOUR_BIT_FOR_PLACE;
+      value <<= 8;
       value += string[3] - '0';
+      value <<= 4;
+      value += string[4] -'0';
+      value <<= 4;
+      value += string[5] - '0';
+    }
+    else if (isdigit(string[2]) && !isdigit(string[3]) && isdigit(string[4]) && isdigit(string[5]))
+    {
+      value = string[2] - '0';
+      value <<= 8;
+      value += (string[3] - 'a' + 0xA);
+      value <<= 4;
+      value += string[4] -'0';
+      value <<= 4;
+      value += string[5] - '0';
     }
     else
     {
       value = (string[2] - 'a' + 0xA);
-      value <<= MOVE_FOUR_BIT_FOR_PLACE;
+      value <<= 8;
       value += (string[3] - 'a' + 0xA);
+      value <<= 4;
+      value += (string[4] -'a' + 0xA);
+      value <<= 4;
+      value += (string[5] - 'a' + 0xA);
     }
     result = (uint16_t)value;
     return result;
-
 }
