@@ -9,7 +9,7 @@ uint8_t atoh8(const char* string)
   result += hexdigit_converted_8bits(string[2]);
   result <<= 4;
   result += hexdigit_converted_8bits(string[3]);
-  printf("the nibble moved is %hx \n", result);
+  printf("the nibble moved is %x \n", result);
   return result;
 }
 
@@ -24,7 +24,7 @@ uint16_t atoh16(const char* string)
     result <<= 4;
   }
   result += hexdigit_converted_16bits(string[5]);
-  printf("the nibble moved is %hx \n", result);
+  printf("the nibble moved is %x \n", result);
   return result;
 }
 

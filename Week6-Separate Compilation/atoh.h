@@ -23,4 +23,11 @@ uint16_t atoh16(const char* string);
  * @param digit is the char character that needs to be converted
  * @return uint16_t is the hexadecimal numbers that returned and send it to the revbits function
  */
-uint16_t hexdigit_converted(char digit);
+uint16_t hexdigit_converted_16bits(char digit);
+
+/**
+ * @brief This function is to convert the 8 bits char into the hexadecimal numbers
+ * @param digit is the the char character that needs to be converted
+ * @return uint16_t is the hexadecimal numbers that returned and send it to the revbits function
+ */
+uint16_t hexdigit_converted_8bits(char digit);
