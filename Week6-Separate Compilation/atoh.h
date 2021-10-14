@@ -30,4 +30,4 @@ uint16_t hexdigit_converted_16bits(char digit);
  * @param digit is the the char character that needs to be converted
  * @return uint16_t is the hexadecimal numbers that returned and send it to the revbits function
  */
-uint16_t hexdigit_converted_8bits(char digit);
+uint8_t hexdigit_converted_8bits(char digit);
