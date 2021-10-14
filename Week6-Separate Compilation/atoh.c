@@ -20,13 +20,26 @@ uint16_t atoh16(const char* string)
 {
   uint16_t result = '\0';
   int index = 0;
-  while(index < 5)
+  int critical_stop_place = 5;
+
+  if(string[5] == '\0')
   {
     result += hexdigit_converted_16bits(string[index]);
-    index++;
     result <<= 4;
   }
-  result += hexdigit_converted_16bits(string[5]);
+  else
+  {
+    while(index < critical_stop_place)
+    {
+      result += hexdigit_converted_16bits(string[index]);
+      result <<= 4;
+      index++;
+    }
+  }
+  if(string[5] != '\0')
+  {
+    result += hexdigit_converted_16bits(string[5]);
+  }
   printf("the nibble moved is %x \n", result);
   return result;
 }
