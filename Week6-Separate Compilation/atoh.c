@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <ctype.h>
 #include "atoh.h"
 
 uint8_t atoh8(const char* string)
@@ -39,48 +40,28 @@ uint8_t atoh8(const char* string)
 
 uint16_t atoh16(const char* string)
 {
-  char value = '\0';
-  uint16_t result = '\0';
-    if (isdigit(string[2]) && isdigit(string[3]) && isdigit(string[4]) && isdigit(string[5]))
+  uint16_t move_nibble = '\0';
+  int index = 0;
+  while(index < string.sizeof() - 1 )
+  {
+    move_nibble += hexdigit_converted(string[index]);
+    index++;
+    move_nibble <<= 4;
+  }
+  move_nibble += hexdigit_converted(string[5]);
+  printf("the nibble moved is %hx \n", move_nibble);
+  return move_nibble;
+}
+
+uint16_t hexdigit_converted(char digit)
+{
+  if(digit < 'a')
+  {
+    if(isupper(digit))
     {
-      value = string[2] - '0';
-      value <<= 8;
-      value += string[3] - '0';
-      value <<= 4;
-      value += string[4] -'0';
-      value <<= 4;
-      value += string[5] - '0';
+      return (uint16_t)(digit - '7');
     }
-    else if (!isdigit(string[2]) && isdigit(string[3]) && isdigit(string[4]) && isdigit(string[5]))
-    {
-      value = (string[2] - 'a' + 0xA);
-      value <<= 8;
-      value += string[3] - '0';
-      value <<= 4;
-      value += string[4] -'0';
-      value <<= 4;
-      value += string[5] - '0';
-    }
-    else if (isdigit(string[2]) && !isdigit(string[3]) && isdigit(string[4]) && isdigit(string[5]))
-    {
-      value = string[2] - '0';
-      value <<= 8;
-      value += (string[3] - 'a' + 0xA);
-      value <<= 4;
-      value += string[4] -'0';
-      value <<= 4;
-      value += string[5] - '0';
-    }
-    else
-    {
-      value = (string[2] - 'a' + 0xA);
-      value <<= 8;
-      value += (string[3] - 'a' + 0xA);
-      value <<= 4;
-      value += (string[4] -'a' + 0xA);
-      value <<= 4;
-      value += (string[5] - 'a' + 0xA);
-    }
-    result = (uint16_t)value;
-    return result;
+    return (uint16_t)(digit -'0');
+  }
+  return (uint16_t)(digit - 'a' + 10);
 }
