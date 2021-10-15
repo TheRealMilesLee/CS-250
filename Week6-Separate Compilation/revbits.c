@@ -24,7 +24,6 @@ uint16_t revbits16(uint16_t value)
 {
   uint16_t result = 0;
   uint16_t mask = 0x8000;
-
   while (value > 0)
   {
     if (value % 2 == 1)
@@ -33,6 +32,6 @@ uint16_t revbits16(uint16_t value)
     }
     value >>= 1;
     mask >>= 1;
-  }
+  }  
   return result;
 }
