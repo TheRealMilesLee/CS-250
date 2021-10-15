@@ -7,23 +7,27 @@
 uint8_t atoh8(const char* string)
 {
   uint8_t result = '\0';
-  int index = 2;
-  while(index < 3)
+  if(!isalpha(string[2]) && !isdigit(string[2]) && !isalpha(string[3]) && !isdigit(string[3]))
   {
-    if(!isalpha(string[index]) && !isdigit(string[index]) && string[index] > 'f')
+    return 0;
+  }
+  else
+  {
+    if(string[2] > 'f' || string[3] > 'f'  )
     {
       return 0;
     }
+    else
+    {
       result += hexdigit_converted_8bits(string[2]);
       if(string[3] != '\0')
       {
         result <<= 4;
         result += hexdigit_converted_8bits(string[3]);
-      }
-      index++;
-
+      }  
+    }
   }
-    
+
   printf("the nibble moved is %x \n", result);
   return result;
 }
