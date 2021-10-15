@@ -21,11 +21,13 @@ uint16_t atoh16(const char* string)
   uint16_t result = '\0';
   int index = 0;
   int critical_stop_place = 5;
-
   if(string[5] == '\0')
   {
-    result += hexdigit_converted_16bits(string[index]);
+    result += hexdigit_converted_16bits(string[2]);
     result <<= 4;
+    result += hexdigit_converted_16bits(string[3]);
+    result <<= 4;
+    result += hexdigit_converted_16bits(string[4]);
   }
   else
   {
