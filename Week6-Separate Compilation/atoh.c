@@ -10,8 +10,9 @@ uint8_t atoh8(const char* string)
   int bool_flag = 0;
   while(search_indx < 4 && !bool_flag )
   {
-    if((string[search_indx] >= '0' && string[search_indx] <= '9') || (string[search_indx] >= 'A' && 
-    string[search_indx] <= 'F') || (string[search_indx] >= 'a' && string[search_indx] <= 'f'))
+    if((string[search_indx] >= '0' && string[search_indx] <= '9') || 
+    (string[search_indx] >= 'A' && string[search_indx] <= 'F') || 
+    (string[search_indx] >= 'a' && string[search_indx] <= 'f'))
     {
       result += hexdigit_converted_8bits(string[2]);
       if(string[3] != '\0')
@@ -38,8 +39,10 @@ uint16_t atoh16(const char* string)
   int boolean_flag = 0;
   while(string[search_indx] != '\0' && !boolean_flag )
   {
-    if((string[search_indx] >= '0' && string[search_indx] <= '9') || (string[search_indx] >= 'A'  && 
-    string[search_indx] <= 'F') || (string[search_indx] >= 'a' && string[search_indx] <= 'f'))
+    if((string[search_indx] >= '0' && string[search_indx] <= '9') || 
+    (string[search_indx] >= 'A'  && 
+    string[search_indx] <= 'F') || (string[search_indx] >= 'a' && 
+    string[search_indx] <= 'f'))
     {
       if(string[3] == '\0')
       {
