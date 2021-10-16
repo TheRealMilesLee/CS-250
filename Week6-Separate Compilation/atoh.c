@@ -1,12 +1,11 @@
-#include <stdio.h>
 #include <stdint.h>
 #include <ctype.h>
 #include "atoh.h"
 
-uint8_t atoh8(const char* string)
+uint8_t atoh8(const char *string)
 {
   uint8_t result = '\0';
-  unsigned search_indx = 2;
+  unsigned search_index = 2;
   unsigned size_of_string = 4;
   unsigned bool_flag = 0;
   /* Detect if the user input is begin with 0x, if not, return 0 */
@@ -16,87 +15,107 @@ uint8_t atoh8(const char* string)
   }
   else
   {
-    while (search_indx < size_of_string && !bool_flag )
+    /* Loop through the string to find if there has invalid digits */
+    while (search_index < size_of_string && !bool_flag)
     {
-      if ((string[search_indx] >= '0' && string[search_indx] <= '9') ||
-      (string[search_indx] >= 'A' && string[search_indx] <= 'F') ||
-      (string[search_indx] >= 'a' && string[search_indx] <= 'f'))
+      /* If there does not have invalid digits, continue processing */
+      if ((string[search_index] >= '0' && string[search_index] <= '9') ||
+          (string[search_index] >= 'A' && string[search_index] <= 'F') ||
+          (string[search_index] >= 'a' && string[search_index] <= 'f'))
       {
-        result += hexdigit_convert_8bits(string[search_indx]);
-        if (string[search_indx + NEXT_INDEX] != '\0')
+        /* Convert the ASCII to hexadecimal */
+        result += hexdigit_convert_8bits(string[search_index]);
+        /* If the input has 2 digits, move 4 digits for spaces and
+         * converted the second digits and put it into place */
+        if (string[search_index + NEXT_INDEX] != '\0')
         {
           result <<= MOVE_BITS;
-          result += hexdigit_convert_8bits(string[search_indx + NEXT_INDEX]);
-        }  
-        search_indx++;
+          result += hexdigit_convert_8bits(
+            string[search_index + NEXT_INDEX]);
+        }
+        /* See if next digits is valid */
+        search_index++;
+        /* Done the operation, return the result */
         bool_flag = TRUE;
       }
-      else 
+      else
       {
+        /* If the digits is invalid, return the 0 */
         return 0;
       }
     }
-  }  
+  }
   return result;
 }
 
-uint16_t atoh16(const char* string)
+uint16_t atoh16(const char *string)
 {
   uint16_t result = '\0';
-  unsigned search_indx = 2;
+  unsigned search_index = 2;
   unsigned boolean_flag = 0;
   unsigned index = 1;
+  /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != 0 && string[SECOND_INDEX] != 'x')
   {
     return 0;
   }
   else
   {
-    while (string[search_indx] != '\0' && !boolean_flag )
+    /* Loop through the string to find if there has invalid digits */
+    while (string[search_index] != '\0' && !boolean_flag)
     {
-      if ((string[search_indx] >= '0' && string[search_indx] <= '9') ||
-      (string[search_indx] >= 'A'  && 
-      string[search_indx] <= 'F') || (string[search_indx] >= 'a' &&
-      string[search_indx] <= 'f'))
+      /* If there does not have invalid digits, continue processing*/
+      if ((string[search_index] >= '0' && string[search_index] <= '9') ||
+          (string[search_index] >= 'A' && string[search_index] <= 'F') ||
+          (string[search_index] >= 'a' && string[search_index] <= 'f'))
       {
-        if (string[search_indx + NEXT_INDEX] == '\0')
+        /* If it only has one digit, i.e. 0xa situation */
+        if (string[search_index + NEXT_INDEX] == '\0')
         {
-          result += hexdigit_converted_16bits(string[search_indx]);
+          /* Convert the value and put it into place */
+          result += hexdigit_converted_16bits(string[search_index]);
+          /* Done the processing, return the value */
           boolean_flag = TRUE;
         }
-        else if (string[search_indx + NEXT_INDEX] != '\0' && 
-        string[SECOND_LAST_DIGITS] == '\0')
+          /* If it has two digits, i.e. 0xaa situation */
+        else if (string[search_index + NEXT_INDEX] != '\0' &&
+                 string[SECOND_LAST_DIGITS] == '\0')
         {
-            result += hexdigit_converted_16bits(string[search_indx]);
-            result <<= MOVE_BITS;
-            result += hexdigit_converted_16bits(string[search_indx +NEXT_INDEX]);
-            search_indx++;
-            boolean_flag = TRUE;
-        }  
-        else if (string[SECOND_LAST_DIGITS] != '\0' && 
-        string[LAST_DIGITS] == '\0')
-        {
-            result += hexdigit_converted_16bits(string[search_indx]);
-            result <<= MOVE_BITS;
-            result += hexdigit_converted_16bits(string[search_indx + NEXT_INDEX]);
-            result <<= MOVE_BITS;
-            result += hexdigit_converted_16bits(string[SECOND_LAST_DIGITS]);
-            search_indx++;
-            boolean_flag = TRUE;
+          result += hexdigit_converted_16bits(string[search_index]);
+          result <<= MOVE_BITS;
+          result += hexdigit_converted_16bits(
+            string[search_index + NEXT_INDEX]);
+          search_index++;
+          boolean_flag = TRUE;
         }
+          /* If it has three digits, i.e. 0xaaa situation */
+        else if (string[SECOND_LAST_DIGITS] != '\0' &&
+                 string[LAST_DIGITS] == '\0')
+        {
+          result += hexdigit_converted_16bits(string[search_index]);
+          result <<= MOVE_BITS;
+          result += hexdigit_converted_16bits(
+            string[search_index + NEXT_INDEX]);
+          result <<= MOVE_BITS;
+          result += hexdigit_converted_16bits(
+            string[SECOND_LAST_DIGITS]);
+          search_index++;
+          boolean_flag = TRUE;
+        }
+          /* If it has four digits, i.e. 0xaaaa situation */
         else
         {
-          while (string[index + NEXT_INDEX] != '\0' )
+          while (string[index + NEXT_INDEX] != '\0')
           {
-          result += hexdigit_converted_16bits(string[index]);
-          result <<= MOVE_BITS;
-          index++;
+            result += hexdigit_converted_16bits(string[index]);
+            result <<= MOVE_BITS;
+            index++;
           }
           if (string[LAST_DIGITS] != '\0')
           {
             result += hexdigit_converted_16bits(string[LAST_DIGITS]);
           }
-          search_indx++;
+          search_index++;
           boolean_flag = TRUE;
         }
       }
@@ -113,24 +132,26 @@ uint16_t hexdigit_converted_16bits(char digit)
 {
   if (digit < 'a')
   {
+    /* Situation of upper case letters */
     if (isupper(digit))
     {
-      return (uint16_t)(digit - '7');
+      return (uint16_t) (digit - '7');
     }
-    return (uint16_t)(digit -'0');
+    return (uint16_t) (digit - '0');
   }
-  return (uint16_t)(digit - 'a' + 0xA);
+  return (uint16_t) (digit - 'a' + 0xA);
 }
 
 uint8_t hexdigit_convert_8bits(char digit)
 {
   if (digit < 'a')
   {
+    /* Situation of upper case letters */
     if (isupper(digit))
     {
-      return (uint8_t)(digit - '7');
+      return (uint8_t) (digit - '7');
     }
-    return (uint8_t)(digit -'0');
+    return (uint8_t) (digit - '0');
   }
-  return (uint8_t)(digit - 'a' + 0xA);
+  return (uint8_t) (digit - 'a' + 0xA);
 }
