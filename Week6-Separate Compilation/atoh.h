@@ -1,3 +1,12 @@
+/**
+ * @file atoh.h
+ * @author Hengyi Li
+ * @brief This file is the header file of the atoh.c
+ * @version 0.1
+ * @date 2021-10-15 11:24PM
+ * @copyright Copyright (c) 2021 Hengyi Li. All rights reserved
+ */
+
 #include <stdio.h>
 #include <stdint.h>
 #define NEXT_INDEX 1
