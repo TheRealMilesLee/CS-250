@@ -2,10 +2,10 @@ CC=clang
 CFLAGS=-Wno-poison-system-directories -std=c89 -Weverything -pedantic-errors
 OBJECTS=main.o revbits.o atoh.o
 
-all: cross_compiled
+all: revbits
 
-cross_compiled: $(OBJECTS)
-	$(CC) $(CFLAGS) -o cross_compiled $(OBJECTS)
+revbits: $(OBJECTS)
+	$(CC) $(CFLAGS) -o revbits $(OBJECTS)
 
 main.o: main.c atoh.h revbits.h
 	$(CC) $(CFLAGS) -Wno-padded -c main.c
