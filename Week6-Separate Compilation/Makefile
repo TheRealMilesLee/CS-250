@@ -17,4 +17,4 @@ revbits.o: revbits.c revbits.h atoh.h
 	$(CC) $(CFLAGS) -Wno-padded -c revbits.c
 
 clean:
-	rm -f *.o atoh
+	rm -f *.o revbits
