@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdint.h>
-
+#define next_index 1
+#define true 1
+#define first_index 0
+#define second_index 1
+#define move_bits 4
+#define last_digits 5
+#define second_last_digits 4
 /**
  * @brief This function is to convert ascii to hex under 8 bits value
  * @param string is the ASCII character that needs to be converted

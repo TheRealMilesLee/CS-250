@@ -23,6 +23,7 @@
     "type_traits": "c",
     "vector": "c",
     "array": "c",
-    "utility": "c"
+    "utility": "c",
+    "stdint.h": "c"
   }
 }
