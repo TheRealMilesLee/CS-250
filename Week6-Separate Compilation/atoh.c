@@ -19,12 +19,12 @@ uint8_t atoh8(const char* string)
             result <<= 4;
             result += hexdigit_converted_8bits(string[3]);
           }  
-          search_indx++;
     }
     else 
     {
       return 0;
     }
+    search_indx++;
     }
   printf("the nibble moved is %x \n", result);
   return result;
