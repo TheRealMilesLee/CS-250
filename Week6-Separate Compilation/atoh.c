@@ -1,3 +1,13 @@
+/**
+ * @file atoh.c
+ * @author Hengyi Li 
+ * @brief This file is to convert the ASCII character into the hexadecimal 
+ * numbers
+ * @version 0.1
+ * @date 2021-10-15 11:22 PM
+ * @copyright Copyright (c) 2021 Hengyi Li, All rights reserved
+ */
+
 #include <stdint.h>
 #include <ctype.h>
 #include "atoh.h"
