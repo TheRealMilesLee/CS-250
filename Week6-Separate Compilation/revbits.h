@@ -1,13 +1,16 @@
 /**
- * Reverse bits in mirror image pattern
- * Hengyi Li
+ * @file revbits.h
+ * @author Hengyi Li
+ * @brief This file is the header of the revbits.c
+ * @version 0.1
+ * @date 2021-10-15 11:27 PM
+ * @copyright Copyright (c) 2021 Hengyi Li. All rights served
  */
- 
+
 #define MOVE_ONE_BITS 1
 #include <stdint.h>
 #include <stdio.h>
 #include "atoh.h"
-
 
 /**
  * @brief This function is to Mirror image reverse 8 bits value. 
