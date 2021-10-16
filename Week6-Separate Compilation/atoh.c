@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include "atoh.h"
 
-
 uint8_t atoh8(const char* string)
 {
   uint8_t result = '\0';
