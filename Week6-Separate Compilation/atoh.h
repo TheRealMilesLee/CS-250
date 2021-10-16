@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdint.h>
-#define next_index 1
-#define true 1
-#define first_index 0
-#define second_index 1
-#define move_bits 4
-#define last_digits 5
-#define second_last_digits 4
+#define NEXT_INDEX 1
+#define TRUE 1
+#define FIRST_INDEX 0
+#define SECOND_INDEX 1
+#define MOVE_BITS 4
+#define LAST_DIGITS 5
+#define SECOND_LAST_DIGITS 4
 /**
  * @brief This function is to convert ascii to hex under 8 bits value
  * @param string is the ASCII character that needs to be converted
@@ -33,4 +33,4 @@ uint16_t hexdigit_converted_16bits(char digit);
  * @param digit is the the char character that needs to be converted
  * @return uint16_t is the hexadecimal numbers that returned and send it to the revbits function
  */
-uint8_t hexdigit_converted_8bits(char digit);
+uint8_t hexdigit_convert_8bits(char digit);
