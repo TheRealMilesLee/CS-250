@@ -7,10 +7,10 @@
  * @copyright Copyright (c) 2021 Hengyi Li. All rights served
  */
 
-#define MOVE_ONE_BITS 1
 #include <stdint.h>
 #include <stdio.h>
 #include "atoh.h"
+#define MOVE_ONE_BITS 1
 
 /**
  * @brief This function is to Mirror image reverse 8 bits value. 
