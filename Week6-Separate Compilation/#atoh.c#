@@ -63,6 +63,7 @@ uint16_t atoh16(const char *string)
   uint16_t result = '\0';
   unsigned search_index = 2;
   unsigned boolean_flag = 0;
+
   unsigned index = 1;
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != 0 && string[SECOND_INDEX] != 'x')
