@@ -18,31 +18,26 @@ uint8_t atoh8(const char *string)
   unsigned search_index = 2;
   unsigned size_of_string = 4;
   unsigned bool_flag = 0;
-  unsigned index = 2;
-  while (string[index] != '\0')
-  {
-    index++;
-  }
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != '0' && string[SECOND_INDEX] != 'x')
   {
     return 0;
   }
-  /*
-  else if (index > 4)
-  {
-    return 0;
-  }
-  */
   else
   {
     /* Loop through the string to find if there has invalid digits */
     while (search_index < size_of_string && !bool_flag)
     {
       /* If there does not have invalid digits, continue processing */
-      if ((string[search_index] >= '0' && string[search_index] <= '9') ||
+      if (((string[search_index] >= '0' && string[search_index] <= '9') ||
           (string[search_index] >= 'A' && string[search_index] <= 'F') ||
-          (string[search_index] >= 'a' && string[search_index] <= 'f'))
+          (string[search_index] >= 'a' && string[search_index] <= 'f')) && 
+          ((string[search_index + NEXT_INDEX] >= '0' && 
+          string[search_index + NEXT_INDEX] <= '9') ||
+          (string[search_index + NEXT_INDEX] >= 'A' && 
+          string[search_index + NEXT_INDEX] <= 'F') ||
+          (string[search_index + NEXT_INDEX] >= 'a' && 
+          string[search_index + NEXT_INDEX] <= 'f')))
       {
         /* Convert the ASCII to hexadecimal */
         result += hexdigit_convert_8bits(string[search_index]);
@@ -75,24 +70,11 @@ uint16_t atoh16(const char *string)
   unsigned search_index = 2;
   unsigned boolean_flag = 0;
   unsigned index = 1;
-  /*
-  unsigned detection_index = 2;
-  while (string[detection_index] != '\0')
-  {
-    detection_index++;
-  }
-  */
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != 0 && string[SECOND_INDEX] != 'x')
   {
     return 0;
   }
-  /*
-  else if (detection_index > 5)
-  {
-    return 0;
-  }
-  */
   else
   {
     /* Loop through the string to find if there has invalid digits */
