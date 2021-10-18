@@ -4,7 +4,7 @@
  * @brief This file is to convert the ASCII character into the hexadecimal 
  * numbers
  * @version 0.1
- * @date 2021-10-15 11:22 PM
+ * @date 2021-10-18 4:15 PM
  * @copyright Copyright (c) 2021 Hengyi Li, All rights reserved
  */
 
