@@ -18,8 +18,17 @@ uint8_t atoh8(const char *string)
   unsigned search_index = 2;
   unsigned size_of_string = 4;
   unsigned bool_flag = 0;
+  unsigned index = 2;
+  while (string[index] != '\0')
+  {
+    index++;
+  }
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != '0' && string[SECOND_INDEX] != 'x')
+  {
+    return 0;
+  }
+  else if(index > 4)
   {
     return 0;
   }
@@ -64,8 +73,17 @@ uint16_t atoh16(const char *string)
   unsigned search_index = 2;
   unsigned boolean_flag = 0;
   unsigned index = 1;
+  unsigned detection_index = 2;
+  while (string[detection_index] != '\0')
+  {
+    detection_index++;
+  }
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != 0 && string[SECOND_INDEX] != 'x')
+  {
+    return 0;
+  }
+  else if(detection_index > 5)
   {
     return 0;
   }
