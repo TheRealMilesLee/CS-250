@@ -81,9 +81,15 @@ uint16_t atoh16(const char *string)
     while (string[search_index] != '\0' && !boolean_flag)
     {
       /* If there does not have invalid digits, continue processing*/
-      if ((string[search_index] >= '0' && string[search_index] <= '9') ||
+      if (((string[search_index] >= '0' && string[search_index] <= '9') ||
           (string[search_index] >= 'A' && string[search_index] <= 'F') ||
-          (string[search_index] >= 'a' && string[search_index] <= 'f'))
+          (string[search_index] >= 'a' && string[search_index] <= 'f')) && 
+          ((string[search_index + NEXT_INDEX] >= '0' && 
+          string[search_index + NEXT_INDEX] <= '9') ||
+          (string[search_index + NEXT_INDEX] >= 'A' && 
+          string[search_index + NEXT_INDEX] <= 'F') ||
+          (string[search_index + NEXT_INDEX] >= 'a' && 
+          string[search_index + NEXT_INDEX] <= 'f')))
       {
         /* If it only has one digit, i.e. 0xa situation */
         if (string[search_index + NEXT_INDEX] == '\0')
