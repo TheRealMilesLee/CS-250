@@ -28,7 +28,7 @@ uint8_t atoh8(const char *string)
   {
     return 0;
   }
-  else if(index > 4)
+  else if (index > 4)
   {
     return 0;
   }
@@ -83,7 +83,7 @@ uint16_t atoh16(const char *string)
   {
     return 0;
   }
-  else if(detection_index > 5)
+  else if (detection_index > 5)
   {
     return 0;
   }
