@@ -14,10 +14,10 @@ uint8_t revbits8(uint8_t value)
 {
   uint8_t result = 0;
   uint8_t mask = 0x80;
-  
+
+  /* As long as the value is not negative or 0 */
   while (value > 0)
   {
-    /* As long as the value is not negative or 0 */
     if (value % 2 == 1)
     {
       result |= mask;
