@@ -18,7 +18,7 @@ uint8_t revbits8(uint8_t value)
   /* As long as the value is not negative or 0 */
   while (value > 0)
   {
-    /* e.g. A is 1010, 0 shift the bits, 1 compare the result with the mask*/
+    /* A is 1010, 0 shift the bits, 1 compare the result with the mask*/
     if (value % 2 == 1)
     {
       result |= mask;
