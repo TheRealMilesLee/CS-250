@@ -3,7 +3,7 @@
  * @author Hengyi Li
  * @brief This file is to mirror reverse the bits
  * @version 0.1
- * @date 2021-10-15 11:26 PM
+ * @date 2021-10-15 11:50 PM
  * @copyright Copyright (c) 2021 Hengyi Li. All rights reserved
  */
 
