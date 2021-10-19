@@ -47,8 +47,8 @@ uint8_t atoh8(const char *string)
       }
       /* Convert the ASCII to hexadecimal */
       result += hexdigit_convert_8bits(string[FIRST_DIGIT]);
-      /* If the input has 2 digits, move 4 digits for spaces and
-       * converted the second digits and put it into place */
+      /* If the input has 2 digits, move 4 digits for spaces and */
+       /* converted the second digits and put it into place */
       if (string[SECOND_DIGIT] != '\0')
       {
         result <<= MOVE_BITS;
