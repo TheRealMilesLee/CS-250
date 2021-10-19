@@ -16,8 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a310a7ba-c2a5-43cb-a57f-1eafd7c97aba" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atoh.c" beforeDir="false" afterPath="$PROJECT_DIR$/atoh.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atoh.h" beforeDir="false" afterPath="$PROJECT_DIR$/atoh.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +118,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1634600953148</updated>
-      <workItem from="1634600955874" duration="6748000" />
+      <workItem from="1634600955874" duration="7489000" />
     </task>
     <servers />
   </component>

@@ -129,7 +129,8 @@ uint16_t atoh16(const char *string)
         }
         else
         {
-          while (string[item_index + NEXT_INDEX] != '\0' && item_index < LAST_DIGITS)
+          while (string[item_index + NEXT_INDEX] != '\0' &&
+                 item_index < LAST_DIGITS)
           {
             result += hexdigit_converted_16bits(string[item_index]);
             result <<= MOVE_BITS;
