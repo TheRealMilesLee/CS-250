@@ -18,3 +18,9 @@ revbits.o: revbits.c revbits.h atoh.h
 
 clean:
 	rm -f *.o revbits
+
+test:
+	./test.sh 0xa 1
+	./test.sh 0xaa 1
+	./test.sh 0xaaa 2
+	./test.sh 0xaaaa 2
