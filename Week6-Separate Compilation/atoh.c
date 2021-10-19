@@ -4,7 +4,7 @@
  * @brief This file is to convert the ASCII character into the hexadecimal 
  * numbers
  * @version 0.1
- * @date 2021-10-18 4:15 PM
+ * @date 2021-10-18 8:54 PM
  * @copyright Copyright (c) 2021 Hengyi Li, All rights reserved
  */
 
@@ -16,8 +16,7 @@ uint8_t atoh8(const char *string)
 {
   uint8_t result = '\0';
   unsigned search_index = 2;
-  unsigned size_of_string = 4;
-  unsigned bool_flag = 0;
+  
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != '0' && string[SECOND_INDEX] != 'x')
   {
@@ -25,39 +24,35 @@ uint8_t atoh8(const char *string)
   }
   else
   {
-    /* Loop through the string to find if there has invalid digits */
-    while (search_index < size_of_string && !bool_flag)
+    if (!isdigit(string[THIRD_INDEX]) && !isalpha(string[THIRD_INDEX]))
     {
-      /* If there does not have invalid digits, continue processing */
-      if (((string[search_index] >= '0' && string[search_index] <= '9') ||
-          (string[search_index] >= 'A' && string[search_index] <= 'F') ||
-          (string[search_index] >= 'a' && string[search_index] <= 'f')) && 
-          ((string[search_index + NEXT_INDEX] >= '0' && 
-          string[search_index + NEXT_INDEX] <= '9') ||
-          (string[search_index + NEXT_INDEX] >= 'A' && 
-          string[search_index + NEXT_INDEX] <= 'F') ||
-          (string[search_index + NEXT_INDEX] >= 'a' && 
-          string[search_index + NEXT_INDEX] <= 'f')))
+      return 0;
+    }
+    else
+    {
+      /* Loop through the string to find if there has invalid digits */
+      while (string[search_index] != '\0')
       {
-        /* Convert the ASCII to hexadecimal */
-        result += hexdigit_convert_8bits(string[search_index]);
-        /* If the input has 2 digits, move 4 digits for spaces and
-         * converted the second digits and put it into place */
-        if (string[search_index + NEXT_INDEX] != '\0')
+        /* If there does not have invalid digits, continue processing */
+        if ((string[search_index] < '0' || string[search_index] > '9') &&
+            (string[search_index] < 'A' || string[search_index] > 'F') &&
+            (string[search_index] < 'a' || string[search_index] > 'f'))
         {
-          result <<= MOVE_BITS;
-          result += hexdigit_convert_8bits(
-            string[search_index + NEXT_INDEX]);
+          return 0;
         }
-        /* See if next digits is valid */
-        search_index++;
-        /* Done the operation, return the result */
-        bool_flag = TRUE;
+        else
+        {
+          search_index++;
+        }
       }
-      else
+      /* Convert the ASCII to hexadecimal */
+      result += hexdigit_convert_8bits(string[FIRST_DIGIT]);
+      /* If the input has 2 digits, move 4 digits for spaces and
+       * converted the second digits and put it into place */
+      if (string[SECOND_DIGIT] != '\0')
       {
-        /* If the digits is invalid, return the 0 */
-        return 0;
+        result <<= MOVE_BITS;
+        result += hexdigit_convert_8bits(string[SECOND_DIGIT]);
       }
     }
   }
@@ -68,8 +63,7 @@ uint16_t atoh16(const char *string)
 {
   uint16_t result = '\0';
   unsigned search_index = 2;
-  unsigned boolean_flag = 0;
-  unsigned index = 1;
+  unsigned item_index = 2;
   /* Detect if the user input is begin with 0x, if not, return 0 */
   if (string[FIRST_INDEX] != 0 && string[SECOND_INDEX] != 'x')
   {
@@ -77,73 +71,75 @@ uint16_t atoh16(const char *string)
   }
   else
   {
-    /* Loop through the string to find if there has invalid digits */
-    while (string[search_index] != '\0' && !boolean_flag)
+    /* Determine the situation of only has 0x */
+    if (!isdigit(string[THIRD_INDEX]) && !isalpha(string[THIRD_INDEX]))
     {
-      /* If there does not have invalid digits, continue processing*/
-      if (((string[search_index] >= '0' && string[search_index] <= '9') ||
-          (string[search_index] >= 'A' && string[search_index] <= 'F') ||
-          (string[search_index] >= 'a' && string[search_index] <= 'f')) && 
-          ((string[search_index + NEXT_INDEX] >= '0' && 
-          string[search_index + NEXT_INDEX] <= '9') ||
-          (string[search_index + NEXT_INDEX] >= 'A' && 
-          string[search_index + NEXT_INDEX] <= 'F') ||
-          (string[search_index + NEXT_INDEX] >= 'a' && 
-          string[search_index + NEXT_INDEX] <= 'f')))
+      return 0;
+    }
+    else
+    {
+      /* Loop through the string to find if there has invalid digits */
+      while (string[search_index] != '\0')
       {
-        /* If it only has one digit, i.e. 0xa situation */
-        if (string[search_index + NEXT_INDEX] == '\0')
+        /* If there does not have invalid digits, continue processing*/
+        if ((string[search_index] < '0' || string[search_index] > '9') &&
+            (string[search_index] < 'A' || string[search_index] > 'F') &&
+            (string[search_index] < 'a' || string[search_index] > 'f'))
         {
-          /* Convert the value and put it into place */
-          result += hexdigit_converted_16bits(string[search_index]);
-          /* Done the processing, return the value */
-          boolean_flag = TRUE;
+          return 0;
         }
-          /* If it has two digits, i.e. 0xaa situation */
-        else if (string[search_index + NEXT_INDEX] != '\0' &&
-                 string[SECOND_LAST_DIGITS] == '\0')
-        {
-          result += hexdigit_converted_16bits(string[search_index]);
-          result <<= MOVE_BITS;
-          result += hexdigit_converted_16bits(
-            string[search_index + NEXT_INDEX]);
-          search_index++;
-          boolean_flag = TRUE;
-        }
-          /* If it has three digits, i.e. 0xaaa situation */
-        else if (string[SECOND_LAST_DIGITS] != '\0' &&
-                 string[LAST_DIGITS] == '\0')
-        {
-          result += hexdigit_converted_16bits(string[search_index]);
-          result <<= MOVE_BITS;
-          result += hexdigit_converted_16bits(
-            string[search_index + NEXT_INDEX]);
-          result <<= MOVE_BITS;
-          result += hexdigit_converted_16bits(
-            string[SECOND_LAST_DIGITS]);
-          search_index++;
-          boolean_flag = TRUE;
-        }
-          /* If it has four digits, i.e. 0xaaaa situation */
         else
         {
-          while (string[index + NEXT_INDEX] != '\0')
+          search_index++;
+        }
+      }
+      /* If it only has one digit, i.e. 0xa situation */
+      if (string[SECOND_DIGIT] == '\0')
+      {
+        /* Convert the value and put it into place */
+        result += hexdigit_converted_16bits(string[FIRST_DIGIT]);
+      }
+        /* If it has two digits, i.e. 0xaa situation */
+      else if (string[SECOND_DIGIT] != '\0' && string[THIRD_DIGIT] == '\0')
+      {
+        result += hexdigit_converted_16bits(string[FIRST_DIGIT]);
+        result <<= MOVE_BITS;
+        result += hexdigit_converted_16bits(string[SECOND_DIGIT]);
+      }
+        /* If it has three digits, i.e. 0xaaa situation */
+      else if (string[THIRD_DIGIT] != '\0' && string[LAST_DIGITS] == '\0')
+      {
+        result += hexdigit_converted_16bits(string[FIRST_DIGIT]);
+        result <<= MOVE_BITS;
+        result += hexdigit_converted_16bits(string[SECOND_DIGIT]);
+        result <<= MOVE_BITS;
+        result += hexdigit_converted_16bits(string[THIRD_DIGIT]);
+      }
+        /* If it has four digits, i.e. 0xaaaa situation */
+      else
+      {
+        if (string[FIRST_DIGIT] == '0')
+        {
+          result <<= MOVE_BITS;
+          result += hexdigit_converted_16bits(string[SECOND_DIGIT]);
+          result <<= MOVE_BITS;
+          result += hexdigit_converted_16bits(string[THIRD_DIGIT]);
+          result <<= MOVE_BITS;
+          result += hexdigit_converted_16bits(string[LAST_DIGITS]);
+        }
+        else
+        {
+          while (string[item_index + NEXT_INDEX] != '\0' && item_index < LAST_DIGITS)
           {
-            result += hexdigit_converted_16bits(string[index]);
+            result += hexdigit_converted_16bits(string[item_index]);
             result <<= MOVE_BITS;
-            index++;
+            item_index++;
           }
           if (string[LAST_DIGITS] != '\0')
           {
             result += hexdigit_converted_16bits(string[LAST_DIGITS]);
           }
-          search_index++;
-          boolean_flag = TRUE;
         }
-      }
-      else
-      {
-        return 0;
       }
     }
   }

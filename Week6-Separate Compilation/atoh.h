@@ -9,13 +9,16 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#define NEXT_INDEX 1
-#define TRUE 1
 #define FIRST_INDEX 0
 #define SECOND_INDEX 1
-#define MOVE_BITS 4
+#define NEXT_INDEX 1
+#define THIRD_INDEX 2
+#define FIRST_DIGIT 2
+#define SECOND_DIGIT 3
+#define THIRD_DIGIT 4
 #define LAST_DIGITS 5
-#define SECOND_LAST_DIGITS 4
+#define MOVE_BITS 4
+
 /**
  * @brief This function is to convert ascii to hex under 8 bits value
  * @param string is the ASCII character that needs to be converted
