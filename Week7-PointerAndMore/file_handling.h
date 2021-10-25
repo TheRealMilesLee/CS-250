@@ -8,3 +8,4 @@ typedef struct
   char phone[MAX_PHONE_CHARS + 1];
   char email[MAX_EMAIL_CHARS + 1];
 } Contact;
+
