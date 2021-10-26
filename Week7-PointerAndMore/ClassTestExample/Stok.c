@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-//特殊测试例子，记得问
 int main(void)
 {
   /* NOTE the following string has embedded TAB characters */
@@ -15,6 +14,6 @@ int main(void)
     puts(token);
     token = strtok(NULL, "\t");
   }
-  puts(string);
+
   return 0;
 }
