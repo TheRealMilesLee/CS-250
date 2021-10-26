@@ -18,7 +18,6 @@ int get_file_size(char *filename)
 }
 void file_read_in_display (char *filename)
 {
-
   Contact *contact_database_name[MAX_NAME_CHARS];
 
   FILE *input_file = fopen(filename,"r");
