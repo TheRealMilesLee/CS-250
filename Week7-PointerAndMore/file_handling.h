@@ -9,5 +9,6 @@ typedef struct
   char email[MAX_EMAIL_CHARS + 1];
 } Contact;
 
-void file_read_in_display (char filename );
+int get_file_size(char *filename);
+void file_read_in_display (char *filename );
 
