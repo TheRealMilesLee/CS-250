@@ -1,5 +1,2 @@
-Harry Porter	111-222-333-444	hl3265@truman.edu
-mary adams	222-333-444-555	kj777@truna.edu
-karry friends	999-888-333-444	kijdug@hjgcd.adh
-Macious King	777-888-999-222	kjaherbf@kjdg
-babababababa	98734-923876-22	asjdbfdbc@kadjhvb
+Harry Porter	111-222-333-444	hl3265@truman.edu	mary adams	222-333-444-555	kj777@truna.edu	karry friends	999-888-333-444	kijdug@hjgcd.adhjkfgv
+
