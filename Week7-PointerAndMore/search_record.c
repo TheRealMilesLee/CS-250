@@ -6,3 +6,8 @@
  * @date 2021-10-24 9:00PM.
  * @copyright Copyright (c) 2021
  */
+
+void search_record(char *contact_database)
+{
+  
+}
