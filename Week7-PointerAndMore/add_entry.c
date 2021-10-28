@@ -3,7 +3,11 @@
 
 void add_entry()
 {
-  myContact contacts[3] = {{"Harry porter", "816-541-9947", "bababa@gmail.com"},
-                                                {"Hello", "999-999-999", "kakakaka@gmail.com"}};
+  int looptimes = 0;
+  myContact *contacts = (myContact *) malloc(3 * sizeof(myContact)); 
+  contacts[0].name = "Harry porter";
+  contacts[0].phone = "816-541-9947";
+  contacts[0].email = "bbababab@gmail.com";
+  
   
 }
