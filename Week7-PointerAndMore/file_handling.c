@@ -5,32 +5,26 @@
 
 void file_read_in_display (char *filename)
 {
-  Contact *contact_database = malloc(sizeof(Contact));
+  Contact *my_contact[MAX_CONTACTS];
   FILE *input_file = fopen(filename,"r");
-  char *database; 
-  int file_size = 0;
-  int looptimes_database = 0;
+  char contact_database[MAX_CONTACTS];
+  size_t size_of_file = 0;
   size_t looptimes;
   char* token;
-  while (fgets(database, MAX_CONTACTS, input_file))
+  while ((fgets(contact_database, MAX_CONTACTS, input_file) != NULL))
   {
-    file_size++;
+    size_of_file++;
   }
-  database = malloc(sizeof(char) * file_size);
-  token = strtok(database, "\t");
+  for (looptimes = 0; looptimes < size_of_file; looptimes++)
+  {
+    my_contact[looptimes] = malloc(sizeof(Contact));
+  }
+  /*
+  token = strtok(contact_database, "\n");
   while (token != NULL)
   {
-    *contact_database[looptimes].name = puts(token);
-    token = strtok(NULL, "\t");
+    puts(token);
+    token = strtok(NULL, "\n");
   }
-
-  for ( looptimes = 0; looptimes < file_size; looptimes++)
-  {
-    *contact_database[looptimes].name = database[looptimes_database];
-    *contact_database[looptimes].phone = database[looptimes_database + 1];
-    *contact_database[looptimes].email = database[looptimes_database + 2];
-    looptimes_database + 3;
-  }
-
-  printf("%s", *contact_database[0].name);
+  */
 }
