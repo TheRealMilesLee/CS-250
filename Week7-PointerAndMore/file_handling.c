@@ -3,28 +3,19 @@
 #include <string.h>
 #include <stdlib.h>
 
-void file_read_in_display (char *filename)
+void file_read_in_display (char *filename, char contact_database[MAX_CONTACTS])
 {
-  Contact *my_contact[MAX_CONTACTS];
+  Contact **my_contact;
   FILE *input_file = fopen(filename,"r");
-  char contact_database[MAX_CONTACTS];
   size_t size_of_file = 0;
-  size_t looptimes;
-  char* token;
-  while ((fgets(contact_database, MAX_CONTACTS, input_file) != NULL))
+  size_t looptimes = 0;
+  while (!feof(input_file))
   {
-    size_of_file++;
+    fgets(contact_database, MAX_CONTACTS, input_file);
+    printf("%lu : %s",size_of_file++, contact_database);
   }
   for (looptimes = 0; looptimes < size_of_file; looptimes++)
   {
-    my_contact[looptimes] = malloc(sizeof(Contact));
+    printf("%c", contact_database[looptimes]);
   }
-  /*
-  token = strtok(contact_database, "\n");
-  while (token != NULL)
-  {
-    puts(token);
-    token = strtok(NULL, "\n");
-  }
-  */
 }

@@ -1,0 +1,1 @@
+void search_record(char *contact_database);

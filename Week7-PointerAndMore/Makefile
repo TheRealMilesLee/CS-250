@@ -14,4 +14,4 @@ file_handling.o: file_handling.c file_handling.h
 	$(CC) $(CFLAGS) -Wno-padded -c file_handling.c file_handling.h
 	
 clean:
-	rm -f *.o
+	rm -f *.o *~ *.gch contacts
