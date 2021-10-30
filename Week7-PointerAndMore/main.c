@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  search_record(contact_database);
+  search_record(contact_database, "e");
   /*file_read_in(argv[1], contact_database);*/
   /*
   while (!done)
