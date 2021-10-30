@@ -10,7 +10,8 @@
 #include "main.h"
 int main(int argc, char *argv[])
 {
-  char contact_database[MAX_CONTACTS];
+  Contact *contact_database[MAX_CONTACTS];
+  size_t array_size = 
   char user_input;
   int done = FALSE;
   if (argc != 2)
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
   file_read_in(argv[1], *contact_database);
   while (!done)
   {
-    display_record();
+    display_entry(contact_database, array_size);
     printf("S: Search \n A: Add \n D: Delete \n Q: Quit \n Choice: ");
     fgets(user_input, sizeof(char), user_input);
     if (user_input == "s" || user_input == "S")
