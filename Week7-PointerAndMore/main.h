@@ -1,3 +1,7 @@
+#include "add_entry.h"
+#include "change_entry.h"
+#include "file_handling.h"
+#include "search_record.h"
 #define MAX_CONTACTS 1024
 #define MAX_NAME_CHARS 40
 #define MAX_PHONE_CHARS 12
