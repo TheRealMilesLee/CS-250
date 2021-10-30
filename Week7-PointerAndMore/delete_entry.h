@@ -2,6 +2,8 @@
 #define MAX_NAME_CHARS 40
 #define MAX_PHONE_CHARS 12
 #define MAX_EMAIL_CHARS 30
+#define TRUE 1
+#define FALSE 0
 typedef struct
 {
   char name[MAX_NAME_CHARS + 1];
@@ -15,4 +17,4 @@ typedef struct
  * @param contact_database is the entire database that used to operate
  * @param delete_id is the id that user wants to delete
  */
-void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id);
+void delete_entry(Contact *contact_database[MAX_CONTACTS], unsigned delete_id);
