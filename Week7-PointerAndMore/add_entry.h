@@ -1,6 +1,8 @@
+#include <string.h>
 #define MAX_NAME_CHARS 40
 #define MAX_PHONE_CHARS 12
 #define MAX_EMAIL_CHARS 30
+#define MAX_CONTACTS 1024
 
 typedef struct
 {
@@ -9,11 +11,8 @@ typedef struct
   char email[MAX_EMAIL_CHARS + 1];
 } Contact;
 
-typedef struct 
-{
-  char name;
-  char phone;
-  char email;
-}myContact;
-
-void add_entry();
+/**
+ * @brief This function is to add a entry in the end of the contact database
+ * @param contact_database is the database that stores the contact
+ */
+void add_entry(Contact *contact_database[MAX_CONTACTS]);

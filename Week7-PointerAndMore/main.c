@@ -18,7 +18,8 @@ int main(int argc, char *argv[])
     fprintf(stderr, "usage: input your filename as the user database%s \n", argv[0]);
     return 1;
   }
-  file_read_in(argv[1], contact_database);
+  add_entry(contact_database);
+  /*file_read_in(argv[1], contact_database);*/
   /*
   while (!done)
   {

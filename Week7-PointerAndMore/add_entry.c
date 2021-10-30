@@ -1,13 +1,23 @@
 #include <stdio.h>
 #include "add_entry.h"
 
-void add_entry()
+void add_entry(Contact *contact_database[MAX_CONTACTS])
 {
-  int looptimes = 0;
-  myContact *contacts = (myContact *) malloc(3 * sizeof(myContact)); 
-  contacts[0].name = "Harry porter";
-  contacts[0].phone = "816-541-9947";
-  contacts[0].email = "bbababab@gmail.com";
-  
+  Contact new_contact;
+  char name[MAX_NAME_CHARS];
+  char phone[MAX_PHONE_CHARS];
+  char email[MAX_EMAIL_CHARS];
+
+  printf("Please input name of the person: ");
+  fgets(name, MAX_NAME_CHARS, stdin);
+  printf("Please input the phone number of the person: ");
+  fgets(phone, MAX_PHONE_CHARS, stdin);
+  printf("Please input the email address of the person: ");
+  fgets(email, MAX_EMAIL_CHARS, stdin);
+
+  strncpy(new_contact.name, name, MAX_NAME_CHARS);
+  strncpy(new_contact.phone, phone, MAX_PHONE_CHARS);
+  strncpy(new_contact.email, email, MAX_EMAIL_CHARS);
+
   
 }
