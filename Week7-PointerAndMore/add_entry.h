@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 #define MAX_NAME_CHARS 40
 #define MAX_PHONE_CHARS 12
 #define MAX_EMAIL_CHARS 30

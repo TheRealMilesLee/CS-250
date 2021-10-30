@@ -14,10 +14,21 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
   fgets(phone, MAX_PHONE_CHARS, stdin);
   printf("Please input the email address of the person: ");
   fgets(email, MAX_EMAIL_CHARS, stdin);
-
+  printf("Till here is fine \n");
+  
   strncpy(new_contact.name, name, MAX_NAME_CHARS);
   strncpy(new_contact.phone, phone, MAX_PHONE_CHARS);
   strncpy(new_contact.email, email, MAX_EMAIL_CHARS);
+  printf("Till here is fine \n");
 
-  
+  contact_database[0] = malloc(sizeof(Contact) * sizeof(new_contact));
+  printf("Till here is fine\n");
+
+  strncpy((*contact_database)->name, new_contact.name, MAX_NAME_CHARS);
+  strncpy((*contact_database)->phone, new_contact.phone, MAX_PHONE_CHARS);
+  strncpy((*contact_database)->email, new_contact.email, MAX_EMAIL_CHARS);
+  printf("Till here is fine\n");
+
+  printf("%s is name, %s is phone, %s is email", (*contact_database)->name, (*contact_database)->phone, (*contact_database)->email);
+
 }
