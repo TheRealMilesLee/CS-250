@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 {
   Contact *contact_database[MAX_CONTACTS];
   char user_input;
+  char search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
   if (argc != 2)
   {
@@ -19,7 +20,7 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  search_record(contact_database, "e");
+  delete_entry(contact_database);
   /*file_read_in(argv[1], contact_database);*/
   /*
   while (!done)
@@ -29,7 +30,9 @@ int main(int argc, char *argv[])
     fgets(user_input, sizeof(char), user_input);
     if (user_input == "s" || user_input == "S")
     {
-      
+      printf("Please input the word that you looking for: ");
+      fgets(search_keyword, MAX_NAME_CHARS, stdin);
+      search_record(contact_database, search_keyword);
     }
     else if (user_input == "a" || user_input == "A")
     {
@@ -37,13 +40,14 @@ int main(int argc, char *argv[])
     }
     else if (user_input == "d" || "D")
     {
-      delete_entry(contact_database);
+      
     }
     else
     {
       done = TRUE;
     }
   }
+
   */
   return 0;
 }
