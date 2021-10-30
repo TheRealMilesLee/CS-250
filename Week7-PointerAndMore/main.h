@@ -1,10 +1,8 @@
-#include "search_record.h"
+#include "delete_entry.h"
 /*
 #include "add_entry.h"
-
 #include "file_handling.h"
-#include "delete_entry.h"
-
+#include "search_record.h"
 #include "display.h"
 */
 #define MAX_CONTACTS 1024
