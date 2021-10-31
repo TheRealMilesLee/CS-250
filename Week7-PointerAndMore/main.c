@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
 
   file_read_in(argv[1], contact_database);
 
+  /*
   while (!done)
   {
     printf("\n");
@@ -56,5 +57,6 @@ int main(int argc, char *argv[])
       done = TRUE;
     }
   }
+  */
   return 0;
 }
