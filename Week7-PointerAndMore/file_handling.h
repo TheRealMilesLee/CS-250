@@ -17,5 +17,12 @@
  */
 void file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS]);
 
+/**
+ * @brief This function is to output the final decision of the contact file
+ * @param contact_database is the database that stores the contacts
+ */
+void file_out_put(Contact *contact_database[MAX_CONTACTS]);
+
+
 
 

@@ -50,3 +50,8 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
     }
   }
 }
+
+void file_out_put(Contact *contact_database[MAX_CONTACTS])
+{
+  
+}
