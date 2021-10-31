@@ -12,11 +12,11 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[MAX_CONTACTS], unsigned delete_id)
+void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
 {
-  unsigned index = 0;
+  int index = 0;
   int deleted = FALSE;
-  unsigned loop = 0;
+  int loop = 0;
   size_t array_size = 0;
   size_t looptimes;
 
@@ -41,15 +41,12 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], unsigned delete_id)
     loop++;
     array_size++;
   }
-  printf ("%d", array_size);
   printf("This is the entry befor the delete: \n");
-  printf("%s", contact_database[3]);
-
-for (looptimes = 0; looptimes < array_size; looptimes++)
-{
-  printf( "%u : %s %s %s \n" , looptimes, (contact_database[looptimes])->name, 
+  for (looptimes = 0; looptimes < array_size; looptimes++)
+  {
+    printf( "%lu : %s %s %s \n" , looptimes, (contact_database[looptimes])->name, 
                     (contact_database[looptimes])->phone, (contact_database[looptimes])->email);
-}
+  }
   while ( !deleted)
   {
     if (index == delete_id)

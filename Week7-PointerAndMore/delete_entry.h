@@ -17,4 +17,4 @@ typedef struct
  * @param contact_database is the entire database that used to operate
  * @param delete_id is the id that user wants to delete
  */
-void delete_entry(Contact *contact_database[MAX_CONTACTS], unsigned delete_id);
+void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id);
