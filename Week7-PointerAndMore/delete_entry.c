@@ -14,6 +14,7 @@
 
 void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
 {
+  size_t user_delete_choice = (size_t) delete_id;
   int index = 0;
   int loop = 0;
   size_t array_size = 0;
@@ -48,9 +49,9 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
   {
     if(index == delete_id)
     {
-      for (looptimes = delete_id; looptimes < array_size; looptimes++)
+      for (looptimes = user_delete_choice; looptimes < array_size; looptimes++)
       {
-        contact_database[looptimes] = contact_database[looptimes+1];
+        contact_database[looptimes] = contact_database[looptimes + 1];
       }
       done = TRUE;
     }
