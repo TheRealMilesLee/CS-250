@@ -48,7 +48,7 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
   {
     if(index == delete_id)
     {
-      for (looptimes = 1; looptimes < array_size; looptimes++)
+      for (looptimes = delete_id; looptimes < array_size; looptimes++)
       {
         contact_database[looptimes] = contact_database[looptimes+1];
       }
