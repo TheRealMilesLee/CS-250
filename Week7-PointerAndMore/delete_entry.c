@@ -41,7 +41,9 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], unsigned delete_id)
     loop++;
     array_size++;
   }
+  printf ("%d", array_size);
   printf("This is the entry befor the delete: \n");
+  printf("%s", contact_database[3]);
 
 for (looptimes = 0; looptimes < array_size; looptimes++)
 {
@@ -63,8 +65,6 @@ for (looptimes = 0; looptimes < array_size; looptimes++)
     }
     index++;
   }
-
-
 
   printf("This is the entry after the delete: \n");
   loop = 0;

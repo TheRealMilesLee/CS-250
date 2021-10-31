@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
   char user_input;
   char search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
+  
   if (argc != 2)
   {
     fprintf(stderr, "usage: input your filename as the user database%s \n", argv[0]);
