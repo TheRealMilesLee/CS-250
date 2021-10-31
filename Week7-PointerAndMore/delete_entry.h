@@ -1,4 +1,4 @@
-#include "file_structure.h"
+#include "structure_contact.h"
 #define TRUE 1
 #define FALSE 0
 

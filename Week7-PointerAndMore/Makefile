@@ -13,8 +13,8 @@ main.o: main.c
 file_handling.o: file_handling.c file_handling.h
 		$(CC) $(CFLAGS) -Wno-padded -c file_handling.c file_handling.h
 
-add_entry.o: add_entry.c add_entry.h
-		$(CC) $(CFLAGS) -Wno-padded -c add_entry.c add_entry.h
+add_entry.o: add_entry.c add_contact.h
+		$(CC) $(CFLAGS) -Wno-padded -c add_entry.c add_contact.h
 
 delete_entry.o: delete_entry.c delete_entry.h
 		$(CC) $(CFLAGS) -Wno-padded -c delete_entry.c delete_entry.h

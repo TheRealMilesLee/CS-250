@@ -1,7 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "file_handling.h"
-#include "display.h"
 
 void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
 {

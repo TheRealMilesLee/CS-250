@@ -8,7 +8,7 @@
  */
 
 #include <stdio.h>
-#include "file_structure.h"
+#include "structure_contact.h"
 
 /**
  * @brief This function is to read the txt file from the disk into the contact database array. 

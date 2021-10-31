@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
   file_read_in(argv[1], contact_database);
   while (!done)
   {
-    display_entry(contact_database, 4);
     printf("S: Search \n A: Add \n D: Delete \n Q: Quit \n Choice: ");
     fgets(user_input, sizeof(char), stdin);
     if (user_input[0] == 's' || user_input[0] == 'S')

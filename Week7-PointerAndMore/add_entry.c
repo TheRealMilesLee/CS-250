@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "add_entry.h"
+#include "add_contact.h"
 
 void add_entry(Contact *contact_database[MAX_CONTACTS])
 {

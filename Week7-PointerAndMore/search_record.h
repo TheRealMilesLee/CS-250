@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2021 Hengyi Li. All rights reserved
  * 
  */
-#include "file_structure.h"
+#include "structure_contact.h"
 
 
 /**
