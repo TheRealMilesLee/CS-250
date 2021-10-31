@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  delete_entry(contact_database, 1);
+  delete_entry(contact_database, 0);
   /*file_read_in(argv[1], contact_database);*/
   /*
   while (!done)

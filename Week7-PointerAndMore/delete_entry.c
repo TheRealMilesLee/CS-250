@@ -15,11 +15,10 @@
 void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
 {
   int index = 0;
-  int deleted = FALSE;
   int loop = 0;
   size_t array_size = 0;
   size_t looptimes;
-
+  int done = FALSE;
   contact_database[0] = malloc(sizeof(Contact));
   contact_database[1] = malloc(sizeof(Contact));
   contact_database[2] = malloc(sizeof(Contact));
@@ -35,34 +34,29 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
   strncpy((contact_database[2])->name, "Misaka", MAX_NAME_CHARS);
   strncpy((contact_database[2])->phone, "660-542-11", MAX_PHONE_CHARS);
   strncpy((contact_database[2])->email, "misaka@email.com", MAX_EMAIL_CHARS);
-
+  
+  printf("This is the entry befor the delete: \n");
   while (contact_database[loop] != NULL)
   {
-    loop++;
+    printf( "%d : %s %s %s \n" , loop, (contact_database[loop])->name, 
+                    (contact_database[loop])->phone, (contact_database[loop])->email);
     array_size++;
+    loop++;
   }
-  printf("This is the entry befor the delete: \n");
-  for (looptimes = 0; looptimes < array_size; looptimes++)
+  
+  while ( contact_database[index] != NULL)
   {
-    printf( "%lu : %s %s %s \n" , looptimes, (contact_database[looptimes])->name, 
-                    (contact_database[looptimes])->phone, (contact_database[looptimes])->email);
-  }
-  while ( !deleted)
-  {
-    if (index == delete_id)
+    if(index == delete_id)
     {
-      strncpy((contact_database[index])->name,
-                    (contact_database[index + 1])->name , MAX_NAME_CHARS);
-      strncpy((contact_database[index])->phone,
-                    (contact_database[index + 1])->phone , MAX_PHONE_CHARS);
-      strncpy((contact_database[index])->email,
-                    (contact_database[index + 1])->email , MAX_EMAIL_CHARS);
-      contact_database[3] = NULL;
-      deleted =TRUE;
+      for (looptimes = 1; looptimes < array_size; looptimes++)
+      {
+        contact_database[looptimes] = contact_database[looptimes+1];
+      }
+      done = TRUE;
     }
     index++;
   }
-
+  
   printf("This is the entry after the delete: \n");
   loop = 0;
   while (contact_database[loop] != NULL)
