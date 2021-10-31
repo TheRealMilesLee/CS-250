@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "file_structure.h"
 #define MAX_CONTACTS 1024
 
 /**
@@ -6,4 +7,4 @@
  * @param contact_database is the array that stores the contact
  * @param array_size is the size of the array that use to display the array content
  */
-void display_entry(char contact_database[MAX_CONTACTS], size_t array_size);
+void display_entry(Contact *contact_database[MAX_CONTACTS], size_t array_size);
