@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
   Contact *contact_database[MAX_CONTACTS];
   char user_input[2];
   char delete_id[2];
-  char *search_keyword[MAX_NAME_CHARS];
+  char search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
   size_t looptimes;
   
@@ -33,17 +33,12 @@ int main(int argc, char *argv[])
     printf("D: Delete \n");
     printf("Q: Quit \n");
     printf("Choice: ");
-    fgets(user_input, 2, stdin);
+    fgets(user_input, 3, stdin);
     printf("\n");
     if (user_input[0] == 's' || user_input[0] == 'S')
     {
-      for(looptimes = 0; looptimes < MAX_NAME_CHARS; looptimes++)
-      {
-        *search_keyword = malloc(sizeof(char));
-      }
       printf("Please input the word that you looking for: ");
-      fgets(*search_keyword, MAX_NAME_CHARS, stdin);
-      printf("Your input is: %s", search_keyword);
+      fgets(search_keyword, MAX_NAME_CHARS, stdin);
       search_record(contact_database, search_keyword);
     }
     else if (user_input[0] == 'a' || user_input[0] == 'A')
