@@ -25,8 +25,9 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
   
     for (looptimes = 0; looptimes < size_of_file; looptimes++)
     {
-      contact_database = malloc(sizeof(Contact) * looptimes);
+      contact_database[looptimes] = malloc(sizeof(Contact));
     }
+    
     token = strtok(temp_array, "\t");
     for (looptimes = 0; looptimes < size_of_file; looptimes++)
     {
