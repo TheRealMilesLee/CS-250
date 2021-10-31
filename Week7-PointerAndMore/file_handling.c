@@ -11,7 +11,6 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
   size_t looptimes;
   char *token;
   size_t loop = 0;
-  int index = 0;
 
   if (input_file == NULL)
   { 
@@ -20,9 +19,7 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
   }
   else
   {
-    token = strtok(temp_array, "\t");
-
-    while (fgets(temp_array, MAX_CONTACTS, input_file))
+    while (fgets(temp_array, MAX_LINE_LENGTH, input_file))
     {
       printf("%u : %s", size_of_file++, temp_array); 
     }
@@ -30,9 +27,10 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
     {
       contact_database[looptimes] = malloc(sizeof(Contact));
     }
+    
+    token = strtok(temp_array, "\t");
     for (looptimes = 0; looptimes < size_of_file; looptimes++)
     {
-      printf("%s", token);
       strncpy(my_contact.name, token, MAX_NAME_CHARS);
       strncpy((contact_database[looptimes])->name, my_contact.name, MAX_NAME_CHARS);
       token = strtok(NULL, "\t");
@@ -43,12 +41,12 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
       strncpy((contact_database[looptimes])->email, my_contact.email, MAX_EMAIL_CHARS);
       token = strtok(NULL, "\n");
     }
-    printf("\n");
+    printf("This is the contact after reading in the files \n");
     while (contact_database[loop] != NULL)
-  {
-    printf( "%u : %s %s %s \n" , loop, (contact_database[loop])->name, 
+    {
+      printf( "%lu : %s %s %s \n" , loop, (contact_database[loop])->name, 
                     (contact_database[loop])->phone, (contact_database[loop])->email);
-    loop++;
-  }
+      loop++;
+    }
   }
 }

@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
   char delete_id[2];
   char search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
-  size_t looptimes;
   
   if (argc != 2)
   {
@@ -24,8 +23,6 @@ int main(int argc, char *argv[])
   }
 
   file_read_in(argv[1], contact_database);
-
-  /*
   while (!done)
   {
     printf("\n");
@@ -57,6 +54,5 @@ int main(int argc, char *argv[])
       done = TRUE;
     }
   }
-  */
   return 0;
 }

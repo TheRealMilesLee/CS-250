@@ -4,6 +4,7 @@
 #define MAX_PHONE_CHARS 12
 #define MAX_EMAIL_CHARS 30
 #define MAX_CONTACTS 1024
+#define MAX_LINE_LENGTH 82
 
 typedef struct
 {
