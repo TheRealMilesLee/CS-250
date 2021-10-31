@@ -11,9 +11,11 @@
 int main(int argc, char *argv[])
 {
   Contact *contact_database[MAX_CONTACTS];
-  char user_input[1];
-  char search_keyword[MAX_NAME_CHARS];
+  char user_input[2];
+  char delete_id[2];
+  char *search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
+  size_t looptimes;
   
   if (argc != 2)
   {
@@ -25,12 +27,23 @@ int main(int argc, char *argv[])
 
   while (!done)
   {
-    printf("\n S: Search \n A: Add \n D: Delete \n Q: Quit \n Choice: ");
+    printf("\n");
+    printf("S: Search \n");
+    printf("A: Add \n");
+    printf("D: Delete \n");
+    printf("Q: Quit \n");
+    printf("Choice: ");
     fgets(user_input, 2, stdin);
+    printf("\n");
     if (user_input[0] == 's' || user_input[0] == 'S')
     {
+      for(looptimes = 0; looptimes < MAX_NAME_CHARS; looptimes++)
+      {
+        *search_keyword = malloc(sizeof(char));
+      }
       printf("Please input the word that you looking for: ");
-      fgets(search_keyword, MAX_NAME_CHARS, stdin);
+      fgets(*search_keyword, MAX_NAME_CHARS, stdin);
+      printf("Your input is: %s", search_keyword);
       search_record(contact_database, search_keyword);
     }
     else if (user_input[0] == 'a' || user_input[0] == 'A')
@@ -39,7 +52,9 @@ int main(int argc, char *argv[])
     }
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
-        delete_entry(contact_database, 2);
+      printf("Please input the id that you want to deleted: ");
+      fgets(delete_id, 2, stdin);
+      delete_entry(contact_database, delete_id);
     }
     else
     {

@@ -12,10 +12,10 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
+void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
 {
   size_t user_delete_choice = (size_t) delete_id;
-  int index = 0;
+  size_t index = 0;
   int loop = 0;
   size_t array_size = 0;
   size_t looptimes;
@@ -29,7 +29,7 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], int delete_id)
   
   while ( contact_database[index] != NULL)
   {
-    if(index == delete_id)
+    if(index == user_delete_choice)
     {
       for (looptimes = user_delete_choice; looptimes < array_size; looptimes++)
       {

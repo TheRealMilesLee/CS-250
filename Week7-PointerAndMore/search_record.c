@@ -12,12 +12,12 @@
 #include "search_record.h"
 
 void search_record(Contact *contact_database[MAX_CONTACTS], 
-                                  char keyword[MAX_NAME_CHARS])
+                                  char *keyword[MAX_NAME_CHARS])
 {
   unsigned index = 0;
   while (contact_database[index] != NULL)
   {
-    if(strstr((contact_database[index])->name, keyword))
+    if(strstr((contact_database[index])->name, *keyword))
     {
       printf("%u : %s %s %s \n",index,(contact_database[index])->name, 
       (contact_database[index])->phone, (contact_database[index])->email);
