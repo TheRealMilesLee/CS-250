@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   while (!done)
   {
     printf("\n S: Search \n A: Add \n D: Delete \n Q: Quit \n Choice: ");
-    fgets(user_input, 1, stdin);
+    fgets(user_input, 2, stdin);
     if (user_input[0] == 's' || user_input[0] == 'S')
     {
       printf("Please input the word that you looking for: ");
