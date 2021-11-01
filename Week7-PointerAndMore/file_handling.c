@@ -49,9 +49,18 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
       loop++;
     }
   }
+  fclose(input_file);
 }
 
 void file_out_put(Contact *contact_database[MAX_CONTACTS])
 {
-  
+  size_t loop = 0;
+  FILE *output_file = fopen("2.txt", "w");
+  while (contact_database[loop] != NULL)
+  {
+    fprintf (output_file, "%s \t %s \t %s \n", (contact_database[loop])->name, 
+                    (contact_database[loop])->phone, (contact_database[loop])->email);
+    loop++;
+  }
+  fclose(output_file);
 }
