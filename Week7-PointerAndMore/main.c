@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-    /*  file_out_put(contact_database);*/
+      file_out_put(contact_database);
       done = TRUE;
     }
   }
