@@ -12,4 +12,9 @@
  */
 void add_entry(Contact *contact_database[MAX_CONTACTS]);
 
+/**
+ * @brief This function is to remove the new line character after ther user input
+ * @param origianal_string is the string that we modified
+ */
+void remove_new_line_char (char *origianal_string);
 #endif
