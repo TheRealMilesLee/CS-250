@@ -1,6 +1,6 @@
 CC=clang
 CFLAGS=-Wno-poison-system-directories -std=c89 -Weverything -pedantic-errors
-OBJECTS=main.o file_handling.o add_entry.o delete_entry.o search_record.o
+OBJECTS=main.o file_handling.o add_contact.o delete_entry.o search_record.o
 
 all: contacts
 
@@ -13,8 +13,8 @@ main.o: main.c
 file_handling.o: file_handling.c file_handling.h
 		$(CC) $(CFLAGS) -Wno-padded -c file_handling.c file_handling.h
 
-add_entry.o: add_entry.c add_contact.h
-		$(CC) $(CFLAGS) -Wno-padded -c add_entry.c add_contact.h
+add_contact.o: add_contact.c add_contact.h
+		$(CC) $(CFLAGS) -Wno-padded -c add_contact.c add_contact.h
 
 delete_entry.o: delete_entry.c delete_entry.h
 		$(CC) $(CFLAGS) -Wno-padded -c delete_entry.c delete_entry.h

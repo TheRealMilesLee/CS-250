@@ -6,7 +6,6 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
 {
   char temp_array[MAX_CONTACTS];
   FILE *input_file = fopen(filename,"r");
-  unsigned size_of_file = 0;
   size_t looptimes;
   char *token;
   size_t loop = 0;
