@@ -8,7 +8,6 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
   char email[MAX_EMAIL_CHARS];
   size_t index = 0;
 
-
   printf("Please input name of the person: ");
   fgets(name, MAX_NAME_CHARS , stdin);
   printf("Please input the phone number of the person: ");
@@ -27,7 +26,6 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
       strncpy(contact_database[index]->name, name, MAX_NAME_CHARS);
       strncpy(contact_database[index]->phone, phone, MAX_PHONE_CHARS);
       strncpy(contact_database[index]->email, email, MAX_EMAIL_CHARS);
-      contact_database[index+1] = NULL;
     }
     else
     {
