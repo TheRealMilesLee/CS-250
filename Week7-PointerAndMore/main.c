@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-      file_out_put(contact_database, file_size);
+      file_out_put(argv[1], contact_database, file_size);
       done = TRUE;
     }
   }

@@ -50,11 +50,11 @@ size_t file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS])
   return looptimes;
 }
 
-void file_out_put(Contact *contact_database[MAX_CONTACTS], 
+void file_out_put(char *filename, Contact *contact_database[MAX_CONTACTS], 
                               unsigned file_size)
 {
   size_t loop = 0;
-  FILE *output_file = fopen("2.txt", "w");
+  FILE *output_file = fopen(filename, "w");
   while (loop < file_size)
   {
     fprintf(output_file, "%s\t%s\t%s\n", 
