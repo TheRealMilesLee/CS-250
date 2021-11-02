@@ -19,10 +19,10 @@ void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
   remove_new_line_char(phone);
   remove_new_line_char(email);
 
-  contact_database[file_size] = malloc(sizeof(Contact) * file_size);
-  strncpy(contact_database[file_size]->name, name, MAX_NAME_CHARS);
-  strncpy(contact_database[file_size]->phone, phone, MAX_PHONE_CHARS);
-  strncpy(contact_database[file_size]->email, email, MAX_EMAIL_CHARS);
+  contact_database[file_size - 1] = malloc(sizeof(Contact) * file_size);
+  strncpy(contact_database[file_size - 1]->name, name, MAX_NAME_CHARS);
+  strncpy(contact_database[file_size - 1]->phone, phone, MAX_PHONE_CHARS);
+  strncpy(contact_database[file_size - 1]->email, email, MAX_EMAIL_CHARS);
   
   for (loop = 0; loop < file_size; loop++)
   {
