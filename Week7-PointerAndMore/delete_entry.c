@@ -14,13 +14,14 @@
 
 void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
 {
-  size_t user_delete_choice = (size_t) delete_id;
+  size_t user_delete_choice = atoi(delete_id);
   size_t index = 0;
   int loop = 0;
   size_t array_size = 0;
   size_t looptimes;
   int done = FALSE;
 
+  printf("%lu", user_delete_choice);
   while (contact_database[loop] != NULL)
   {
     array_size++;

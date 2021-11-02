@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "structure_contact.h"
+#include "count_total.h"
 
 /**
  * @brief This function is to add a entry in the end of the contact database

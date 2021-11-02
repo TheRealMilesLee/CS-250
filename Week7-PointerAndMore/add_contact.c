@@ -7,6 +7,8 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
   char phone[MAX_PHONE_CHARS];
   char email[MAX_EMAIL_CHARS];
   size_t index = 0;
+  unsigned termination = 0;
+  unsigned size_of_file;
 
   printf("Please input name of the person: ");
   fgets(name, MAX_NAME_CHARS , stdin);
@@ -17,8 +19,9 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
 
   remove_new_line_char(name);
   remove_new_line_char(phone);
+  remove_new_line_char(email);
   
-  while(contact_database[index] != NULL)
+  while(!termination)
   {
     if(contact_database[index] == NULL)
     {
@@ -26,21 +29,15 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
       strncpy(contact_database[index]->name, name, MAX_NAME_CHARS);
       strncpy(contact_database[index]->phone, phone, MAX_PHONE_CHARS);
       strncpy(contact_database[index]->email, email, MAX_EMAIL_CHARS);
+      termination = 1;
     }
-    else
-    {
-      index++;
-    } 
-  }
-  index = 0;
-  while (contact_database[index] != NULL)
-  {
-    printf( "%lu : %s %s %s \n" , index, contact_database[index]->name, 
-                  contact_database[index]->phone, contact_database[index]->email);
     index++;
   }
+  index = 0;
+  printf("%lu", size_of_file);
+  display(contact_database);
 }
-
+ 
 void remove_new_line_char (char *origianal_string)
 {
   unsigned new_line = (unsigned)strlen(origianal_string) - 1;

@@ -11,8 +11,8 @@
 int main(int argc, char *argv[])
 {
   Contact *contact_database[MAX_CONTACTS];
-  char user_input[2];
-  char delete_id[2];
+  char user_input[3];
+  char delete_id[3];
   char search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
   
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
       printf("Please input the id that you want to deleted: ");
-      fgets(delete_id, 2, stdin);
+      fgets(delete_id, 3, stdin);
       delete_entry(contact_database, delete_id);
     }
     else

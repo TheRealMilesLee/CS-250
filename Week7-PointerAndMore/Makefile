@@ -1,6 +1,6 @@
 CC=clang
 CFLAGS=-Wno-poison-system-directories -std=c89 -Weverything -pedantic-errors
-OBJECTS=main.o file_handling.o add_contact.o delete_entry.o search_record.o
+OBJECTS=main.o file_handling.o add_contact.o delete_entry.o search_record.o count_total.o
 
 all: contacts
 
@@ -21,5 +21,8 @@ delete_entry.o: delete_entry.c delete_entry.h
 
 search_record.o: search_record.c search_record.h
 		$(CC) $(CFLAGS) -Wno-padded -c search_record.c search_record.h
+
+count_total.o: count_total.c count_total.h
+		$(CC) $(CFLAGS) -Wno-padded -c count_total.c count_total.h
 clean:
 	rm -f *.o *~ *.gch contacts

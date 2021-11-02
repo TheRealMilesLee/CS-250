@@ -8,7 +8,6 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
   FILE *input_file = fopen(filename,"r");
   size_t looptimes;
   char *token;
-  size_t loop = 0;
 
   if (input_file == NULL)
   { 
@@ -29,12 +28,7 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
       strncpy(contact_database[looptimes]->email, token, MAX_EMAIL_CHARS);
       looptimes++;
     }
-    while (contact_database[loop] != NULL)
-    {
-      printf( "%lu : %s %s %s \n" , loop, (contact_database[loop])->name, 
-                    (contact_database[loop])->phone, (contact_database[loop])->email);
-      loop++;
-    }
+    display(contact_database);
   }
   fclose(input_file);
 }
@@ -42,8 +36,9 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
 void file_out_put(Contact *contact_database[MAX_CONTACTS])
 {
   size_t loop = 0;
+  unsigned file_size = calculate_number_of_contacts(contact_database);
   FILE *output_file = fopen("2.txt", "w");
-  while (contact_database[loop] != NULL)
+  while (loop < file_size)
   {
     fprintf (output_file, "%s \t %s \t %s \n", (contact_database[loop])->name, 
                     (contact_database[loop])->phone, (contact_database[loop])->email);
