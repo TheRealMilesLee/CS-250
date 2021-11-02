@@ -41,26 +41,23 @@ int main(int argc, char *argv[])
     }
     else if (user_input[0] == 'a' || user_input[0] == 'A')
     {
+      ++file_size;
       printf("%d \n", file_size);
-      file_size++;
-      
-      add_entry(contact_database, file_size);
-      printf("%d \n", file_size);
-      display(contact_database, file_size);
-      printf("%d \n", file_size);
+      add_entry(contact_database);
     }
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
       printf("Please input the id that you want to deleted: ");
       fgets(delete_id, 3, stdin);
       delete_entry(contact_database, delete_id);
+      file_size--;
     }
     else
     {
       file_out_put(contact_database, file_size);
       done = TRUE;
     }
-
+    display(contact_database, file_size);
   }
   return 0;
 }

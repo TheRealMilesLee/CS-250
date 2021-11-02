@@ -20,26 +20,24 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
   size_t array_size = 0;
   size_t looptimes;
   int done = FALSE;
-
   while (contact_database[loop] != NULL)
   {
     array_size++;
     loop++;
   }
-  
   while ( contact_database[index] != NULL)
   {
     if(index == user_delete_choice)
     {
-      for (looptimes = 0; looptimes < array_size; looptimes++)
+      for (looptimes = index; looptimes < array_size; looptimes++)
       {
         contact_database[looptimes] = contact_database[looptimes + 1];
       }
+
       done = TRUE;
     }
     index++;
   }
-  
   loop = 0;
   while (contact_database[loop] != NULL)
   {
