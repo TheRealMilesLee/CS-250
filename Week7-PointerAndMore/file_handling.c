@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include "file_handling.h"
 
-void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
+size_t file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
 {
   char temp_array[MAX_CONTACTS];
   FILE *input_file = fopen(filename,"r");
   size_t looptimes;
   char *token;
+  unsigned file_size;
 
   if (input_file == NULL)
   { 
@@ -28,15 +29,16 @@ void file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
       strncpy(contact_database[looptimes]->email, token, MAX_EMAIL_CHARS);
       looptimes++;
     }
-    display(contact_database);
+    file_size = (unsigned)looptimes;
+    display(contact_database, file_size);
   }
   fclose(input_file);
+  return looptimes;
 }
 
-void file_out_put(Contact *contact_database[MAX_CONTACTS])
+void file_out_put(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
 {
   size_t loop = 0;
-  unsigned file_size = calculate_number_of_contacts(contact_database);
   FILE *output_file = fopen("2.txt", "w");
   while (loop < file_size)
   {

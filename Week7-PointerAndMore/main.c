@@ -15,14 +15,14 @@ int main(int argc, char *argv[])
   char delete_id[3];
   char search_keyword[MAX_NAME_CHARS];
   int done = FALSE;
-  
+  unsigned file_size = 0;
   if (argc != 2)
   {
     fprintf(stderr, "usage: input your filename as the user database%s \n", argv[0]);
     return 1;
   }
 
-  file_read_in(argv[1], contact_database);
+  file_size = (unsigned)file_read_in(argv[1], contact_database);
   while (!done)
   {
     printf("\n");
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     }
     else if (user_input[0] == 'a' || user_input[0] == 'A')
     {
-      add_entry(contact_database);
+      add_entry(contact_database, file_size);
     }
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-      file_out_put(contact_database);
+      file_out_put(contact_database, file_size);
       done = TRUE;
     }
   }

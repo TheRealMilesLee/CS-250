@@ -16,13 +16,13 @@
  * @param filename is the name of the file that needs to read in.
  * @param contact_database is the array that stores the contact.
  */
-void file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS]);
+size_t file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS]);
 
 /**
  * @brief This function is to output the final decision of the contact file
  * @param contact_database is the database that stores the contacts
  */
-void file_out_put(Contact *contact_database[MAX_CONTACTS]);
+void file_out_put(Contact *contact_database[MAX_CONTACTS], unsigned file_size);
 
 
 

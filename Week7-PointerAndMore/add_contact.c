@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include "add_contact.h"
 
-void add_entry(Contact *contact_database[MAX_CONTACTS])
+void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
 {
   char name[MAX_NAME_CHARS];
   char phone[MAX_PHONE_CHARS];
   char email[MAX_EMAIL_CHARS];
   size_t index = 0;
   unsigned termination = 0;
-  unsigned size_of_file;
 
   printf("Please input name of the person: ");
   fgets(name, MAX_NAME_CHARS , stdin);
@@ -33,9 +32,10 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
     }
     index++;
   }
+  file_size++;
   index = 0;
-  printf("%lu", size_of_file);
-  display(contact_database);
+  printf("%lu", file_size);
+  display(contact_database, file_size);
 }
  
 void remove_new_line_char (char *origianal_string)
