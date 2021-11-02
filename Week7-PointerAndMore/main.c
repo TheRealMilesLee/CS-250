@@ -41,9 +41,9 @@ int main(int argc, char *argv[])
     }
     else if (user_input[0] == 'a' || user_input[0] == 'A')
     {
-      ++file_size;
-      printf("%d \n", file_size);
+      file_size++;
       add_entry(contact_database);
+      display(contact_database, file_size);
     }
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
       file_out_put(contact_database, file_size);
       done = TRUE;
     }
-    display(contact_database, file_size);
+    
   }
   return 0;
 }

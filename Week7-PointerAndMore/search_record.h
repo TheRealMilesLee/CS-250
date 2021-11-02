@@ -17,5 +17,3 @@
  */
 void search_record(Contact *contact_database[MAX_CONTACTS], 
                                   char keyword[MAX_NAME_CHARS], unsigned file_size);
-
-char to_lowercase(char *string);

@@ -15,29 +15,36 @@
 void search_record(Contact *contact_database[MAX_CONTACTS], 
                                   char keyword[MAX_NAME_CHARS], unsigned file_size)
 {
-  size_t index;
-  size_t position;
+  size_t looptimes = 0;
+  size_t loop = 0;
+  size_t index = 0;
   remove_new_line_char(keyword);
-  index = 0;
-
-
-  position = 0;
-  while (contact_database[index]->name[position] != '\0')
+  while (keyword[index] != '\0')
   {
-    if(isupper(contact_database[index]->name[position]))
+    if (isupper(keyword[index]))
     {
-      tolower (contact_database[index]->name[position]);
-        while (keyword[index] != '\0')
+      for (looptimes = 0; looptimes < file_size; looptimes++)
+      {
+        if (strstr(contact_database[looptimes]->name, keyword))
         {
-          if (keyword[index] == contact_database[index]->name[position])
-          {
-            printf("%lu : %s %s %s \n",index,(contact_database[index])->name, 
-            (contact_database[index])->phone, (contact_database[index])->email);
-          }
-          index++;
+          printf("%lu : %s %s %s \n", looptimes, contact_database[looptimes]->name, 
+          contact_database[looptimes]->phone, contact_database[looptimes]->email);
         }
-        position++;
+      }
     }
+    else
+    {
+      while (contact_database[loop]->name != NULL && loop < file_size)
+      {        
+        if (strstr(contact_database[loop]->name, keyword))
+        {
+          printf("%lu : %s %s %s \n", loop, contact_database[loop]->name, 
+          contact_database[loop]->phone, contact_database[loop]->email);
+        }
+        loop++;
+      }
+    }
+    keyword[index] = keyword[index] + 0x20;
+    index++;
   }
 }
-

@@ -25,6 +25,7 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
   {
     if(contact_database[index] == NULL)
     {
+      printf("%d \n", index);
       contact_database[index] = malloc(sizeof(Contact));
       strncpy(contact_database[index]->name, name, MAX_NAME_CHARS);
       strncpy(contact_database[index]->phone, phone, MAX_PHONE_CHARS);
@@ -33,7 +34,7 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
     }
     else
     {
-        index++;
+      index++;
     }
   }
 }
