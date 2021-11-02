@@ -9,6 +9,7 @@ size_t file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
   size_t looptimes;
   char *token;
   unsigned file_size;
+  size_t loop;
 
   if (input_file == NULL)
   { 
@@ -30,7 +31,11 @@ size_t file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
       looptimes++;
     }
     file_size = (unsigned)looptimes;
-    display(contact_database, file_size);
+    for (loop = 0; loop < file_size; loop++)
+    {
+      printf( "%lu : %s %s %s \n" , loop, contact_database[loop]->name, 
+                contact_database[loop]->phone, contact_database[loop]->email);
+    }
   }
   fclose(input_file);
   return looptimes;

@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include "add_contact.h"
 
-void add_entry(Contact *contact_database[MAX_CONTACTS])
+void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
 {
   char name[MAX_NAME_CHARS];
   char phone[MAX_PHONE_CHARS];
   char email[MAX_EMAIL_CHARS];
-  size_t index = 0;
-  unsigned termination = 0;
+  size_t loop;
 
   printf("Please input name of the person: ");
   fgets(name, MAX_NAME_CHARS , stdin);
@@ -19,23 +18,16 @@ void add_entry(Contact *contact_database[MAX_CONTACTS])
   remove_new_line_char(name);
   remove_new_line_char(phone);
   remove_new_line_char(email);
-  
 
-  while (!termination)
+  contact_database[file_size] = malloc(sizeof(Contact) * file_size);
+  strncpy(contact_database[file_size]->name, name, MAX_NAME_CHARS);
+  strncpy(contact_database[file_size]->phone, phone, MAX_PHONE_CHARS);
+  strncpy(contact_database[file_size]->email, email, MAX_EMAIL_CHARS);
+  
+  for (loop = 0; loop < file_size; loop++)
   {
-    if(contact_database[index] == NULL)
-    {
-      printf("%d \n", index);
-      contact_database[index] = malloc(sizeof(Contact));
-      strncpy(contact_database[index]->name, name, MAX_NAME_CHARS);
-      strncpy(contact_database[index]->phone, phone, MAX_PHONE_CHARS);
-      strncpy(contact_database[index]->email, email, MAX_EMAIL_CHARS);
-      termination = 1;
-    }
-    else
-    {
-      index++;
-    }
+    printf( "%lu : %s %s %s \n" , loop, contact_database[loop]->name, 
+              contact_database[loop]->phone, contact_database[loop]->email);
   }
 }
  

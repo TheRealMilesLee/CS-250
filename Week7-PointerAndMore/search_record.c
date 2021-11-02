@@ -31,20 +31,19 @@ void search_record(Contact *contact_database[MAX_CONTACTS],
           contact_database[looptimes]->phone, contact_database[looptimes]->email);
         }
       }
+      keyword[index] = (char)tolower(keyword[index]);
     }
     else
     {
-      while (contact_database[loop]->name != NULL && loop < file_size)
-      {        
+      for (loop = 0; loop < file_size; loop++)
+      {
         if (strstr(contact_database[loop]->name, keyword))
         {
           printf("%lu : %s %s %s \n", loop, contact_database[loop]->name, 
           contact_database[loop]->phone, contact_database[loop]->email);
         }
-        loop++;
       }
+      index++;
     }
-    keyword[index] = keyword[index] + 0x20;
-    index++;
   }
 }
