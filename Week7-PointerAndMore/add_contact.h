@@ -1,3 +1,11 @@
+/**
+ * @file add_contact.h
+ * @author Hengyi Li
+ * @brief This file is the header of the add contact file
+ * @version 9.9
+ * @date 2021-11-02 3:38. A.M.
+ * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
+ */
 
 
 #ifndef ADD_CONTACT_H

@@ -1,3 +1,11 @@
+/**
+ * @file delete_entry.h
+ * @author Hengyi Li
+ * @brief This file is to delete the entry
+ * @version 6.5
+ * @date 2021-11-02 3:39 A.M
+ * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
+ */
 #include "structure_contact.h"
 #define TRUE 1
 #define FALSE 0

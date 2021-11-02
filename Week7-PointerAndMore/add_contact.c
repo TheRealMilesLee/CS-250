@@ -1,3 +1,11 @@
+/**
+ * @file add_contact.c
+ * @author Hengyi Li
+ * @brief This file is to add contact
+ * @version 8.9
+ * @date 2021-11-02 3:37AM
+ * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
+ */
 #include <stdio.h>
 #include "add_contact.h"
 

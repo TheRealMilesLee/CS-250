@@ -1,3 +1,11 @@
+/**
+ * @file file_handling.c
+ * @author Hengyi Li
+ * @brief This file is to handling the file
+ * @version 0.1
+ * @date 2021-11-02 3:40 AM.
+ * @copyright Copyright (c) 2021 Hengyi Li. All rights reserved.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include "file_handling.h"
