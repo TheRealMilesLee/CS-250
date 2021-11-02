@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include "file_handling.h"
 
-size_t file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
+size_t file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS])
 {
   char temp_array[MAX_CONTACTS];
-  FILE *input_file = fopen(filename,"r");
+  FILE *input_file = fopen(filename, "r");
   size_t looptimes;
   char *token;
   unsigned file_size;
   size_t loop;
 
   if (input_file == NULL)
-  { 
+  {
     fprintf(stderr, "The file is not valid, please make sure if its exists or not empty");
     exit(1);
   }
@@ -24,31 +24,35 @@ size_t file_read_in (char *filename, Contact *contact_database[MAX_CONTACTS])
       contact_database[looptimes] = malloc(sizeof(Contact));
       token = strtok(temp_array, "\t");
       strncpy(contact_database[looptimes]->name, token, MAX_NAME_CHARS);
-      token = strtok(NULL,"\t");
+      token = strtok(NULL, "\t");
       strncpy(contact_database[looptimes]->phone, token, MAX_PHONE_CHARS);
-      token = strtok(NULL,"\n");
+      token = strtok(NULL, "\n");
       strncpy(contact_database[looptimes]->email, token, MAX_EMAIL_CHARS);
       looptimes++;
     }
     file_size = (unsigned)looptimes;
     for (loop = 0; loop < file_size; loop++)
     {
-      printf( "%lu : %s %s %s \n" , loop, contact_database[loop]->name, 
-                contact_database[loop]->phone, contact_database[loop]->email);
+      printf("%lu : %s %s %s \n", loop, contact_database[loop]->name,
+             contact_database[loop]->phone, contact_database[loop]->email);
     }
   }
+
   fclose(input_file);
   return looptimes;
 }
 
-void file_out_put(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
+void file_out_put(Contact *contact_database[MAX_CONTACTS], 
+                              unsigned file_size)
 {
   size_t loop = 0;
   FILE *output_file = fopen("2.txt", "w");
   while (loop < file_size)
   {
-    fprintf (output_file, "%s \t %s \t %s \n", (contact_database[loop])->name, 
-                    (contact_database[loop])->phone, (contact_database[loop])->email);
+    fprintf(output_file, "%s\t%s\t%s\n", 
+              (contact_database[loop])->name,
+              (contact_database[loop])->phone, 
+              (contact_database[loop])->email);
     loop++;
   }
   fclose(output_file);

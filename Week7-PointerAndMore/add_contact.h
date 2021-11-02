@@ -6,8 +6,9 @@
 #include "structure_contact.h"
 
 /**
- * @brief This function is to add a entry in the end of the contact database
- * @param contact_database is the database that stores the contact
+ * @brief This function is to add the entry
+ * @param contact_database is the database to add
+ * @param file_size is the size of the contacts file
  */
 void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size);
 

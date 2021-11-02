@@ -1,10 +1,10 @@
 /**
  * @file main.c
  * @author Hengyi Li
- * @brief This file is the main program of the student database
- * @version 0.1
- * @date 2021-10-24
- * @copyright Copyright (c) 2021
+ * @brief This is a contact management program
+ * @version 7.8
+ * @date 2021-11-02 3:08AM
+ * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
  */
 #include <stdio.h>
 #include "main.h"
@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
       file_out_put(contact_database, file_size);
       done = TRUE;
     }
-    
   }
   return 0;
 }

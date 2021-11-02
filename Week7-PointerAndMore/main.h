@@ -1,4 +1,3 @@
-
 #include "file_handling.h"
 #include "add_contact.h"
 #include "delete_entry.h"

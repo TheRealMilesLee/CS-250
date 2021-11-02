@@ -15,6 +15,7 @@ void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
   printf("Please input the email address of the person: ");
   fgets(email, MAX_EMAIL_CHARS, stdin);
 
+  /* Get rid of the new line character */
   remove_new_line_char(name);
   remove_new_line_char(phone);
   remove_new_line_char(email);
