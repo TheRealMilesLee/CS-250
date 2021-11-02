@@ -16,4 +16,6 @@
  * @param keyword is the keyword that the user looking to
  */
 void search_record(Contact *contact_database[MAX_CONTACTS], 
-                                  char keyword[MAX_NAME_CHARS]);
+                                  char keyword[MAX_NAME_CHARS], unsigned file_size);
+
+char to_lowercase(char *string);

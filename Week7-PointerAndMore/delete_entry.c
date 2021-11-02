@@ -14,14 +14,13 @@
 
 void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
 {
-  size_t user_delete_choice = atoi(delete_id);
+  size_t user_delete_choice = (size_t) atoi(delete_id);
   size_t index = 0;
   int loop = 0;
   size_t array_size = 0;
   size_t looptimes;
   int done = FALSE;
 
-  printf("%lu", user_delete_choice);
   while (contact_database[loop] != NULL)
   {
     array_size++;
@@ -32,7 +31,7 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
   {
     if(index == user_delete_choice)
     {
-      for (looptimes = user_delete_choice; looptimes < array_size; looptimes++)
+      for (looptimes = 0; looptimes < array_size; looptimes++)
       {
         contact_database[looptimes] = contact_database[looptimes + 1];
       }

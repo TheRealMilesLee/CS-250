@@ -37,11 +37,17 @@ int main(int argc, char *argv[])
     {
       printf("Please input the word that you looking for: ");
       fgets(search_keyword, MAX_NAME_CHARS, stdin);
-      search_record(contact_database, search_keyword);
+      search_record(contact_database, search_keyword, file_size);
     }
     else if (user_input[0] == 'a' || user_input[0] == 'A')
     {
+      printf("%d \n", file_size);
+      file_size++;
+      
       add_entry(contact_database, file_size);
+      printf("%d \n", file_size);
+      display(contact_database, file_size);
+      printf("%d \n", file_size);
     }
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
@@ -54,6 +60,7 @@ int main(int argc, char *argv[])
       file_out_put(contact_database, file_size);
       done = TRUE;
     }
+
   }
   return 0;
 }

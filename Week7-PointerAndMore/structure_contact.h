@@ -1,5 +1,6 @@
 #ifndef WEEK7_POINTERANDMORE_STRUCTURE_CONTACT_H
 #define WEEK7_POINTERANDMORE_STRUCTURE_CONTACT_H
+#include <string.h>
 #define MAX_NAME_CHARS 42
 #define MAX_PHONE_CHARS 14
 #define MAX_EMAIL_CHARS 32
@@ -12,5 +13,11 @@ typedef struct
   char phone[MAX_PHONE_CHARS + 1];
   char email[MAX_EMAIL_CHARS + 1];
 } Contact;
+
+/**
+ * @brief This function is to remove the new line character after ther user input
+ * @param origianal_string is the string that we modified
+ */
+void remove_new_line_char (char *origianal_string);
 
 #endif
