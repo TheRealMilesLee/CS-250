@@ -35,13 +35,14 @@ void search_record(Contact *contact_database[MAX_CONTACTS],
     }
     else
     {
-      for (loop = 0; loop < file_size; loop++)
+      while(contact_database[loop]->name != NULL && loop < file_size)
       {
         if (strstr(contact_database[loop]->name, keyword))
         {
           printf("%lu : %s %s %s \n", loop, contact_database[loop]->name, 
           contact_database[loop]->phone, contact_database[loop]->email);
         }
+        loop++;
       }
       index++;
     }

@@ -12,11 +12,12 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
+void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2], unsigned 
+file_size)
 {
   size_t user_delete_choice = (size_t) atoi(delete_id);
   size_t index = 0;
-  int loop = 0;
+  unsigned loop = 0;
   size_t array_size = 0;
   size_t looptimes;
   int done = FALSE;
@@ -38,11 +39,10 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2])
     }
     index++;
   }
-  loop = 0;
-  while (contact_database[loop] != NULL)
+  file_size = file_size - 1;
+  for (loop = 0; loop < file_size; loop++)
   {
-    printf( "%u : %s %s %s \n" , loop, (contact_database[loop])->name, 
-                    (contact_database[loop])->phone, (contact_database[loop])->email);
-    loop++;
+    printf("%d : %s %s %s \n", loop, contact_database[loop]->name,
+           contact_database[loop]->phone, contact_database[loop]->email);
   }
 }

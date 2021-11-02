@@ -48,8 +48,8 @@ int main(int argc, char *argv[])
     {
       printf("Please input the id that you want to deleted: ");
       fgets(delete_id, 3, stdin);
-      delete_entry(contact_database, delete_id);
-      file_size--;
+      delete_entry(contact_database, delete_id, file_size);
+      file_size = file_size - 1;
     }
     else
     {

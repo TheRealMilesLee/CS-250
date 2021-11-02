@@ -9,7 +9,7 @@ void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
   size_t loop;
 
   printf("Please input name of the person: ");
-  fgets(name, MAX_NAME_CHARS , stdin);
+  fgets(name, MAX_NAME_CHARS, stdin);
   printf("Please input the phone number of the person: ");
   fgets(phone, MAX_PHONE_CHARS, stdin);
   printf("Please input the email address of the person: ");
@@ -23,11 +23,10 @@ void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
   strncpy(contact_database[file_size - 1]->name, name, MAX_NAME_CHARS);
   strncpy(contact_database[file_size - 1]->phone, phone, MAX_PHONE_CHARS);
   strncpy(contact_database[file_size - 1]->email, email, MAX_EMAIL_CHARS);
-  
+
   for (loop = 0; loop < file_size; loop++)
   {
-    printf( "%lu : %s %s %s \n" , loop, contact_database[loop]->name, 
-              contact_database[loop]->phone, contact_database[loop]->email);
+    printf("%lu : %s %s %s \n", loop, contact_database[loop]->name,
+           contact_database[loop]->phone, contact_database[loop]->email);
   }
 }
- 
