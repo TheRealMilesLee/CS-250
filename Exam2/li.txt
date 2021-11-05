@@ -1,0 +1,88 @@
+Hengyi Li. Problem 1:
+unsigned count_expensive_items(const Item* items, size_t item_count)
+{
+  size_t loop;
+  unsigned count = 0;
+  for (loop = 0; loop < item_count; loop++)
+  {
+    if (items[loop]->price > 10.0)
+    {
+      count++;
+    }
+  }
+  return count;
+}
+
+Hengyi Li. Problem 2:
+if (loop == 5)
+{
+  items[loop]->quantity = 2 * items[loop]->quantity;
+}
+
+Hengyi Li. Problem 3:
+Item my_item;
+
+printf("Enter item name: ");
+scanf("%s", my_item->name);
+printf("Enter item price: ");
+scanf("%d", my_item->price);
+printf("Enter item quantity: ");
+scanf("%u", my_item->quantity);
+
+Hengyi Li. Problem 4:
+Item* combine(Item i1, Item i2)
+{
+  Item *combine_item = malloc(sizeof(Item));
+  unsigned combine_quantity = i1.quantity + i2.quantity;
+  strncpy(combine_item->name, i1.name, MAX_NAME_CHARS + 2);
+  strncpy(combine_item->price, i2.price, sizeof(double));
+  strncpy(combine_item->quantity, combine_quantity, sizeof(combine_quantity));
+  return combine_item;
+}
+
+Hengyi Li. Problem 5:
+unsigned strieq(const char* s, const char* t)
+{
+  size_t loop = 0;
+  size_t looptimes = 0;
+  unsigned return_value;
+  while (s[loop] != '\0' && t[looptimes] != '\0')
+  {
+    s[loop] = tolower(s[loop]);
+    t[loop] = tolower(t[loop]);
+    loop++;
+    if (s[loop] == t[loop])
+    {
+      return_value = 1;
+    }
+    else
+    {
+      return_value = 0;
+    }
+  }
+  return return_value;
+}
+
+Hengyi Li. Problem 6:
+CC is a variable the compiler we using. the CFLAGS is the variable that the parameter used 
+during the compile. OBJECTS is the compile .o file into the executable program. all is a dummy 
+variable that is a alias to compile all the .o file. Each .o file is rely on a .c file and .h file. clean is 
+another dummy variable that could used to clean up all the .o and ~ and executable program 
+after we run make clean. test is last dummy parameter that could used to automate test 
+procedures.
+
+when you type make all it will automaticlly run this:
+mycrypt: $(OBJECTS)
+        $(CC) $(CFLAGS) -o mycrypt $(OBJECTS)
+and for each .o file is missing, it will find that rule to generate the .o file using the providing .c 
+and .h files.
+
+when you type make clean it will delete all the .o files and mycrypt executable program.
+
+when you type make test it will echo running tests and run runtests.sh file in command line.
+
+Hengyi Li. Problem 7:
+if foo is a name of the dummy variable all, it will automaticlly compile all the files and generate a 
+executable file. But if foo is not appear in the Makefile, it will just report a error said make: *** No 
+rule to make target `foo'.  Stop.
+
