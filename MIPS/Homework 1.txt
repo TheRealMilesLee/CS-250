@@ -38,12 +38,26 @@ lw $t1, 0($s0)                 # load a again
 sw $t1, 0($s1)                 # assign a to b
 
 (B). c = ++a - b++;
-lw $t0, 0($s0)                # Load a to temp
-addi t0, t0, 1                   # increment temp
-sw $s0, $t0                    # put it back to a
-lw $t1, 0($s0)                # Load a to temp
-lw $t2, 0($s1)                # Load b to temp
-lw $t3, 0($s2)              # Load c to temp
-sub $t3, $t1, $t2           # c = a - b
-addi t1, t1, 1                   # increment temp
-sw $s1, $t1                    # put it back to b
+lw $t0, 0($s0)               # Load a to temp
+addi t0, t0, 1                 # increment temp
+sw $t0, 0($s0)              # put it back to a
+lw $t1, 0($s0)               # Load a to temp
+lw $t2, 0($s1)               # Load b to temp
+sub $s2, $t1, $t2           # c = a - b
+addi t2, t2, 1                  # increment temp
+sw $t2, 0($s1)               # put it back to b
+
+(C). c = (a + b + c) + (c + -1 - d) - (a - -5);
+add $t0, $s0, $s1   # A + B
+add $t1, $t0, $s2   #(A + B) + C
+add $t2, $s2, - 1    #(c + -1)
+sub $t3, $t2, $s3   #(c + -1) - d
+sub $t4, $s0, - 5   # a - -5
+add $t5, $t1, $t3   #  (a + b + c) + (c + -1 - d)
+sub $s2, $t5, $t4   # (a + b + c) + (c + -1 - d) - (a - -5);
+
+4. Translate the following MIPS instructions into machine code. Give your answers in hex.
+(A). addu $s0, $s2, $s4
+0x02548021
+
+
