@@ -70,7 +70,7 @@ sw $t0, 0($s0)                # put it back to a
 lw $t1, 0($s0)                # Load a to temp
 lw $t2, 0($s1)                # Load b to temp
 sub $s2, $t1, $t2             # c = a - b
-addi t2, t2, 1                # increment temp
+addi $t2, $t2, 1              # increment temp
 sw $t2, 0($s1)                # put it back to b
 
 (C). c = (a + b + c) + (c + -1 - d) - (a - -5);
@@ -182,8 +182,8 @@ while (a <= b + 1)
 loop:
   add $t0, $s1, 1           # calculate the b + 1
   slt $t1, $s0, $t0         # t1 = a < b + 1 ? 1: 0
-  beq $t1,0, condition      # if not a < b + 1, go to condition
-  beq $t1, 1, less_than     # if a < b + 1, go to less_than
+  bne $t1,1, condition      # if not a < b + 1, go to condition
+  bne $t1, 0, less_than     # if a < b + 1, go to less_than
   condition:
     bne $s0, $t0, exit      # If a is also not equal b + 1, go to the exit
     j else                  # If it's equal, continue the process
