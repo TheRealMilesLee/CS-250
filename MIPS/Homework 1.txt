@@ -1,3 +1,12 @@
+/**
+ * @file Homework 1.txt
+ * @author Hengyi Li
+ * @brief This file is to show some basic use of the MIPS language
+ * @version 2.0
+ * @date 2021-11-17 8:57 PM
+ * @copyright Copyright (c) 2021. Hengyi Li All rights reserved.
+ */
+
 1.  Translate the following C statements into MIPS assembly language.
 (A). a = b + c + a
 add $t0, $s1, $s2        # b + c
