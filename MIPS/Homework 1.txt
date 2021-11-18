@@ -1,6 +1,26 @@
-1.
+1.  Translate the following C statements into MIPS assembly language. Assume that all variables
+are 32-bit signed integers. Translate the statements exactly as written; do not use any algebraic
+rules to simplify the expressions, and do not rearrange the order of operations unless MIPS
+requires you to do so. Use t registers for temporary values as needed.
+(A). a = b + c + a
+add $t0, $s1, $s2     # b + c
+add $s0, $t0, $s0   # a = b + c + a
 
-2.
+(B). b = (a + b) - (a - b)
+add $t0, $s0, $s1     # (a+b)
+sub $t1, $s0, $s1     # (a -b)
+sub $s1, $t0, $t1     # b = (a + b) - (a - b)
+
+(C). d = a - (a + b) + (a + b - c) - d;
+add $t0, $s0, $s1   # (a + b)
+add $t1, $s0, $s1   # (a + b) for (a + b - c)
+sub $t2, $t1, $s2   # (a + b - c)
+sub $t3, $s0, $t0   #  a - (a + b)
+add $t4, $t3, $t2   # a - (a + b) + (a + b - c)
+sub $s3, $t4, $s3   # d = a - (a + b) + (a + b - c) - d
+
+2. Translate the following C statements into MIPS assembly language. Assume A and B are
+arrays of 32-bit signed integers.
 (A).  A[1] = a
 lw $t0, 0($s0)      # Copy a to $t0
 sw $t0, 4($s6)     # Store value in t0 to A[1]
