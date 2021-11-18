@@ -82,53 +82,65 @@ sub $t4, $s0, - 5                   # a - -5
 add $t5, $t1, $t3                   #  (a + b + c) + (c + -1 - d)
 sub $s2, $t5, $t4                  # (a + b + c) + (c + -1 - d) - (a - -5);
 
-4. Translate the following MIPS instructions into machine code. Give your answers in hex.
+4. Translate the following MIPS instructions into machine code in hex.
 (A). addu $s0, $s2, $s4
 
-addu      $s2       $s4     $s0   shamt   funct
+  addu      $s2     $s4     $s0   shamt   funct
 000000 10010 10100 10000 00000 100001
 
 0x02548021
 
 (B). sub $t1, $zero, $t1
 
-    sub     $zero     $t1     $t1    shamt  funct
+  sub       $zero    $t1     $t1     shamt  funct
 000000 00000 01001 01001 00000 100010
 
 0x00094822
 
 (C). lw $fp, 0($zero)
 
-  lw          0($zero)        $fp            immediate
-100011      00000         11110    0000000000000000
+    lw          0($zero)        $fp            immediate
+100011       00000         11110    0000000000000000
 
 0x8C1E00000
 
 (D). sw $ra, -16($t7)
-  sw        $t7     $ra     -16
+
+  sw       $t7    $ra     -16
 101011 01111 11111 00010000
 
 0xADFF10
 
-5.  Disassemble the following machine code into MIPS assembly language statements.
+5.  Disassemble the following machine code into MIPS language statements.
 (A). 0x00028821
+
+      0       $zero     $v0     $s1       0       addu
 000000 00000 00010 10001 00000 100001
+
 addu $s1, $zero, $v0
 
 (B). 0x34020004
+
+    ori     $zero     $v0           immediate
 001101 00000 00010 0000000000000100
+
 ori $v0, 4($zero)
 
 (C). 0x0211082a
+
+      0         $s0     $s1     $at        0         slt
 000000 10000 10001 00001 00000 101010
+
 slt $at, $s0, $s1
 
 (D).  0x27a50004
+
+  addiu    $sp   $a1           immediate
 001001 11101 00101 0000000000000100
+
 addiu $a1, $sp, 4
 
-6. Convert the following C code to MIPS assembly language. Do not use any procedures for this;
-code the statements as written. Assume all variables are signed 32-bit integers.
+6. Convert the following C code to MIPS assembly language.
 (A).
 if (a != b)
 {
