@@ -10,103 +10,103 @@
 1.  Translate the following C statements into MIPS assembly language.
 (A). a = b + c + a
 add $t0, $s1, $s2        # b + c
-add $s0, $t0, $s0       # a = b + c + a
+add $s0, $t0, $s0        # a = b + c + a
 
 (B). b = (a + b) - (a - b)
-add $t0, $s0, $s1     # (a + b)
-sub $t1, $s0, $s1      # (a - b)
-sub $s1, $t0, $t1       # b = (a + b) - (a - b)
+add $t0, $s0, $s1        # (a + b)
+sub $t1, $s0, $s1        # (a - b)
+sub $s1, $t0, $t1        # b = (a + b) - (a - b)
 
 (C). d = a - (a + b) + (a + b - c) - d;
 add $t0, $s0, $s1      # (a + b)
 add $t1, $s0, $s1      # (a + b) [for (a + b - c)]
 sub $t2, $t1, $s2      # (a + b - c)
-sub $t3, $s0, $t0     #  a - (a + b)
+sub $t3, $s0, $t0      #  a - (a + b)
 add $t4, $t3, $t2      # a - (a + b) + (a + b - c)
-sub $s3, $t4, $s3     # d = a - (a + b) + (a + b - c) - d
+sub $s3, $t4, $s3      # d = a - (a + b) + (a + b - c) - d
 
 2. Translate the following C statements into MIPS assembly language.
 Assume A and B are arrays of 32-bit signed integers.
 (A).  A[1] = a
 lw $t0, 0($s0)      # Copy a to $t0
-sw $t0, 4($s6)     # Store value in t0 to A[1]
+sw $t0, 4($s6)      # Store value in t0 to A[1]
 
 (B). b = A[2]
 lw $t1, 8($s6)      # Copy A[2] to $t1
 sw $t1, 0($s1)      # Store value in t1 to b
 
 (C). c = A[i]
-sll $t2, $s4, 2                  # $t2 = i * 4
+sll $t2, $s4, 2           # $t2 = i * 4
 addu $t2, $t2, $s6        # $t2 = &A[i]
-lw $t3, 0($t2)                 # $t3 = A[i]
-sw $t3, 0($s2)               # $t3 = c
+lw $t3, 0($t2)            # $t3 = A[i]
+sw $t3, 0($s2)            # $t3 = c
 
 (D). A[i] = B[i]
-sll $t0, $s4, 2                     # $t0 = 1 * 4
+sll $t0, $s4, 2               # $t0 = 1 * 4
 addu $t1, $t0, $s7            # t1 = &B[i]
-lw $t2, 0($t1)                     # $t2 = B[i]
-addu $t3, $t0, $s6           # $t3 = &A[i]
-sw $t0, 0($t3)                   # A[i] = B[i]
+lw $t2, 0($t1)                # $t2 = B[i]
+addu $t3, $t0, $s6            # $t3 = &A[i]
+sw $t0, 0($t3)                # A[i] = B[i]
 
 (E). A[i - 1] = B[i + 1];
-sll $t0, $s4, 2                     # $t0 = 1 * 4
-addu $t1, $t0, $s7            #  t1 = &B[i]
-lw $t2, 4($t1)                     # $t2 = B[i + 1]
-addu $t3, $t0, $s6           # $t3 = &A[i]
-sw $t0, - 4($t3)                # A[i - 1] = B[i + 1]
+sll $t0, $s4, 2               # $t0 = 1 * 4
+addu $t1, $t0, $s7            # t1 = &B[i]
+lw $t2, 4($t1)                # $t2 = B[i + 1]
+addu $t3, $t0, $s6            # $t3 = &A[i]
+sw $t0, - 4($t3)              # A[i - 1] = B[i + 1]
 
 3.  Translate the following C statements into MIPS assembly language.
 (A). b = ++a;
 lw $t0, 0($s0)                 # Load a to temp
-addi t0, t0, 1                     # increment temp
-sw $s0, $t0                     # put it back to a
+addi $t0, $t0, 1               # increment temp
+sw $s0, $t0                    # put it back to a
 lw $t1, 0($s0)                 # load a again
 sw $t1, 0($s1)                 # assign a to b
 
 (B). c = ++a - b++;
 lw $t0, 0($s0)                # Load a to temp
-addi $t0, $t0, 1            # increment temp
-sw $t0, 0($s0)              # put it back to a
+addi $t0, $t0, 1              # increment temp
+sw $t0, 0($s0)                # put it back to a
 lw $t1, 0($s0)                # Load a to temp
 lw $t2, 0($s1)                # Load b to temp
-sub $s2, $t1, $t2          # c = a - b
-addi t2, t2, 1                   # increment temp
-sw $t2, 0($s1)               # put it back to b
+sub $s2, $t1, $t2             # c = a - b
+addi t2, t2, 1                # increment temp
+sw $t2, 0($s1)                # put it back to b
 
 (C). c = (a + b + c) + (c + -1 - d) - (a - -5);
-add $t0, $s0, $s1                   # a + b
-add $t1, $t0, $s2                   # (a + b) + c
-add $t2, $s2, - 1                    # (c + -1)
-sub $t3, $t2, $s3                   # (c + -1) - d
-sub $t4, $s0, - 5                   # a - -5
-add $t5, $t1, $t3                   #  (a + b + c) + (c + -1 - d)
-sub $s2, $t5, $t4                  # (a + b + c) + (c + -1 - d) - (a - -5);
+add $t0, $s0, $s1             # a + b
+add $t1, $t0, $s2             # (a + b) + c
+add $t2, $s2, - 1             # (c + -1)
+sub $t3, $t2, $s3             # (c + -1) - d
+sub $t4, $s0, - 5             # a - -5
+add $t5, $t1, $t3             # (a + b + c) + (c + -1 - d)
+sub $s2, $t5, $t4             # (a + b + c) + (c + -1 - d) - (a - -5);
 
 4. Translate the following MIPS instructions into machine code in hex.
 (A). addu $s0, $s2, $s4
 
   addu      $s2     $s4     $s0   shamt   funct
-000000 10010 10100 10000 00000 100001
+ 000000    10010   10100   10000  00000   100001
 
 0x02548021
 
 (B). sub $t1, $zero, $t1
 
   sub       $zero    $t1     $t1     shamt  funct
-000000 00000 01001 01001 00000 100010
+ 000000     00000   01001   01001    00000  100010
 
 0x00094822
 
 (C). lw $fp, 0($zero)
 
     lw          0($zero)        $fp            immediate
-100011       00000         11110    0000000000000000
+   100011        00000         11110        0000000000000000
 
 0x8C1E0000
 
 (D). sw $ra, -16($t7)
 
-  sw       $t7    $ra     -16
+  sw    $t7   $ra        -16
 101011 01111 11111 0000000000010000
 
 0xADFF0010
@@ -115,28 +115,28 @@ sub $s2, $t5, $t4                  # (a + b + c) + (c + -1 - d) - (a - -5);
 (A). 0x00028821
 
       0       $zero     $v0     $s1       0       addu
-000000 00000 00010 10001 00000 100001
+    000000    00000     00010  10001    00000    100001
 
 addu $s1, $zero, $v0
 
 (B). 0x34020004
 
     ori     $zero     $v0           immediate
-001101 00000 00010 0000000000000100
+   001101   00000    00010       0000000000000100
 
 ori $v0, $zero, 4
 
 (C). 0x0211082a
 
       0         $s0     $s1     $at        0         slt
-000000 10000 10001 00001 00000 101010
+    000000     10000   10001   00001     00000      101010
 
 slt $at, $s0, $s1
 
 (D).  0x27a50004
 
   addiu    $sp   $a1           immediate
-001001 11101 00101 0000000000000100
+  001001  11101 00101       0000000000000100
 
 addiu $a1, $sp, 4
 
@@ -152,8 +152,8 @@ else
 }
 enter:
   beq $s0, $s1, else      # goto else if a != b
-  sub $s1, $zero, $s0   # b = -a
-  j exit                            # goto exit
+  sub $s1, $zero, $s0     # b = -a
+  j exit                  # goto exit
 else:
   add $s0, $s1, 0         # a = b
 exit:
@@ -165,11 +165,11 @@ while (a + 1 == 2 * b)
 }
 loop:
   add $t0, $s0, 1          # calculate a + 1
-  sll $t2, $s1, 1              # calculate 2 * b
+  sll $t2, $s1, 1          # calculate 2 * b
   bne $t0, $t2, exit       # goto exit if a + 1 != 2 * b
-  add $t3, $s0, $s0      # a + a [for a *= 3]
-  add $s0, $t3, $s0      # a + a + a, which is equal to a *= 3
-  j loop                          # goto loop
+  add $t3, $s0, $s0        # a + a [for a *= 3]
+  add $s0, $t3, $s0        # a + a + a, which is equal to a *= 3
+  j loop                   # goto loop
 exit:
 
 (C).
@@ -182,19 +182,19 @@ while (a <= b + 1)
 loop:
   add $t0, $s1, 1           # calculate the b + 1
   slt $t1, $s0, $t0         # t1 = a < b + 1 ? 1: 0
-  beq $t1,0, condition  # if not a < b + 1, go to condition
-  beq $t1, 1, less_than # if a < b + 1, go to less_than
+  beq $t1,0, condition      # if not a < b + 1, go to condition
+  beq $t1, 1, less_than     # if a < b + 1, go to less_than
   condition:
-    bne $s0, $t0, exit    # If a is also not equal b + 1, go to the exit
-    j else                # If it's equal, continue the process
+    bne $s0, $t0, exit      # If a is also not equal b + 1, go to the exit
+    j else                  # If it's equal, continue the process
   else:
-    sub $t2, $s0, 100      # calculate the a - 100
-    sll $s1, $t2, 2             # b = 4 * (a - 100)
-    addi $s0, $s0, 1       # a++
-    j loop                          # goto loop
+    sub $t2, $s0, 100       # calculate the a - 100
+    sll $s1, $t2, 2         # b = 4 * (a - 100)
+    addi $s0, $s0, 1        # a++
+    j loop                  # goto loop
   less_than:
-    sub $t2, $s0, 100      # calculate the a - 100
-    sll $s1, $t2, 2             # b = 4 * (a - 100)
-    addi $s0, $s0, 1       # a++
-    j loop                          # goto loop
+    sub $t2, $s0, 100       # calculate the a - 100
+    sll $s1, $t2, 2         # b = 4 * (a - 100)
+    addi $s0, $s0, 1        # a++
+    j loop                  # goto loop
 exit:
