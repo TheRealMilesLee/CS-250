@@ -97,7 +97,7 @@ addu      $s2       $s4     $s0   shamt   funct
 (C). lw $fp, 0($zero)
 
   lw          0($zero)        $fp            immediate
-100011    00000         11110    0000000000000000
+100011      00000         11110    0000000000000000
 
 0x8C1E00000
 
@@ -110,12 +110,10 @@ addu      $s2       $s4     $s0   shamt   funct
 5.  Disassemble the following machine code into MIPS assembly language statements.
 (A). 0x00028821
 000000 00000 00010 10001 00000 100001
-
 addu $s1, $zero, $v0
 
 (B). 0x34020004
 001101 00000 00010 0000000000000100
-
 ori $v0, 4($zero)
 
 (C). 0x0211082a
@@ -123,4 +121,55 @@ ori $v0, 4($zero)
 slt $at, $s0, $s1
 
 (D).  0x27a50004
-001001 11 10100101 00000000 00000100
+001001 11101 00101 0000000000000100
+addiu $a1, $sp, 4
+
+6. Convert the following C code to MIPS assembly language. Do not use any procedures for this;
+code the statements as written. Assume all variables are signed 32-bit integers.
+(A).
+if (a != b)
+{
+    a = b;
+}
+else
+{
+  b = -a;
+}
+enter:
+  beq $s0, $s1, else      # goto else if a != b
+  sub $s1, $zero, $s0   # b = -a
+  j exit                            # goto exit
+else:
+  add $s0, $s1, 0         # a = b
+exit:
+
+(B).
+while (a + 1 == 2 * b)
+{
+  a *= 3;
+}
+loop:
+  add $t0, $s0, 1          # calculate a + 1
+  sll $t2, $s1, 1              # calculate 2 * b
+  bne $t0, $t2, exit       # goto exit if a + 1 != 2 * b
+  add $t3, $s0, $s0      # a + a [for a *= 3]
+  add $s0, $t3, $s0      # a + a + a, which is equal to a *= 3
+  j loop                          # goto loop
+exit:
+
+(C).
+while (a <= b + 1)
+{
+  b = 4 * (a - 100);
+  a++;
+}
+
+loop:
+  add $t0, $s1, 1           # calculate the b + 1
+  slt $t1, $t0, $s0         # t1 = b + 1 < a ? 1: 0
+  beq $t1,1, exit            # if a > b + 1, exit the loop
+  sub $t2, $s0, 100      # calculate the a - 100
+  sll $s1, $t2, 2             # b = 4 * (a - 100)
+  addiu $s0, $s0, 1       # a++
+  j loop                          # goto loop
+exit:
