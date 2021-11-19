@@ -2,8 +2,8 @@
  * @file Homework 1.txt
  * @author Hengyi Li
  * @brief This file is to show some basic use of the MIPS language
- * @version 2.0
- * @date 2021-11-17 8:57 PM
+ * @version 2.5
+ * @date 2021-11-17 4:13 PM
  * @copyright Copyright (c) 2021. Hengyi Li All rights reserved.
  */
 
@@ -151,7 +151,7 @@ else
   b = -a;
 }
 enter:
-  beq $s0, $s1, else      # goto else if a != b
+  bne $s0, $s1, else      # goto else if a != b
   sub $s1, $zero, $s0     # b = -a
   j exit                  # goto exit
 else:
