@@ -3,7 +3,7 @@
  * @author Hengyi Li
  * @brief This file is to show some basic use of the MIPS language
  * @version 2.5
- * @date 2021-11-17 4:13 PM
+ * @date 2021-11-17 4:31 PM
  * @copyright Copyright (c) 2021. Hengyi Li All rights reserved.
  */
 
@@ -107,9 +107,9 @@ sub $s2, $t5, $t4             # (a + b + c) + (c + -1 - d) - (a - -5);
 (D). sw $ra, -16($t7)
 
   sw    $t7   $ra        -16
-101011 01111 11111 0000000000010000
+101011 01111 11111 1111111111110000
 
-0xADFF0010
+0xADFFFFF0
 
 5.  Disassemble the following machine code into MIPS language statements.
 (A). 0x00028821
