@@ -12,15 +12,16 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2],
-                  unsigned file_size)
+void delete_entry(Contact *contact_database[MAX_CONTACTS],
+                              char delete_id[LENGTH_OF_CHARS],
+                              size_t file_size)
 {
   size_t user_delete_choice = (size_t)atoi(delete_id);
   size_t index = 0;
   unsigned loop = 0;
   size_t array_size = 0;
   size_t looptimes;
-  int done = FALSE;
+  unsigned done = FALSE;
   while (contact_database[loop] != NULL)
   {
     array_size++;
@@ -33,6 +34,7 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS], char delete_id[2],
       for (looptimes = index; looptimes < array_size; looptimes++)
       {
         contact_database[looptimes] = contact_database[looptimes + 1];
+        free(contact_database[looptimes]);
       }
       done = TRUE;
     }

@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "search_record.h"
 
-void search_record(Contact *contact_database[MAX_CONTACTS], 
+void search_record(Contact *contact_database[],
                                   char keyword[MAX_NAME_CHARS], unsigned file_size)
 {
   size_t looptimes = 0;
