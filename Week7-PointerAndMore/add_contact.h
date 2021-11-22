@@ -18,6 +18,6 @@
  * @param contact_database is the database to add
  * @param file_size is the size of the contacts file
  */
-void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size);
+void add_entry(Contact *contact_database[], size_t file_size);
 
 #endif

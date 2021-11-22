@@ -17,6 +17,6 @@
  * @param delete_id is the id that comes from user input
  * @param file_size is the size of the contact files
  */
-void delete_entry(Contact *contact_database[MAX_CONTACTS],
+void delete_entry(Contact *contact_database[],
                               char delete_id[LENGTH_OF_CHARS],
                               size_t file_size);

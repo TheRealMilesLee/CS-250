@@ -18,4 +18,4 @@
  */
 void search_record(Contact *contact_database[],
                                   char keyword[MAX_NAME_CHARS],
-                                  unsigned file_size);
+                                  size_t file_size);

@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[MAX_CONTACTS],
+void delete_entry(Contact *contact_database[],
                               char delete_id[LENGTH_OF_CHARS],
                               size_t file_size)
 {
@@ -34,7 +34,6 @@ void delete_entry(Contact *contact_database[MAX_CONTACTS],
       for (looptimes = index; looptimes < array_size; looptimes++)
       {
         contact_database[looptimes] = contact_database[looptimes + 1];
-        free(contact_database[looptimes]);
       }
       done = TRUE;
     }

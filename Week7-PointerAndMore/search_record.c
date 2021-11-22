@@ -14,7 +14,7 @@
 #include "search_record.h"
 
 void search_record(Contact *contact_database[],
-                                  char keyword[MAX_NAME_CHARS], unsigned file_size)
+                                  char keyword[MAX_NAME_CHARS], size_t file_size)
 {
   size_t looptimes = 0;
   size_t loop = 0;
@@ -38,7 +38,7 @@ void search_record(Contact *contact_database[],
     }
     if (strstr(temp_name, keyword))
     {
-      printf("%lu : %s\t%s\t%s\n", loop, contact_database[loop]->name, 
+      printf("%lu : %s\t%s\t%s\n", loop, contact_database[loop]->name,
       contact_database[loop]->phone, contact_database[loop]->email);
     }
     loop++;

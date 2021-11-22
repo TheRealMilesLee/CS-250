@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "file_handling.h"
 
-size_t file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS])
+size_t file_read_in(char *filename, Contact *contact_database[])
 {
   char temp_array[MAX_CONTACTS];
   FILE *input_file = fopen(filename, "r");
@@ -50,16 +50,16 @@ size_t file_read_in(char *filename, Contact *contact_database[MAX_CONTACTS])
   return looptimes;
 }
 
-void file_out_put(char *filename, Contact *contact_database[MAX_CONTACTS], 
-                              unsigned file_size)
+void file_out_put(char *filename, Contact *contact_database[],
+                              size_t file_size)
 {
   size_t loop = 0;
   FILE *output_file = fopen(filename, "w");
   while (loop < file_size)
   {
-    fprintf(output_file, "%s\t%s\t%s\n", 
+    fprintf(output_file, "%s\t%s\t%s\n",
               (contact_database[loop])->name,
-              (contact_database[loop])->phone, 
+              (contact_database[loop])->phone,
               (contact_database[loop])->email);
     loop++;
   }

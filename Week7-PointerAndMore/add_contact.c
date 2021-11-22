@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "add_contact.h"
 
-void add_entry(Contact *contact_database[MAX_CONTACTS], unsigned file_size)
+void add_entry(Contact *contact_database[], size_t file_size)
 {
   char name[MAX_NAME_CHARS];
   char phone[MAX_PHONE_CHARS];
