@@ -45,4 +45,5 @@ void delete_entry(Contact *contact_database[],
     printf("%d : %s %s %s \n", loop, contact_database[loop]->name,
            contact_database[loop]->phone, contact_database[loop]->email);
   }
+  free(contact_database[file_size]);
 }

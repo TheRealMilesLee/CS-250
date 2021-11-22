@@ -1,4 +1,4 @@
-Ginny Weasley	880-813-1994	gf@hp.com
+Harry Porter	444-777-9987	maincharacter@hp.com
 Ron Weasley	756-816-0257	best_bud@hp.com
 Hermione Granger	243-961-7287	best_girl@hp.com
 Draco Malfoy	143-456-7890	meanie@hp.com
