@@ -39,7 +39,6 @@ void delete_entry(Contact *contact_database[],
     }
     index++;
   }
-
   file_size = file_size - 1;
   for (loop = 0; loop < file_size; loop++)
   {
