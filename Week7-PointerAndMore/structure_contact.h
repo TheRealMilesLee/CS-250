@@ -2,8 +2,8 @@
  * @file structure_contact.h
  * @author Hengyi Li
  * @brief This is the header file for the structure
- * @version 0.1
- * @date 2021-11-02
+ * @version 0.2
+ * @date 2021-11-22 12:47 PM
  * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
  */
 #ifndef STRUCTURE_CONTACT_H

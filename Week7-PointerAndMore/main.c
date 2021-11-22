@@ -2,8 +2,8 @@
  * @file main.c
  * @author Hengyi Li
  * @brief This is a contact management program
- * @version 7.8
- * @date 2021-11-02 3:08AM
+ * @version 7.9
+ * @date 2021-11-22 12:47 PM
  * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
  */
 #include <stdio.h>

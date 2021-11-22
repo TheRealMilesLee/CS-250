@@ -2,10 +2,9 @@
  * @file search_record.h
  * @author Hengyi Li
  * @brief This file is used to search  the record using the keyword
- * @version 0.1
- * @date 2021-10-30
+ * @version 0.2
+ * @date 2021-11-22
  * @copyright Copyright (c) 2021 Hengyi Li. All rights reserved
- *
  */
 #include "structure_contact.h"
 

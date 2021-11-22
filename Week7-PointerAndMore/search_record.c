@@ -2,8 +2,8 @@
  * @file search_record.c
  * @author Hengyi Li
  * @brief This file is to seach the record of the contacts
- * @version 7.1
- * @date 2021-11-02 3:03 AM
+ * @version 7.2
+ * @date 2021-11-22 12:46 PM
  * @copyright Copyright (c) 2021. Hengyi Li All rights reserved.
  */
 

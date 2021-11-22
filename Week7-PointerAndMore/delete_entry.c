@@ -2,8 +2,8 @@
  * @file delete_entry.c
  * @author Hengyi Li
  * @brief This file is to delete the entry
- * @version 7
- * @date 2021-11-02 3:23AM.
+ * @version 7.1
+ * @date 2021-11-22 12:50 PM.
  * @copyright Copyright (c) 2021. Hengyi Li. All right reserved.
  */
 
