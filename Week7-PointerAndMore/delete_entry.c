@@ -13,8 +13,7 @@
 #include "delete_entry.h"
 
 void delete_entry(Contact *contact_database[],
-                              char delete_id[LENGTH_OF_CHARS],
-                              size_t file_size)
+                              char delete_id[LENGTH_OF_CHARS])
 {
   size_t user_delete_choice = (size_t)atoi(delete_id);
   size_t index = 0;
@@ -38,11 +37,5 @@ void delete_entry(Contact *contact_database[],
       done = TRUE;
     }
     index++;
-  }
-  file_size = file_size - 1;
-  for (loop = 0; loop < file_size; loop++)
-  {
-    printf("%d : %s %s %s \n", loop, contact_database[loop]->name,
-           contact_database[loop]->phone, contact_database[loop]->email);
   }
 }

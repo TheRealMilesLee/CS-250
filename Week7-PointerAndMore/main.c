@@ -7,6 +7,7 @@
  * @copyright Copyright (c) 2021. Hengyi Li. All rights reserved.
  */
 #include <stdio.h>
+#include "main.h"
 #include "file_handling.h"
 #include "add_contact.h"
 #include "delete_entry.h"
@@ -23,7 +24,6 @@ int main(int argc, char *argv[])
   char search_keyword[MAX_NAME_CHARS];
   unsigned done = FALSE;
   size_t file_size = 0;
-  size_t loop_through;
   if (argc != 2)
   {
     fprintf(stderr, "usage: input your filename as the user database%s \n", argv[0]);
@@ -53,25 +53,43 @@ int main(int argc, char *argv[])
     {
       file_size = file_size + 1;
       add_entry(contact_database, file_size);
+      print_out_database(contact_database, file_size);
     }
     /* Delete */
     else if (user_input[0] == 'd' || user_input[0] == 'D')
     {
       printf("Please input the id that you want to deleted: ");
       fgets(delete_id, 3, stdin);
-      delete_entry(contact_database, delete_id, file_size);
+      delete_entry(contact_database, delete_id);
       file_size = file_size - 1;
+      print_out_database(contact_database, file_size);
     }
     /* Exit */
     else
     {
       file_out_put(argv[1], contact_database, file_size);
-      for (loop_through = 0; loop_through < file_size; loop_through++)
-      {
-        free(contact_database[loop_through]);
-      }
+      free_memory(contact_database, file_size);
       done = TRUE;
     }
   }
   return 0;
+}
+
+void print_out_database(Contact *contact_database[], size_t file_size)
+{
+  size_t looptimes;
+  for (looptimes = 0; looptimes < file_size; looptimes++)
+  {
+    printf("%lu : %s %s %s \n", looptimes, contact_database[looptimes]->name,
+        contact_database[looptimes]->phone, contact_database[looptimes]->email);
+  }
+}
+
+void free_memory(Contact *contact_database[], size_t file_size)
+{
+  size_t looptimes;
+  for (looptimes = 0; looptimes < file_size; looptimes++)
+  {
+    free(contact_database[looptimes]);
+  }
 }

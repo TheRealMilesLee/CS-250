@@ -9,8 +9,8 @@ all: contacts
 
 contacts: $(OBJECTS)
 	$(CC) $(CFLAGS) -o contacts $(OBJECTS)
-main.o: main.c
-	$(CC) $(CFLAGS) -Wno-padded -c main.c
+main.o: main.c main.h
+	$(CC) $(CFLAGS) -Wno-padded -c main.c main.h
 file_handling.o: file_handling.c file_handling.h
 		$(CC) $(CFLAGS) -Wno-padded -c file_handling.c file_handling.h
 add_contact.o: add_contact.c add_contact.h
