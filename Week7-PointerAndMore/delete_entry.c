@@ -39,11 +39,11 @@ void delete_entry(Contact *contact_database[],
     }
     index++;
   }
+
   file_size = file_size - 1;
   for (loop = 0; loop < file_size; loop++)
   {
     printf("%d : %s %s %s \n", loop, contact_database[loop]->name,
            contact_database[loop]->phone, contact_database[loop]->email);
   }
-  free(contact_database[file_size]);
 }

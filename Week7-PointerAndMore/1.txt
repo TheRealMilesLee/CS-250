@@ -1,6 +1,5 @@
 Harry Porter	444-777-9987	maincharacter@hp.com
-Ron Weasley	756-816-0257	best_bud@hp.com
 Hermione Granger	243-961-7287	best_girl@hp.com
-Draco Malfoy	143-456-7890	meanie@hp.com
 Mearri San	660-999-4567	Robatosandaisuki@mearrisan.com
-Asaka	123-456-7890	asakosandaisuki@gmail.com
+ASAKA Misaki	777-999-0076	asakasangdaiuqik@gmail.com
+Samita	660-445-9987	samistia@gmail.com
