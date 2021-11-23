@@ -1,7 +1,0 @@
-{
-  "files.associations": {
-    "stdlib.h": "c",
-    "typeinfo": "c",
-    "search_record.h": "c"
-  }
-}
