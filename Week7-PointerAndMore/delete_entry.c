@@ -18,9 +18,8 @@ void delete_entry(Contact *contact_database[], size_t file_size, char id[])
   size_t looptimes;
   /* cover delete location with next contact position */
   /* And everything moves one level up */
-  for (looptimes = user_delete_choice; looptimes < file_size; looptimes++)
+  for (looptimes = user_delete_choice; looptimes < file_size - 1; looptimes++)
   {
     contact_database[looptimes] = contact_database[looptimes + 1];
   }
-  free(contact_database[5]);
 }
