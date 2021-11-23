@@ -45,7 +45,6 @@ size_t file_read_in(char *filename, Contact *contact_database[])
              contact_database[loop]->phone, contact_database[loop]->email);
     }
   }
-
   fclose(input_file);
   return looptimes;
 }
