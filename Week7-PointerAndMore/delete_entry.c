@@ -15,22 +15,12 @@
 void delete_entry(Contact *contact_database[], size_t file_size, char id[])
 {
   size_t user_delete_choice = (size_t)atoi(id);
-  size_t index = 0;
   size_t looptimes;
-  unsigned done = FALSE;
-  /* Locate the place that needs to delete*/
-  /* cover it with next contact position */
+  /* cover delete location with next contact position */
   /* And everything moves one level up */
-  while (contact_database[index] != NULL)
+  for (looptimes = user_delete_choice; looptimes < file_size; looptimes++)
   {
-    if (index == user_delete_choice)
-    {
-      for (looptimes = index; looptimes < file_size; looptimes++)
-      {
-        contact_database[looptimes] = contact_database[looptimes + 1];
-      }
-      done = TRUE;
-    }
-    index++;
+    contact_database[looptimes] = contact_database[looptimes + 1];
   }
+  free(contact_database[5]);
 }
