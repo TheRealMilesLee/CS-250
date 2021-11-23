@@ -33,6 +33,4 @@ void delete_entry(Contact *contact_database[], size_t file_size, char id[])
     }
     index++;
   }
-  /* Free the memory of the contact which has been deleted  */
-  free(contact_database[file_size]);
 }
