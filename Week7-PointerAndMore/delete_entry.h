@@ -14,8 +14,7 @@
 /**
  * @brief This function is to delete the entry
  * @param contact_database is the database to delete
- * @param delete_id is the id that comes from user input
+ * @param id is the id that comes from user input
  * @param file_size is the size of the contact database
  */
-void delete_entry(Contact *contact_database[], size_t file_size,
-                              char delete_id[ID_LENGTH]);
+void delete_entry(Contact *contact_database[], size_t file_size, char id[]);

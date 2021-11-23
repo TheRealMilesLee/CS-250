@@ -12,14 +12,14 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[], size_t file_size,
-                              char delete_id[ID_LENGTH])
+void delete_entry(Contact *contact_database[], size_t file_size, char id[])
 {
-  size_t user_delete_choice = (size_t)atoi(delete_id);
+  size_t user_delete_choice = (size_t)atoi(id);
   size_t index = 0;
   size_t looptimes;
   unsigned done = FALSE;
-  /* Locate the place that needs to delete, cover it with next contact position */
+  /* Locate the place that needs to delete*/
+  /* cover it with next contact position */
   /* And everything moves one level up */
   while (contact_database[index] != NULL)
   {

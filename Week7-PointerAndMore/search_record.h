@@ -13,8 +13,6 @@
  * @brief This file is to search the record
  * @param contact_database is the database search to
  * @param keyword is the keyword that the user looking to
- * @param file_size is the size of total contact
+ * @param size is the size of total contact
  */
-void search_record(Contact *contact_database[],
-                                  char keyword[MAX_NAME_CHARS],
-                                  size_t file_size);
+void search_record(Contact *contact_database[], char keyword[], size_t size);

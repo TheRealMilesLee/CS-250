@@ -13,8 +13,7 @@
 #include <stdlib.h>
 #include "search_record.h"
 
-void search_record(Contact *contact_database[],
-                                  char keyword[MAX_NAME_CHARS], size_t file_size)
+void search_record(Contact *contact_database[], char keyword[], size_t size)
 {
   size_t looptimes = 0;
   size_t loop = 0;
@@ -27,7 +26,7 @@ void search_record(Contact *contact_database[],
     looptimes++;
   }
 
-  while (loop < file_size)
+  while (loop < size)
   {
     strncpy(temp_name, contact_database[loop]->name, MAX_NAME_CHARS);
     looptimes = 0;
