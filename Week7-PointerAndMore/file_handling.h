@@ -20,9 +20,9 @@ size_t file_read_in(char *filename, Contact *contact_database[]);
 /**
  * @brief This function is to output the file to the disk
  * @param contact_database is the database that output to
- * @param file_size is the size of the contacts stores
+ * @param size is the size of the contacts stores
  */
-void file_out_put(char *filename, Contact *contact_database[], size_t file_size);
+void file_out_put(char *filename, Contact *contact_database[], size_t size);
 
 
 

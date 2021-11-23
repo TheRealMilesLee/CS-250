@@ -21,7 +21,7 @@ size_t file_read_in(char *filename, Contact *contact_database[])
 
   if (input_file == NULL)
   {
-    fprintf(stderr, "The file is not valid, please make sure if its exists or not empty");
+    fprintf(stderr, "The file is not valid");
     exit(1);
   }
   else
@@ -50,12 +50,11 @@ size_t file_read_in(char *filename, Contact *contact_database[])
   return looptimes;
 }
 
-void file_out_put(char *filename, Contact *contact_database[],
-                              size_t file_size)
+void file_out_put(char *filename, Contact *contact_database[], size_t size)
 {
   size_t loop = 0;
   FILE *output_file = fopen(filename, "w");
-  while (loop < file_size)
+  while (loop < size)
   {
     fprintf(output_file, "%s\t%s\t%s\n",
               (contact_database[loop])->name,
