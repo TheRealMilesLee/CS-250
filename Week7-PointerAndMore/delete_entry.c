@@ -12,25 +12,20 @@
 #include <stdlib.h>
 #include "delete_entry.h"
 
-void delete_entry(Contact *contact_database[],
-                              char delete_id[LENGTH_OF_CHARS])
+void delete_entry(Contact *contact_database[], size_t file_size,
+                              char delete_id[ID_LENGTH])
 {
   size_t user_delete_choice = (size_t)atoi(delete_id);
   size_t index = 0;
-  unsigned loop = 0;
-  size_t array_size = 0;
   size_t looptimes;
   unsigned done = FALSE;
-  while (contact_database[loop] != NULL)
-  {
-    array_size++;
-    loop++;
-  }
+  /* Locate the place that needs to delete, cover it with next contact position */
+  /* And everything moves one level up */
   while (contact_database[index] != NULL)
   {
     if (index == user_delete_choice)
     {
-      for (looptimes = index; looptimes < array_size; looptimes++)
+      for (looptimes = index; looptimes < file_size; looptimes++)
       {
         contact_database[looptimes] = contact_database[looptimes + 1];
       }

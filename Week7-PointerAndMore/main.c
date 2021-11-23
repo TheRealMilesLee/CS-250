@@ -16,6 +16,7 @@
 #define FALSE 0
 #define TRUE 1
 #define MAX_SINGLE_CHAR_INPUT_SIZE 3
+#define USER_INPUT_CHAR_POSITION 0
 int main(int argc, char *argv[])
 {
   Contact *contact_database[MAX_CONTACTS];
@@ -39,28 +40,31 @@ int main(int argc, char *argv[])
     printf("D: Delete \n");
     printf("Q: Quit \n");
     printf("Choice: ");
-    fgets(user_input, 3, stdin);
+    fgets(user_input, MAX_SINGLE_CHAR_INPUT_SIZE, stdin);
     printf("\n");
     /* Search */
-    if (user_input[0] == 's' || user_input[0] == 'S')
+    if (user_input[USER_INPUT_CHAR_POSITION] == 's' ||
+    user_input[USER_INPUT_CHAR_POSITION] == 'S')
     {
       printf("Please input the word that you looking for: ");
       fgets(search_keyword, MAX_NAME_CHARS, stdin);
       search_record(contact_database, search_keyword, file_size);
     }
     /* Add */
-    else if (user_input[0] == 'a' || user_input[0] == 'A')
+    else if (user_input[USER_INPUT_CHAR_POSITION] == 'a' ||
+    user_input[USER_INPUT_CHAR_POSITION] == 'A')
     {
       file_size = file_size + 1;
       add_entry(contact_database, file_size);
       print_out_database(contact_database, file_size);
     }
     /* Delete */
-    else if (user_input[0] == 'd' || user_input[0] == 'D')
+    else if (user_input[USER_INPUT_CHAR_POSITION] == 'd' ||
+    user_input[USER_INPUT_CHAR_POSITION] == 'D')
     {
       printf("Please input the id that you want to deleted: ");
-      fgets(delete_id, 3, stdin);
-      delete_entry(contact_database, delete_id);
+      fgets(delete_id, MAX_SINGLE_CHAR_INPUT_SIZE, stdin);
+      delete_entry(contact_database, file_size, delete_id);
       file_size = file_size - 1;
       print_out_database(contact_database, file_size);
     }
