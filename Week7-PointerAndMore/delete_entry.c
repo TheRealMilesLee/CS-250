@@ -22,4 +22,5 @@ void delete_entry(Contact *contact_database[], size_t file_size, char id[])
   {
     contact_database[looptimes] = contact_database[looptimes + 1];
   }
+  free(contact_database[file_size - 1]);
 }
