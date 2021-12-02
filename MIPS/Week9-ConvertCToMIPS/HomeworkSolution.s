@@ -4,7 +4,7 @@
   .data
 message_string:
   .asciiz "Please enter a string: "
-message_enter_a_character:
+message_character:
   .asciiz "Please enter a character: "
 
   .text
@@ -14,11 +14,16 @@ main:
   li    $v0, 4              #Allocated the spaces and call the return function
   syscall
 
-
   li    $v0,8               #take in input
-  la    $a0, buffer         #load byte space into address
-  li    $a1, 20             # allot the byte space for string
-  move $t0,$a0              #save string to t0
+  move $t0,$v0              #save string to t0
+  syscall
+
+  la    $a1, message_character
+  li    $v1, 4
+  syscall
+
+  li $a2, 8
+  move $t1, $v1
   syscall
 
   li $v0, 0x0a #Exit the program
