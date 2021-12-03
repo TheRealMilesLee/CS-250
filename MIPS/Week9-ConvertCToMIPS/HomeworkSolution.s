@@ -67,8 +67,8 @@ else:
   syscall
   .end main
 
+# TO-DO: Finshed the function call
 strcontainsi:
-	
 
 toupper:
   # a0: the character parameter
