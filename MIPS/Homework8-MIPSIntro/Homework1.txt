@@ -186,8 +186,6 @@ loop:
   bne $t1, 0, less_than     # if a < b + 1, go to less_than
   condition:
     bne $s0, $t0, exit      # If a is also not equal b + 1, go to the exit
-    j else                  # If it's equal, continue the process
-  else:
     sub $t2, $s0, 100       # calculate the a - 100
     sll $s1, $t2, 2         # b = 4 * (a - 100)
     addi $s0, $s0, 1        # a++
