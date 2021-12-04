@@ -44,11 +44,9 @@ condition:
 	la	$a0, promopte_string 	# load the address of string into the $a0
   li	$v0, 0x04			# print the string system call
   syscall
-
-	la $a0, promote_not_contain	#Print the string is contain character
+	la $a0, promote_not_contain	#Print the string does not contain character
 	li $v0, 0x04	# print the system call
 	syscall
-
 	la $a0, stings	#Print the character that string contains
 	li $v0, 0x04	#syscall to print
 	syscall
@@ -56,7 +54,6 @@ else:
 	la	$a0, promopte_string 	# load the address of string into the $a0
   li	$v0, 0x04			# print the string system call
   syscall
-
 	la $a0, promote_not_contain	# Print out the string is not contain the character
 	li $v0, 0x04	#print the system call
 	syscall
