@@ -40,14 +40,14 @@ main:
   move 		$t1, $v0		# save it into t1
 
 condition:
-	bne strcontainsi, 1, else
+	bne strcontainsi, 1, else # If not contain, goto else
 	la	$a0, promopte_string 	# load the address of string into the $a0
   li	$v0, 0x04			# print the string system call
   syscall
 	la $a0, promote_not_contain	#Print the string does not contain character
 	li $v0, 0x04	# print the system call
 	syscall
-	la $a0, stings	#Print the character that string contains
+	la $a0, stings	#Print the character
 	li $v0, 0x04	#syscall to print
 	syscall
 else:
