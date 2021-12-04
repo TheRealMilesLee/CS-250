@@ -8,59 +8,62 @@ promote_contain:
 	.asciiz " contains "
 promote_not_contain:
 	.asciiz " does not contain "
-
-character:
+promote_character:
   .asciiz "Please enter a character: \n"
-
 string:
 	.space 10
-
+character:
+  .space 4
 newline:
   .asciiz "\n"
 
   .text
   .globl main
 main:
-  la	$a0, promopte_string 	# load the address of string into the $a0
-  li	$v0, 0x04			# print the string system call
+#Get String input
+  la	$a0, promopte_string 	          # load the address of string into the $a0
+  li	$v0, 0x04			                           # print the string system call
+  syscall
+	la $a0, string                              # load the MAX CHARS into a0
+  li $v0, 0x08		                                   # Accept the stings input
   syscall
 
-	la $a0, string
-  li $v0, 8		#Accept the stings input
-  syscall
-	move 		$t0, $v0		# $t0 = $v0
-
-  la $a0, newline
-  la	$a0, character 		# load the address of character into $a0
-  li	$v0, 0x04							# print the character system call
+# Get char input
+  la	$a0, promote_character 		   # load the address of character into $a0
+  li	$v0, 0x04							                  # print the character system call
   syscall
 
-	li $v0, 12	# Accept the character input
+  la $a1, character
+	li $v0, 12	                                  # Accept the character input
 	syscall
-  move 		$t1, $v0		# save it into t1
 
+  # jal strcontainsi  #Call the function strcontainsi
+  # sw $v0, 0($s0)  #save the function call result into $s0
 condition:
-	bne strcontainsi, 1, else # If not contain, goto else
+	bne $s2, 1, else # If not contain, goto else
 	la	$a0, promopte_string 	# load the address of string into the $a0
   li	$v0, 0x04			# print the string system call
   syscall
 	la $a0, promote_not_contain	#Print the string does not contain character
 	li $v0, 0x04	# print the system call
 	syscall
-	la $a0, stings	#Print the character
+	la $a0, string	#Print the character
 	li $v0, 0x04	#syscall to print
 	syscall
 else:
-	la	$a0, promopte_string 	# load the address of string into the $a0
+  li $v0, 0x04      # Allocated the space for that new line
+	syscall
+  la	$a0,string
   li	$v0, 0x04			# print the string system call
   syscall
 	la $a0, promote_not_contain	# Print out the string is not contain the character
 	li $v0, 0x04	#print the system call
 	syscall
-
+  la $a0, character
+  li $v0, 11 # print the system call
+  syscall
 
   li $v0, 0x0a  # Exit the system call
-  li $v1, 0x0a  # Exit the system call
   syscall
   .end main
 
