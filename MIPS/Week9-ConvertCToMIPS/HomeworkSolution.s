@@ -139,7 +139,6 @@ exit:
   move  $v0, $t1            # return value: the value of the found
   jr    $ra                         # return
 
-
 toupper:
   # a0: the character parameter
   # v0: the return value
