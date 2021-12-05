@@ -2,25 +2,23 @@
 # This program is to determine whether a stings contains a character.
 
   .data
-promopte_string:
-  .asciiz "Please enter a string: \n"
-promote_contain:
-  .asciiz " contains "
-promote_not_contain:
-  .asciiz " does not contain "
+promote_string:
+  .asciiz "Please enter a string: "
 promote_character:
-  .asciiz "Please enter a character: \n"
+  .asciiz "Please enter a character: "
+contain:
+  .asciiz " contains "
+not_contain:
+  .asciiz " does not contain "
+newline:
+  .asciiz "\n"
+
 string:
   .space 10
 character:
-  .word 4
-newline:
-  .asciiz "\n"
-done:
-  .word 0
+  .space 4
+
 found:
-  .word 0
-i:
   .word 0
 
   .text
@@ -28,60 +26,77 @@ i:
 
 main:
 #Get String input
-  la  $a0, promopte_string            # load the address of string into the $a0
+  la  $a0, promote_string            # load the address of promote into the $a0
   li  $v0, 0x04                                # print the string system call
   syscall
-  la $a0, string                              # load the MAX CHARS into a0
+  la $a0, string                              # load the address of string into $a0
   li $v0, 0x08                                # Accept the stings input
   syscall
 
 # Get char input
-  la  $a0, promote_character       # load the address of character into $a0
+  la  $a0, promote_character       # load the address of promote into $a0
   li  $v0, 0x04                               # print the character system call
   syscall
-  la $a0, character
+  la $a0, character                       # load the address of character into $a0
   li $v0, 12                                    # Accept the character input
-  sw	$v0, character			# save it into character
   syscall
 
+# Function Call: strcontainsi
   jal strcontainsi                        # Call the function strcontainsi
   sw $v0, found                        # Save the function call result into $s0
   move $t0, $v0                       # Save result into t0
+
+#Condition: if contains and if not contains
 condition:
 #Make a new line
-  la $a0, newline
-  li $v0, 0x04
+  la $a0, newline                     # Load the address of newline into $a0
+  li $v0, 0x04                          # Call the system print the newline character
   syscall
-  # Contain, continuew, not contain, goto else
-  bne $t0, 1, else                        # If not contain, goto else
-  # Print the string
+
+  # Contain, continue, not contain, goto else
+  bne $t0, 1, else                      # If false, goto else
+
+# Print the string contains character
+  # Print the origional string
   la  $a0, string                          # load the address of string into the $a0
   li  $v0, 0x04                            # print the string system call
   syscall
-  #Print the promote
-  la $a0, promote_contain         # string contains character
-  li $v0, 0x04                             # print the system call
+
+  #Print the "contains"
+  la $a0, contain   # Load the address of contain into $a0
+  li $v0, 0x04                        # syscall, print the promote
   syscall
-  # Print the char
-  lw $t1, character                            # Syscall to print
-  move 		$a0,  $t1		# $a0 =  $t1
-  li $v0, 11
+
+  # Print the character
+  la $a0, character                 # Load the address of character into $a0
+  li $v0, 0x11                            # call the print character
   syscall
-  j Finished                                      #Finished operation, jump to exit
+
+  # Finished operation, jump to end of the if-statement
+  j Finished                             #Finished operation, jump to Finished
+
 else:
-  la $a0, newline
-  li $v0, 0x04
+# Make a new line
+  la $a0, newline                 # Load the address of newline into $a0
+  li $v0, 0x04                      # call the print string to print the newline
   syscall
-  la  $a0,string
-  li  $v0, 0x04                               # print the string system call
+
+# Print the string contains character
+  # Print the origional string
+  la  $a0,string                   # Load the address of origional string into $a0
+  li  $v0, 0x04                    # print string system call
   syscall
-  la $a0, promote_not_contain   # Print out the string is not contain the character
-  li $v0, 0x04                               # Print the system call
+
+  #Print "does not contains"
+  la $a0, not_contain        # Load the address of not_contain into $a0
+  li $v0, 0x04                    # Print string system call
   syscall
-  lw $t1, character                            # Syscall to print
-  move 		$a0,  $t1		# $a0 =  $t1
-  li $v0, 11
+
+  # Print the character
+  la $a0, character           # Load the address of character into $a0
+  li $v0, 0x11                     # call the print character
   syscall
+
 Finished:
   # This is the end of the main
   li $v0, 0x0a                             # Exit the system call
