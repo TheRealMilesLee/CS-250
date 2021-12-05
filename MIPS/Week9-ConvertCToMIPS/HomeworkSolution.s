@@ -28,6 +28,7 @@ main:
   syscall
   la $a0, string                              # load the address of string into $a0
   li $v0, 0x08                                # Accept the stings input
+  move 		$s0,  $v0		# $s0 = $v0
   syscall
 
 # Get char input
@@ -36,10 +37,11 @@ main:
   syscall
   la $a0, character                       # load the address of character into $a0
   li $v0, 0x08                                # Accept the character input
+  move 		$s1,  $v0		# $s1 = $v0
   syscall
 
-  la $a0, string                            # load the address of string to $a0
-  la $a1, character                       # load the address of char to $a1
+  move $a0, $s0                      # load the string to $a0
+  move $a1, $s1                       # load the address of char to $a1
 # Function Call: strcontainsi
   jal strcontainsi                        # Call the function strcontainsi
   sw $v0, found                        # Save the function call result into $s0
@@ -112,27 +114,26 @@ strcontainsi:
 # $t4 is the address of the current index
 # $t5 is the current character
 # $t6 is the string character converted to uppercase
-  addu $t1, $t1, 0         # Initialize the found value as 0
-  addu $t2, $t2, 0        # Initialize the boolean done as 0
-  addu $t3, $t3, 0        # Initialize the index as 0
+  addu $t1, $t1, 0                # Initialize the found value as 0
+  addu $t2, $t2, 0              # Initialize the boolean done as 0
+  addu $t3, $t3, 0              # Initialize the index as 0
 loop:
-  bne $t2, 0, exit          # If done is not equal to 0, goto exit
-  addu  $t4, $t3, $a0       # t4 = &base[index]
-  lbu   $t5, 0($t4)         # t1 = base[index]
-  condition:
+  bne $t2, 0, exit                # If done is not equal to 0, goto exit
+  addu  $t4, $t3, $a0         # t4 = &base[index]
+  lbu   $t5, 0($t4)               # t1 = base[index]
+  enter:
     bne $t5, $zero, else_if # if (str[i] != '\0'), goto else_if
     addiu $t2, $t2, 1           # done = 1
   else_if:
     move $a0, $t5       # Copy the current character into $a0
     jal toupper               # call function to upper
-    sw $v0, $t6             # Save the character into $t6
+    sw $v0, 0($t6)        # Save the character into $t6
     move $a0, $a1        # Copy the compare character into $a0
     jal toupper               # convert it to uppercase
-    bne $t6, $v0, else  # if str[i] != ch, goto else
+    bne $t6, $v0, increment  # if str[i] != ch, goto else
     addiu $t1, $t1, 1       # found = 1
     addiu $t2, $t2, 1     # done = 1
-    j loop                        # jump to loop
-  else:
+  increment:
     addiu $t3, 1              # increment the index
   j loop                          # Jump back to loop.
 exit:
