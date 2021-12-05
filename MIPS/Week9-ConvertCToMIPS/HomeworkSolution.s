@@ -14,9 +14,9 @@ newline:
   .asciiz "\n"
 
 string:
-  .space 10
+  .space 11
 character:
-  .space 4
+  .space 11
 
 found:
   .word 0
@@ -38,7 +38,7 @@ main:
   li  $v0, 0x04                               # print the character system call
   syscall
   la $a0, character                       # load the address of character into $a0
-  li $v0, 12                                    # Accept the character input
+  li $v0, 0x08                                # Accept the character input
   syscall
 
 # Function Call: strcontainsi
@@ -69,7 +69,7 @@ condition:
 
   # Print the character
   la $a0, character                 # Load the address of character into $a0
-  li $v0, 0x11                            # call the print character
+  li $v0, 0x04                            # call the print character
   syscall
 
   # Finished operation, jump to end of the if-statement
@@ -94,7 +94,7 @@ else:
 
   # Print the character
   la $a0, character           # Load the address of character into $a0
-  li $v0, 0x11                     # call the print character
+  li $v0, 0x04                     # call the print character
   syscall
 
 Finished:
