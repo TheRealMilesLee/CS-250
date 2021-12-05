@@ -13,7 +13,7 @@ promote_character:
 string:
   .space 10
 character:
-  .space 4
+  .word 4
 newline:
   .asciiz "\n"
 done:
@@ -39,28 +39,33 @@ main:
   la  $a0, promote_character       # load the address of character into $a0
   li  $v0, 0x04                               # print the character system call
   syscall
+  la $a0, character
   li $v0, 12                                    # Accept the character input
-  sw $v0, character                     # Save it into character
+  sw	$v0, character			# save it into character
   syscall
 
-  jal strcontainsi  #Call the function strcontainsi
-  sw $v0, found  #save the function call result into $s0
-  move $t0, $v0 #save result into t0
+  jal strcontainsi                        # Call the function strcontainsi
+  sw $v0, found                        # Save the function call result into $s0
+  move $t0, $v0                       # Save result into t0
 condition:
+#Make a new line
   la $a0, newline
   li $v0, 0x04
   syscall
+  # Contain, continuew, not contain, goto else
   bne $t0, 1, else                        # If not contain, goto else
-  la  $a0, string                           # load the address of string into the $a0
+  # Print the string
+  la  $a0, string                          # load the address of string into the $a0
   li  $v0, 0x04                            # print the string system call
   syscall
+  #Print the promote
   la $a0, promote_contain         # string contains character
   li $v0, 0x04                             # print the system call
   syscall
-  la $a0, character              #Print the character
-  li $v0, 11                            #syscall to print
-  syscall
-  li $v0, 0x0a  # Exit the system call
+  # Print the char
+  lw $t1, character                            # Syscall to print
+  move 		$a0,  $t1		# $a0 =  $t1
+  li $v0, 11
   syscall
   j Finished                                      #Finished operation, jump to exit
 else:
@@ -68,27 +73,23 @@ else:
   li $v0, 0x04
   syscall
   la  $a0,string
-  li  $v0, 0x04     # print the string system call
+  li  $v0, 0x04                               # print the string system call
   syscall
-  la $a0, promote_not_contain # Print out the string is not contain the character
-  li $v0, 0x04  #print the system call
+  la $a0, promote_not_contain   # Print out the string is not contain the character
+  li $v0, 0x04                               # Print the system call
   syscall
-  la $a0, character               #Print the character
-  li $v0, 11                            #syscall to print
-  syscall
-  li $v0, 0x0a  # Exit the system call
+  lw $t1, character                            # Syscall to print
+  move 		$a0,  $t1		# $a0 =  $t1
+  li $v0, 11
   syscall
 Finished:
+  # This is the end of the main
+  li $v0, 0x0a                             # Exit the system call
+  syscall
   .end main
 
 # TO-DO: Finshed the function call
 strcontainsi:
-  # a0 base address of string
-  # t1 string index
-  # t2 the current character
-  # t3 the address of the current character
-  # $s0 the value of character
-  # $s1 the value of done
   # $s2 the value of found
   lw $s2, found
   addu $s2, $s2, 1
@@ -100,10 +101,10 @@ toupper:
   # a0: the character parameter
   # v0: the return value
 
-  addu  $v0, $a0, $zero # copy a0 to v0
-  blt $v0, 0x61, tu_end # 0x61 = 'a'; ignore chars less than
-  bgt $v0, 0x7a, tu_end # 0x7a = 'z'; ignore chars greater than
-  subu  $v0, $v0, 0x20  # 0x20 = 'a' - 'A'
+  addu  $v0, $a0, $zero       # copy a0 to v0
+  blt $v0, 0x61, tu_end        # 0x61 = 'a'; ignore chars less than
+  bgt $v0, 0x7a, tu_end       # 0x7a = 'z'; ignore chars greater than
+  subu  $v0, $v0, 0x20        # 0x20 = 'a' - 'A'
 
 tu_end:
   jr  $ra
