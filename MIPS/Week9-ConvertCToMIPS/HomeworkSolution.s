@@ -23,8 +23,8 @@ character:
 
 main:
 #Get String input
-  la  $a0, promote_string            # load the address of promote into the $a0
-  li  $v0, 0x04                                # print the string system call
+  la    $a0, promote_string            # load the address of promote into the $a0
+  li    $v0, 0x04                                # print the string system call
   syscall
   la $a0, string                              # load the address of string into $a0
   li $v0, 0x08                                # Accept the stings input
@@ -124,11 +124,11 @@ loop:
   bne $t2, 0, exit                # If done is not equal to 0, goto exit
   addu  $t4, $t3, $a0         # t4 = &str[index]
   lbu   $t5, 0($t4)               # t5 = str[index]
-  enter:
+enter:
     bne $t5, $zero, else_if # if (str[i] != '\0'), goto else_if
     addiu $t2, $t2, 1           # done = 1
     bne $t2, 0, Done                # If done is not equal to 0, goto Done
-  else_if:
+else_if:
     move $a0, $t5       # Copy the current character into $a0
     addiu $sp, $sp, -4  # decrement stack pointer by 4
     sw $ra, 0($sp)        # copy ra to stack pointer
@@ -141,9 +141,9 @@ loop:
     addiu $t2, $t2, 1     # done = 1
     bne $t2, 0, Done                # If done is not equal to 0, goto exit
     j loop
-  increment:
+increment:
     addiu $t3, 1              # increment the index
-  Done:
+Done:
     j exit
 
 #Finished Execution, return the value
