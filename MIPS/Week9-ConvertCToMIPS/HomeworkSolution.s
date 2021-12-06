@@ -35,13 +35,13 @@ main:
   la  $a0, promote_character       # load the address of promote into $a0
   li  $v0, 0x04                               # print the character system call
   syscall
-  la $a0, character                       # load the address of character into $a0
-  li $v0, 0x08                                # Accept the character input
-  move 		$s1,  $v0		# $s1 = $v0
+  li $v0, 12                                    # Accept the character input
   syscall
+  move $s1, $v0                           # Save the $v0 result into $s1
 
   move $a0, $s0                      # load the string to $a0
-  move $a1, $s1                       # load the address of char to $a1
+  move $a1, $s1                       # load the char to $a1
+
 # Function Call: strcontainsi
   jal strcontainsi                        # Call the function strcontainsi
   sw $v0, found                        # Save the function call result into $s0
@@ -94,8 +94,8 @@ else:
   syscall
 
   # Print the character
-  la $a0, character           # Load the address of character into $a0
-  li $v0, 0x04                     # call the print character
+  move $a0, $s1           # Load the character into $a0
+  li $v0, 11                     # call the print character
   syscall
 
 Finished:
