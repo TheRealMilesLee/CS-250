@@ -2,9 +2,9 @@
 # This program is to determine whether a stings contains a character.
 
   .data
-promote_string:
+prompt_string:
   .asciiz "Please enter a string: "
-promote_character:
+prompt_character:
   .asciiz "Please enter a character: "
 contain:
   .asciiz " contains "
@@ -23,7 +23,7 @@ character:
 
 main:
 #Get String input
-  la    $a0, promote_string            # load the address of promote into the $a0
+  la    $a0, prompt_string            # load the address of promote into the $a0
   li    $v0, 0x04                                # print the string system call
   syscall
   la $a0, string                              # load the address of string into $a0
@@ -38,7 +38,7 @@ main:
   syscall
 
 # Get char input
-  la  $a0, promote_character       # load the address of promote into $a0
+  la  $a0, prompt_character       # load the address of promote into $a0
   li  $v0, 0x04                               # print the character system call
   syscall
   li $v0, 12                                    # Accept the character input
