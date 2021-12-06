@@ -28,7 +28,13 @@ main:
   syscall
   la $a0, string                              # load the address of string into $a0
   li $v0, 0x08                                # Accept the stings input
-  move 		$s0,  $v0		# $s0 = $v0
+  li $a1, 11                                     # Allocated the max chars
+  syscall
+  move 		$s0,  $a0		                    # save a copy of string into $s0
+
+#Make a new line
+  la $a0, newline                     # Load the address of newline into $a0
+  li $v0, 0x04                          # Call the system print the newline character
   syscall
 
 # Get char input
@@ -44,20 +50,18 @@ main:
 
 # Function Call: strcontainsi
   jal strcontainsi                        # Call the function strcontainsi
-  sw $v0, found                        # Save the function call result into $s0
   move $t0, $v0                       # Save result into t0
 
 #Condition: if contains and if not contains
 condition:
+  # Contain, continue, not contain, goto else
+  bne $t0, 1, else                      # If not found, goto else
+
 #Make a new line
   la $a0, newline                     # Load the address of newline into $a0
   li $v0, 0x04                          # Call the system print the newline character
   syscall
 
-  # Contain, continue, not contain, goto else
-  bne $t0, 1, else                      # If false, goto else
-
-# Print the string contains character
   # Print the origional string
   la  $a0, string                          # load the address of string into the $a0
   li  $v0, 0x04                            # print the string system call
@@ -69,12 +73,12 @@ condition:
   syscall
 
   # Print the character
-  la $a0, character                 # Load the address of character into $a0
-  li $v0, 0x04                            # call the print character
+  move $a0, $s1                   # Load the character into $a0
+  li $v0, 11                            # call the print character
   syscall
 
   # Finished operation, jump to end of the if-statement
-  j Finished                             #Finished operation, jump to Finished
+  j Finished                          #Finished operation, jump to Finished
 
 else:
 # Make a new line
@@ -82,7 +86,6 @@ else:
   li $v0, 0x04                      # call the print string to print the newline
   syscall
 
-# Print the string contains character
   # Print the origional string
   la  $a0,string                   # Load the address of origional string into $a0
   li  $v0, 0x04                    # print string system call
@@ -114,31 +117,42 @@ strcontainsi:
 # $t4 is the address of the current index
 # $t5 is the current character
 # $t6 is the string character converted to uppercase
-  addu $t1, $t1, 0                # Initialize the found value as 0
-  addu $t2, $t2, 0              # Initialize the boolean done as 0
-  addu $t3, $t3, 0              # Initialize the index as 0
+  addiu $t1, $t1, 0                # Initialize the found value as 0
+  addiu $t2, $t2, 0              # Initialize the boolean done as 0
+  addiu $t3, $t3, 0              # Initialize the index as 0
 loop:
   bne $t2, 0, exit                # If done is not equal to 0, goto exit
-  addu  $t4, $t3, $a0         # t4 = &base[index]
-  lbu   $t5, 0($t4)               # t1 = base[index]
+  addu  $t4, $t3, $a0         # t4 = &str[index]
+  lbu   $t5, 0($t4)               # t5 = str[index]
   enter:
     bne $t5, $zero, else_if # if (str[i] != '\0'), goto else_if
     addiu $t2, $t2, 1           # done = 1
+    bne $t2, 0, Done                # If done is not equal to 0, goto Done
   else_if:
     move $a0, $t5       # Copy the current character into $a0
+    addiu $sp, $sp, -4  # decrement stack pointer by 4
+    sw $ra, 0($sp)        # copy ra to stack pointer
     jal toupper               # call function to upper
-    sw $v0, 0($t6)        # Save the character into $t6
+    move $t6, $v0        # Save the character into $t6
     move $a0, $a1        # Copy the compare character into $a0
     jal toupper               # convert it to uppercase
     bne $t6, $v0, increment  # if str[i] != ch, goto else
     addiu $t1, $t1, 1       # found = 1
     addiu $t2, $t2, 1     # done = 1
+    bne $t2, 0, Done                # If done is not equal to 0, goto exit
+    j loop
   increment:
     addiu $t3, 1              # increment the index
-  j loop                          # Jump back to loop.
+  Done:
+    j exit
+
+#Finished Execution, return the value
 exit:
+  lw $ra, 0($sp)            # copy *sp into register
+  addiu $sp, $sp, 4      # Increment stack pointer by 4
   move  $v0, $t1            # return value: the value of the found
   jr    $ra                         # return
+  j loop
 
 toupper:
   # a0: the character parameter
