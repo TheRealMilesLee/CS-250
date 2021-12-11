@@ -7,6 +7,8 @@ array1:
   .word 1, 3, 4, 5, 8, 9
 space_between_array:
   .space 1
+newline:
+  .asciiz "\n"
 array2:
   .word 2, 6, 7, 8
 
@@ -49,6 +51,11 @@ finished:
   la $a0, array1    # Load the address of the array 1 into the $a0
   move $a1, $t1   # move the size of the array into the $a1
   jal print_array   # function call print_array
+
+  #Make a new line
+  la    $a0, newline        # Load the address of newline into $a0
+  li    $v0, 0x04           # Call the system print the newline character
+  syscall
 
   lw $t2, 0($sp)        # Copy the saved t2 into $t2
   addiu $sp, $sp, 4   # increment the stack pointer by 4
