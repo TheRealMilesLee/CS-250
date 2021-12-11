@@ -7,8 +7,6 @@ array1:
   .word 1, 3, 4, 5, 8, 9
 space_between_array:
   .space 1
-newline:
-  .asciiz "\n"
 array2:
   .word 2, 6, 7, 8
 
@@ -23,9 +21,10 @@ main:
   addiu $sp, $sp, -4        # decrement stack pointer by 4
   sw    $ra, 0($sp)         # copy ra to stack pointer
 
-  la $a0, array1           # load the address of array1 into $a0
-  syscall
   move $t1, $zero       # Initialize the $t1 to 0
+  move $t2, $zero       # Initialize the $t2 to 0
+
+  la $a0, array1           # load the address of array1 into $a0
 while:
   lw $t0, 0($a0)          # Load first element of array 1 into t0
   beq $t0, $zero, exit   # if it reaches to the end, exit
@@ -33,10 +32,11 @@ while:
   addiu $a0, $a0, 4      # Move to next index
   j while
 exit:
+  addiu $sp, $sp, -4  #decrement stack pointer by 4
+  sw $t1, 0($sp)         # Save the size of the array into stack
+  move $t0, $zero      # Cleanup the $t0
 
   la $a0, array2           # load the address of array1 into $a0
-  syscall
-  move $t2, $zero       # Initialize the $t2 to 0
 array2_while:
   lw $t0, 0($a0)          # Load first element of array 2 into t0
   beq $t0, $zero, finished   # if it reaches to the end, exit
@@ -44,27 +44,28 @@ array2_while:
   addiu $a0, $a0, 4      # Move to next index
   j array2_while
 finished:
-
-  addiu $sp, $sp, -4  #decrement the stack pointer by 4
-  sw $t2, 0($sp)    # Save the size of array2 on the stack
-
+  lw $t1, 0($sp)   # load t1 back from stack
+  addiu $sp, $sp, 4 # increment the stack pointer by 4
   la $a0, array1    # Load the address of the array 1 into the $a0
   move $a1, $t1   # move the size of the array into the $a1
+  addiu $sp, $sp, -4  #decrement the stack pointer by 4
+  sw $t2, 0($sp)    # Save the size of array2 on the stack
   jal print_array   # function call print_array
 
   #Make a new line
-  la    $a0, newline        # Load the address of newline into $a0
-  li    $v0, 0x04           # Call the system print the newline character
+  li    $a0, 10        # Load the address of newline into $a0
+  li    $v0, 11           # Call the system print the newline character
   syscall
 
   lw $t2, 0($sp)        # Copy the saved t2 into $t2
   addiu $sp, $sp, 4   # increment the stack pointer by 4
-
   la $a0, array2          # load the address of the array2 into $a0
   move $a1, $t2       # move the size of the array into the $a1
   jal print_array   # function call print_array
 
 # This is the end of the main
+  lw $ra 0($sp)   #restore the saved $ra
+  addiu $sp, $sp, 4 # Increment the stack pointer by 4
   li $v0, 0x0a
   syscall
   .end main
@@ -73,7 +74,6 @@ print_array:
 # $a0 is the address of the array
 # $a1 is the size of the array
 # $t3 is the current character
-
 loop:
   lw $t3, 0($a0)              # load the character at current address
   beq $t3, $zero, done  # If met the end of the array, exit
