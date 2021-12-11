@@ -44,14 +44,20 @@ array2_while:
 finished:
 
   addiu $sp, $sp, -4  #decrement the stack pointer by 4
-  sw $t1, 0($sp)    # Save the size of array1 on the stack
-  addiu $sp, $sp, -4  #decrement the stack pointer by 4
   sw $t2, 0($sp)    # Save the size of array2 on the stack
 
-  la $a0, array1
-  move $a1, $t1
-  jal print_array
+  la $a0, array1    # Load the address of the array 1 into the $a0
+  move $a1, $t1   # move the size of the array into the $a1
+  jal print_array   # function call print_array
 
+  lw $t2, 0($sp)        # Copy the saved t2 into $t2
+  addiu $sp, $sp, 4   # increment the stack pointer by 4
+
+  la $a0, array2          # load the address of the array2 into $a0
+  move $a1, $t2       # move the size of the array into the $a1
+  jal print_array   # function call print_array
+
+# This is the end of the main
   li $v0, 0x0a
   syscall
   .end main
@@ -59,18 +65,19 @@ finished:
 print_array:
 # $a0 is the address of the array
 # $a1 is the size of the array
-# $t3 is the index
-# $t4 is the address of current character
-# $t5 is the current character
+# $t3 is the current character
 
-move $t3, $zero   #Initialize to 0
 loop:
-  addu $t4, $t3, $a0
-  lw $t5, 0($t4)
-  beq $t5, $zero, done
-  move $a0, $t5       # move current character into a0
+  lw $t3, 0($a0)              # load the character at current address
+  beq $t3, $zero, done  # If met the end of the array, exit
+  addiu $sp, $sp, -4  #decrement the stack pointer by 4
+  sw $a0, 0($sp)      # save the $a0
+  move $a0, $t3       # move current character into a0
   li $v0, 1                  # display the current index
   syscall
-  addiu $t3, $t3, 1   #index++
+  lw $a0, 0($sp)        # load the saved $a0 from stack
+  addiu $sp, $sp, 4   #increment the stack pointer by 4
+  addiu $a0, $a0, 4      # Move to next index
   j loop
 done:
+  jr $ra                    # return nothing
