@@ -114,7 +114,29 @@ merge:
 # $t0 is the array1 index
 # $t1 is the array2 index
 # $t2 is the result array index
-# $t3 is array1 + array2
-move $t0, $zero
-move $t1, $zero
-move $t2, $zero
+# $t3 is array1 size + array2 size
+# $t4 is the current address of the array1
+# $t5 is the current address of the array2
+# $t6 is the compare temp value
+# $t7 is also the compare temp value
+move $t0, $zero   # Initialize the array1 index to 0
+move $t1, $zero   # Initialize the array2 index to 0
+move $t2, $zero  # Initialize the result array index to 0
+addu $t3, $a1, $a3  # Calculate the array1+array2 size and store it into $t3
+move $t4, $zero   # Initialize the current address of the array1 to 0
+move $t5, $zero   # Initialize the current address of the array2 to 0
+
+array1_compare_while:
+  slt		$t6, $t0, $a1		    # $t6 = ($t0 < $a1) ? 1 : 0
+  slt   $t7, $t1, $a3         # $t7 = ($t1 < $a3) ? 1 : 0
+  beq   $t6, $zero, end      # If t6 is false, goto end of the loop
+  beq   $t7, $zero, end      # If t7 is false, goto end of the loop
+enter:
+  lw    $t4, 0($a0)            # load the array1 at current address
+  lw    $t5, 0($a2)            # load the array2 at the current address
+  slt		$t6, $t4, $t5		    # $t6 = ($t4 < $t5) ? 1 : 0
+  beq   $t6, $zero, else    # If a[a_index] > b[b_index], goto else
+  addiu $a0, $a0, 4      # Move to next index
+else:
+
+end:
