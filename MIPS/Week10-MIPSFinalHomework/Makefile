@@ -9,3 +9,6 @@ MergeSort: $(OBJECTS)
 
 MergeSort.o: MergeSort.c
 	$(CC) $(CFLAGS) -Wno-padded -c MergeSort.c
+
+clean:
+	rm -f *.o *~ *.gch MergeSort
