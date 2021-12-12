@@ -125,3 +125,20 @@ move $t2, $zero  # Initialize the result array index to 0
 addu $t3, $a1, $a3  # Calculate the array1+array2 size and store it into $t3
 move $t4, $zero   # Initialize the current address of the array1 to 0
 move $t5, $zero   # Initialize the current address of the array2 to 0
+
+loop:
+  slt $t6, $t0, $a1 # a_index < a_length ? 1 : 0
+  slt $t7, $t1, $a3 # b_index < b_length ? 1 : 0
+  beq $t6, $zero, exit # If a_index > a_length, goto exit
+  beq $t7, $zero, exit # If b_index > b_length, goto exit
+enter:
+  la $t4, 0($a0)  # load the address of the array1 into $t4
+  la $t5, 0($a2)  # load the address of the array2 into $t5
+  slt $t6, $t4, $t5 # array1[index] < array2[index] ? 1 : 0
+  beq $t6, $zero, else # If it's bigger than, then goto else
+else:
+
+  j loop
+exit:
+
+
