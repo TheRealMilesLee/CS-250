@@ -136,9 +136,10 @@ enter:
   la $t5, 0($a2)  # load the address of the array2 into $t5
   slt $t6, $t4, $t5 # array1[index] < array2[index] ? 1 : 0
   beq $t6, $zero, else # If it's bigger than, then goto else
+  addiu $a0, $a0, 4   # Array1 index++
+  j loop
 else:
 
+  addiu $a2, $a2, 4 # Array 2 index ++
   j loop
 exit:
-
-
