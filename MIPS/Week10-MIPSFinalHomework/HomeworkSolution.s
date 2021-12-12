@@ -125,18 +125,3 @@ move $t2, $zero  # Initialize the result array index to 0
 addu $t3, $a1, $a3  # Calculate the array1+array2 size and store it into $t3
 move $t4, $zero   # Initialize the current address of the array1 to 0
 move $t5, $zero   # Initialize the current address of the array2 to 0
-
-array1_compare_while:
-  slt		$t6, $t0, $a1		    # $t6 = ($t0 < $a1) ? 1 : 0
-  slt   $t7, $t1, $a3         # $t7 = ($t1 < $a3) ? 1 : 0
-  beq   $t6, $zero, end      # If t6 is false, goto end of the loop
-  beq   $t7, $zero, end      # If t7 is false, goto end of the loop
-enter:
-  lw    $t4, 0($a0)            # load the array1 at current address
-  lw    $t5, 0($a2)            # load the array2 at the current address
-  slt		$t6, $t4, $t5		    # $t6 = ($t4 < $t5) ? 1 : 0
-  beq   $t6, $zero, else    # If a[a_index] > b[b_index], goto else
-  addiu $a0, $a0, 4      # Move to next index
-else:
-
-end:
