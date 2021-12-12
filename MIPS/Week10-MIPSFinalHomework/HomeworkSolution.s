@@ -119,6 +119,7 @@ merge:
 # $t5 is the current address of the array2
 # $t6 is the compare temp value
 # $t7 is also the compare temp value
+# $t8 is the result stack pointer
 move $t0, $zero   # Initialize the array1 index to 0
 move $t1, $zero   # Initialize the array2 index to 0
 move $t2, $zero  # Initialize the result array index to 0
@@ -126,20 +127,53 @@ addu $t3, $a1, $a3  # Calculate the array1+array2 size and store it into $t3
 move $t4, $zero   # Initialize the current address of the array1 to 0
 move $t5, $zero   # Initialize the current address of the array2 to 0
 
-loop:
+begin:
   slt $t6, $t0, $a1 # a_index < a_length ? 1 : 0
   slt $t7, $t1, $a3 # b_index < b_length ? 1 : 0
-  beq $t6, $zero, exit # If a_index > a_length, goto exit
-  beq $t7, $zero, exit # If b_index > b_length, goto exit
+  beq $t6, $zero, end # If a_index > a_length, goto exit
+  beq $t7, $zero, end # If b_index > b_length, goto exit
 enter:
   la $t4, 0($a0)  # load the address of the array1 into $t4
   la $t5, 0($a2)  # load the address of the array2 into $t5
   slt $t6, $t4, $t5 # array1[index] < array2[index] ? 1 : 0
   beq $t6, $zero, else # If it's bigger than, then goto else
+  move $t8, $t4     # Save it to $t8
+  addiu $sp, $sp, -4  # Decrement the stack pointer
+  sw $t8, 0($sp)    # Save it on the stack
   addiu $a0, $a0, 4   # Array1 index++
-  j loop
+  addiu $t0, $t0, 1   # a_index++
+  j begin
 else:
-
+  move $t8, $t5     # Save it to $t8
+  addiu $sp, $sp, -4  # Decrement the stack pointer
+  sw $t8, 0($sp)    # Save it on the stack
   addiu $a2, $a2, 4 # Array 2 index ++
-  j loop
-exit:
+  addiu $t1, $t1, 1   # b_index++
+  j begin
+end:
+
+a_index_less_length:
+  la $t4, 0($a0)  # load the address of the array1 into $t4
+  slt $t6, $t0, $a1       # a_index < a_length ? 1 : 0
+  beq $t6, $zero, terminated # If it's greater than, goto terminated
+  move $t8, $t4     # Save it to $t8
+  addiu $sp, $sp, -4  # Decrement the stack pointer
+  sw $t8, 0($sp)    # Save it on the stack
+  addiu $a0, $a0, 4   # Array1 index++
+  addiu $t0, $t0, 1   # a_index++
+terminated:
+
+b_index_less_length:
+  la $t5, 0($a0)  # load the address of the array1 into $t4
+  slt $t7, $t1, $a3       # b_index < b_length ? 1 : 0
+  beq $t7, $zero, b_terminated # If it's greater than, goto terminated
+  move $t8, $t4     # Save it to $t8
+  addiu $sp, $sp, -4  # Decrement the stack pointer
+  sw $t8, 0($sp)    # Save it on the stack
+  addiu $a0, $a0, 4   # Array1 index++
+  addiu $t1, $t1, 1   # b_index++
+b_terminated:
+
+cover_it_back:
+
+cover_done:
