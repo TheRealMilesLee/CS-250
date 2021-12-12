@@ -120,6 +120,8 @@ merge:
 # $t6 is the compare temp value
 # $t7 is also the compare temp value
 # $t8 is the result stack pointer
+# $t9 is the forloop index
+
 move $t0, $zero   # Initialize the array1 index to 0
 move $t1, $zero   # Initialize the array2 index to 0
 move $t2, $zero  # Initialize the result array index to 0
@@ -142,14 +144,14 @@ enter:
   sw $t8, 0($sp)    # Save it on the stack
   addiu $a0, $a0, 4   # Array1 index++
   addiu $t0, $t0, 1   # a_index++
-  j begin
+  j     begin
 else:
   move $t8, $t5     # Save it to $t8
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t8, 0($sp)    # Save it on the stack
   addiu $a2, $a2, 4 # Array 2 index ++
   addiu $t1, $t1, 1   # b_index++
-  j begin
+  j     begin
 end:
 
 a_index_less_length:
@@ -161,6 +163,7 @@ a_index_less_length:
   sw $t8, 0($sp)    # Save it on the stack
   addiu $a0, $a0, 4   # Array1 index++
   addiu $t0, $t0, 1   # a_index++
+  j     a_index_less_length
 terminated:
 
 b_index_less_length:
@@ -172,8 +175,10 @@ b_index_less_length:
   sw $t8, 0($sp)    # Save it on the stack
   addiu $a0, $a0, 4   # Array1 index++
   addiu $t1, $t1, 1   # b_index++
+  j     b_index_less_length
 b_terminated:
 
 cover_it_back:
+  la $t4, 0($a0)  # load the address of the array1 into $t4
 
 cover_done:
