@@ -162,6 +162,9 @@ merge:
 # $t8 is the result array pointer
 # $t9 is the forloop index
 #################################
+# $s2 is the pointer to the array1
+# $s3 is the pointer to the array2
+#################################
 move $t0, $zero   # Initialize the array1 index to 0
 move $t1, $zero   # Initialize the array2 index to 0
 move $t2, $zero  # Initialize the result array index to 0
@@ -197,26 +200,28 @@ else:
 end:
 
 a_index_less_length:
-  slt $t6, $t0, $a1       # a_index < a_length ? 1 : 0
-  beq $t6, $zero, terminated # If it's greater than, goto terminated
-  la $t4, 0($a0)  # load the address of the array1 into $t4
+  slt $t6, $t0, $a1       # array1 index < array1 length ? 1 : 0
+  beq $t6, $zero, a_done # If index is not less than length, exit
+  sll			$s2, $t0, 2			# $s2 = $t0 * 4
+  addu $s2, $s2, $a0 # $s2 = &array1[i]
+  lw $t4, 0($s2)      # Load the current index from the current address
   move $t8, $t4     # Save it to $t8
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t8, 0($sp)    # Save it on the stack
-  addiu $a0, $a0, 4   # Array1 index++
-  addiu $t0, $t0, 1   # a_index++
+  addiu $t0, $t0, 1   # array1 index++
   j     a_index_less_length
-terminated:
+a_done:
 
 b_index_less_length:
-  la $t5, 0($a0)  # load the address of the array1 into $t4
-  slt $t7, $t1, $a3       # b_index < b_length ? 1 : 0
+  slt $t7, $t1, $a3       # array2 index < array2 length ? 1 : 0
   beq $t7, $zero, b_terminated # If it's greater than, goto terminated
-  move $t8, $t4     # Save it to $t8
+  sll			$s3, $t1, 2			# $s3 = $t0 * 4
+  addu $s3, $s3, $a2 # $s3 = &array2[i]
+  lw $t5, 0($s2)      # Load the current index from the current address
+  move $t8, $t5     # Save it to $t8
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t8, 0($sp)    # Save it on the stack
-  addiu $a0, $a0, 4   # Array1 index++
-  addiu $t1, $t1, 1   # b_index++
+  addiu $t1, $t1, 1   # array2 index++
   j     b_index_less_length
 b_terminated:
 
