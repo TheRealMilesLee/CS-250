@@ -197,9 +197,9 @@ else:
 end:
 
 a_index_less_length:
-  la $t4, 0($a0)  # load the address of the array1 into $t4
   slt $t6, $t0, $a1       # a_index < a_length ? 1 : 0
   beq $t6, $zero, terminated # If it's greater than, goto terminated
+  la $t4, 0($a0)  # load the address of the array1 into $t4
   move $t8, $t4     # Save it to $t8
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t8, 0($sp)    # Save it on the stack
