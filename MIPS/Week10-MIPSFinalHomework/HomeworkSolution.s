@@ -5,8 +5,7 @@
   .data
 array1:
   .word 1, 3, 4, 5, 8, 9
-space_between_array:
-  .align 4
+  .align 6
 array2:
   .word 2, 6, 7, 8
 
@@ -97,7 +96,7 @@ finished:
 
   la $a0, array1       # Load the address of the array1 into a0
   move $a1, $zero # Cleanup the a1
-  addu $a1, $s1, 0       # Move the total size to $a1
+  move $a1, $s1       # Move the total size to $a1
   jal print_array
   # Print finished
 
@@ -184,6 +183,8 @@ merge:
 #################################
 # $s2 is the pointer to the array1
 # $s3 is the pointer to the array2
+# $s4 is the temp value to turing the data direction around
+# $s5 is also the temp value to turing the data direction around
 #################################
 move $t0, $zero   # Initialize the array1 index to 0
 move $t1, $zero   # Initialize the array2 index to 0
@@ -215,6 +216,7 @@ enter:
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t8, 0($sp)    # Save the value on the stack
   addiu $t0, $t0, 1   # array1 index++
+  addiu $t2, $t2, 1   # r_index++
   j     begin             # jump to the top of the loop
 else:
   # If array1 is bigger than or equal to array2, do the following
@@ -222,6 +224,7 @@ else:
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t8, 0($sp)    # Save the value on the stack
   addiu $t1, $t1, 1   # array2 index++
+  addiu $t2, $t2, 1   # r_index++
   j     begin               # jump to the top of the loop
 end:
 
@@ -234,10 +237,10 @@ a_index_less_length:
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t4, 0($sp)    # Save it on the stack
   addiu $t0, $t0, 1   # array1 index++
+  addiu $t2, $t2, 1   # r_index++
   j     a_index_less_length
 a_done:
 move $s2, $zero      # Cleanup pointer to array1
-move $t0, $zero      # Cleanup index of array1
 
 b_index_less_length:
   slt $t7, $t1, $a3       # array2 index < array2 length ? 1 : 0
@@ -248,19 +251,25 @@ b_index_less_length:
   addiu $sp, $sp, -4  # Decrement the stack pointer
   sw $t5, 0($sp)    # Save it on the stack
   addiu $t1, $t1, 1   # array2 index++
+  addiu $t2, $t2, 1   # r_index++
   j     b_index_less_length
 b_terminated:
 
+  move $t0, $t2 # Copy the length of the array1+array2 to $t0
+  subu $t0, $t0, 1 # Index = length - 1
+  move $t2, $zero   # reset the r_index to 0
 cover_it_back:
+# Start from end of the array, and decrement till the beginning
   slt $t6, $t2, $t3 # r_index < a_length + b_length ? 1 : 0
   beq $t6, $zero, cover_done  # If r_index >= a_length + b_length, goto cover_done
   # Cover begin
   sll  $s2, $t0, 2      # $s2 = $t0 * 4
   addu $s2, $s2, $a0 # $s2 = &array1[i]
+  move $s4, $s2
   lw $t8, 0($sp)  # load the saved character into $t8
   addiu $sp, $sp, 4 # increment the stack pointer
   sw $t8, 0($s2)  # Save it back to the memory
-  addiu $t0, $t0, 1 # array1 index++
+  subu $t0, $t0, 1 # array1 index--
   addiu $t2, $t2, 1 # result index++
   j cover_it_back
 cover_done:
@@ -274,10 +283,10 @@ addiu $sp, $sp, -4  # Decrement the stack pointer by 4
 sw $ra, 0($sp)        # Save the $ra on the stack
 # Function call here to print the current array
 jal print_array
-
-  li    $a0, 10        # Load the address of newline into $a0
-  li    $v0, 11           # Call the system print the newline character
-  syscall
+# Print a newline
+li    $a0, 10        # Load the address of newline into $a0
+li    $v0, 11           # Call the system print the newline character
+syscall
 # Print finished, load the saved ra back
 lw $ra, 0($sp)        # Load the saved a0 to a0
 addiu $sp, $sp, 4   # Increment the stack pointer by 4
