@@ -1,0 +1,136 @@
+                                CS250
+                              Final Exam
+
+Directions: This test assumes a Unix environment, either Linux or Mac
+OS.  All MIPS code must adhere to the style conventions we have
+discussed in class and assignments.  All lines are limited to no more
+than 78 columns in length.  All characters must be ASCII.
+
+Create a new text document containing only the answers to the
+following questions.  Clearly number each answer and use vertical
+space to make your document easy to read.  Save your work frequently.
+Submit your file by 11:20 to http://borax.truman.edu/250/submit.php
+
+1. (20 pts) Write an assembly language function that will return 1 if
+the argument in $a0, interpreted as a signed value, is negative, and 0
+otherwise.
+
+compare:
+  addiu $sp, $sp, -4        # Save ra
+  sw    $ra, 0($sp)
+  slt   $t0, $a0, $zero     # $a0 < 0 ? 1 : 0
+  bne   $t0, $zero, exit    # If the $a0 is less than 0, goto exit
+  move  $v0, $zero          # Initialize the $v0 as 0
+  lw    $ra, 0($sp)         # Restore the $ra
+  addiu $sp, $sp, 4         # Increment the stack pointer by 4
+  jr    $ra                 # If the $a0 is not less than 0, return 0
+exit:
+  move  $v0, $zero          # Initialize the $v0 as 0
+  addiu $v0, $v0, 1         # Change $v0 to 1
+  lw    $ra, 0($sp)
+  addiu $sp, $sp, 4         # restore ra
+  jr    $ra                 # If the $a0 is  less than 0, return 1
+
+2. (30 pts) Translate the following C language while loop into MIPS in
+two different ways.
+
+while (a >= b)
+{
+	a -= b;
+}
+
+Part a.  Do not use any pseudointructions.  In other words, use only
+slt, beq, and bne to implement the loop.
+
+Suppose $s1 is a, $s2 is b. Then we have:
+
+enter:
+  slt   $t0, $s2, $s1       # b < a ? 1 : 0
+  beq   $t0, $zero, exit    # If b > a, goto exit
+test_equal:
+  bne   $s2, $s1, exit      # if b is also not equal to a, goto exit
+  sub   $s1, $s1, $s2       # a -= b
+  j     enter               # jump back to loop
+exit:
+
+Part b.  Use appropriate pseudointructions to implement the loop.
+enter:
+  blt   $s2, $s1, exit    # If b < a, goto exit
+  sub   $s1, $s1, $s2       # a -= b
+  j     enter               # jump back to loop
+exit
+
+3. (30 pts) Consider the following MIPS function:
+
+function:
+  # ... code to set up stack frame
+
+  add   $s0, $a0, $a1
+  sub   $t0, $a0, $a1
+  sll   $s1, $a1, 1
+  move  $a0, $s0
+  move  $a1, $t0
+  jal   procedure1
+  add   $v0, $v0, $s0
+  add   $v0, $v0, $s1
+
+  # ... code to tear down stack frame
+  jr $ra
+
+Part a.  Give the MIPS code that should be inserted at the indicated
+place in the function to set up the stack frame.
+Answer:
+  addiu $sp, $sp, -4        # Decrement the sp by 4
+  sw    $ra, 0($sp)         # save ra
+  addiu $sp, $sp, -4        # Decrement the sp by 4
+  sw    $s0, 0($sp)         # save s0
+  addiu $sp, $sp, -4        # Decrement the sp by 4
+  sw    $s1, 0($sp)         # save s1
+  addiu $sp, $sp, -4        # Decrement the sp by 4
+  sw    $a0, 0($sp)         # save a0
+  addiu $sp, $sp, -4        # Decrement the sp by 4
+  sw    $t0, 0($sp)         # save t0
+  addiu $sp, $sp, -4        # Decrement the sp by 4
+  sw    $a1, 0($sp)         # save a1
+Part b.  Give the MIPS code that should be inserted at the indicated
+place in the function to tear down the stack frame.
+Answer:
+  lw    $a1, 0($sp)         # load a1
+  addiu $sp, $sp, 4         # Increment the sp by 4
+  lw    $t0, 0($sp)         # load t0
+  addiu $sp, $sp, 4         # Increment the sp by 4
+  lw    $a0, 0($sp)         # load a0
+  addiu $sp, $sp, 4         # Increment the sp by 4
+  lw    $s1, 0($sp)         # load s1
+  addiu $sp, $sp, 4         # Increment the sp by 4
+  lw    $s0, 0($sp)         # load s0
+  addiu $sp, $sp, -4        # Increment the sp by 4
+  lw    $ra, 0($sp)         # load ra
+  addiu $sp, $sp, -4        # Increment the sp by 4
+
+4. (10 pts) Given the machine language instruction 0x00041080:
+
+Part a: Translate this instruction into MIPS assembly language.
+Explain your translation.
+To binary:
+00000000 00000100 00010000 10000000
+
+Begin is 0, end is 0, so it's sll. R instruction
+opcode    0            $a0    $v0   shamt    sll
+000000 00000 00100 00010 00010 000000
+sll     $v0, $a0, 2
+
+Part b. Explain in English the purpose of this instruction.  What does
+it accomplish?
+   Mutiply $a0 by 4 and store it into $v0
+
+5. (10 pts) Translate the following C statement into MIPS assembly
+language.  Assume x is represented by $t0, y is represented by $t1,
+and the base address of A is in $t2.
+x = A[1] << y;
+
+sll     $t3, $t3, 2         # t3 = index * 4
+addu    $t3, $t3, $t2       # t3 = &A[1]
+lw      $t5, 4($t3)         # get the current value of the A[1]
+sll     $t5, $t5, $t1       # Left shift y bytes
+move    $t0, $t5            # x = A[1] << y;
