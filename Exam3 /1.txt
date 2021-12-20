@@ -17,9 +17,9 @@ otherwise.
 
 compare:
   addiu $sp, $sp, -4        # Save ra
-  sw    $ra, 0($sp)
+  sw    $ra, 0($sp)gtyj
   slt   $t0, $a0, $zero     # $a0 < 0 ? 1 : 0
-  bne   $t0, $zero, exit    # If the $a0 is less than 0, goto exit
+  bne   $t0, $zero, exit    # If the $a0 is bigger than 0, goto exit
   move  $v0, $zero          # Initialize the $v0 as 0
   lw    $ra, 0($sp)         # Restore the $ra
   addiu $sp, $sp, 4         # Increment the stack pointer by 4
@@ -116,7 +116,7 @@ To binary:
 00000000 00000100 00010000 10000000
 
 Begin is 0, end is 0, so it's sll. R instruction
-opcode    0            $a0    $v0   shamt    sll
+opcode    0   $a0    $v0   shamt    sll
 000000 00000 00100 00010 00010 000000
 sll     $v0, $a0, 2
 
