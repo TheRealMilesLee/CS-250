@@ -1,0 +1,5 @@
+"filename", "language", "C", "Makefile", "x86 and x86_64 Assembly", "comment", "blank", "total"
+"/Users/Silverhand/Developer/TrumanCodeSpaces/CS-250/MIPS/Week10-MIPSFinalHomework/HomeworkSolution.s", "x86 and x86_64 Assembly", 0, 0, 322, 0, 40, 362
+"/Users/Silverhand/Developer/TrumanCodeSpaces/CS-250/MIPS/Week10-MIPSFinalHomework/Makefile", "Makefile", 0, 10, 0, 0, 5, 15
+"/Users/Silverhand/Developer/TrumanCodeSpaces/CS-250/MIPS/Week10-MIPSFinalHomework/MergeSort.c", "C", 64, 0, 0, 24, 18, 106
+"Total", "-", 64, 10, 322, 24, 63, 483
